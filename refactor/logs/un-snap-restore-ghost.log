@@ -1,0 +1,1280 @@
+18:22:45.491 WeHookInstall ok=True
+18:22:45.498 NcCalc raw=(456,456,1896,1356) dwp=(466,466,1886,1346) client=(466,457,1886,1346) wa=(0,0,3840,2160) state=Normal
+18:22:45.498 NcOriginRedraw moveLT=(0,9) old=(466,466,1886,1346) new=(466,457,1886,1346)
+18:22:45.499 JrcEdges fail vis=(464,456,1888,1348) raw=(456,456,1896,1356) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:45.500 CacheSet win=(456,456,1896,1356) prevValid=False prev=(0,0,0,0) hasInternalDiv=False
+18:22:45.529 CacheSet win=(1894,439,3334,1339) prevValid=True prev=(456,456,1896,1356) hasInternalDiv=False
+18:22:45.550 NcCalc raw=(1894,439,3334,1339) dwp=(1904,449,3324,1329) client=(1904,440,3324,1329) wa=(0,0,3840,2160) state=Normal
+18:22:45.550 NcOriginRedraw moveLT=(0,0) old=(1904,440,3324,1329) new=(1904,440,3324,1329)
+18:22:45.733 TsJrc fail=no-edges
+18:22:45.733 WmSetCursor htLo=1 setOk=False
+18:22:45.759 JrcEdges fail vis=(1902,439,3326,1331) raw=(1894,439,3334,1339) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:45.760 TsJrc fail=no-edges
+18:22:45.760 WmSetCursor htLo=1 setOk=False
+18:22:45.767 TsJrc fail=no-edges
+18:22:45.768 WmSetCursor htLo=1 setOk=False
+18:22:45.774 TsJrc fail=no-edges
+18:22:45.775 WmSetCursor htLo=1 setOk=False
+18:22:45.782 TsJrc fail=no-edges
+18:22:45.783 WmSetCursor htLo=1 setOk=False
+18:22:45.789 TsJrc fail=no-edges
+18:22:45.790 WmSetCursor htLo=1 setOk=False
+18:22:45.797 TsJrc fail=no-edges
+18:22:45.798 WmSetCursor htLo=1 setOk=False
+18:22:45.804 TsJrc fail=no-edges
+18:22:45.805 WmSetCursor htLo=1 setOk=False
+18:22:45.812 TsJrc fail=no-edges
+18:22:45.813 WmSetCursor htLo=1 setOk=False
+18:22:45.819 TsJrc fail=no-edges
+18:22:45.820 WmSetCursor htLo=1 setOk=False
+18:22:45.827 TsJrc fail=no-edges
+18:22:45.828 WmSetCursor htLo=1 setOk=False
+18:22:45.834 TsJrc fail=no-edges
+18:22:45.834 WmSetCursor htLo=1 setOk=False
+18:22:45.842 TsJrc fail=no-edges
+18:22:45.843 WmSetCursor htLo=1 setOk=False
+18:22:45.850 TsJrc fail=no-edges
+18:22:45.850 WmSetCursor htLo=1 setOk=False
+18:22:45.864 TsJrc fail=no-edges
+18:22:45.865 WmSetCursor htLo=1 setOk=False
+18:22:45.873 TsJrc fail=no-edges
+18:22:45.873 WmSetCursor htLo=1 setOk=False
+18:22:45.888 TsJrc fail=no-edges
+18:22:45.888 WmSetCursor htLo=1 setOk=False
+18:22:45.895 TsJrc fail=no-edges
+18:22:45.895 WmSetCursor htLo=1 setOk=False
+18:22:45.903 TsJrc fail=no-edges
+18:22:45.903 WmSetCursor htLo=1 setOk=False
+18:22:45.910 TsJrc fail=no-edges
+18:22:45.910 WmSetCursor htLo=1 setOk=False
+18:22:45.917 TsJrc fail=no-edges
+18:22:45.918 WmSetCursor htLo=1 setOk=False
+18:22:45.932 TsJrc fail=no-edges
+18:22:45.933 WmSetCursor htLo=1 setOk=False
+18:22:45.948 TsJrc fail=no-edges
+18:22:45.949 WmSetCursor htLo=1 setOk=False
+18:22:45.970 TsJrc fail=no-edges
+18:22:45.970 WmSetCursor htLo=1 setOk=False
+18:22:46.218 JrcEdges fail vis=(1902,439,3326,1331) raw=(1894,439,3334,1339) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:46.218 TsJrc fail=no-edges
+18:22:46.218 WmSetCursor htLo=1 setOk=False
+18:22:46.225 TsJrc fail=no-edges
+18:22:46.225 WmSetCursor htLo=1 setOk=False
+18:22:46.233 TsJrc fail=no-edges
+18:22:46.233 WmSetCursor htLo=1 setOk=False
+18:22:46.240 TsJrc fail=no-edges
+18:22:46.240 WmSetCursor htLo=1 setOk=False
+18:22:46.248 TsJrc fail=no-edges
+18:22:46.248 WmSetCursor htLo=1 setOk=False
+18:22:46.255 TsJrc fail=no-edges
+18:22:46.255 WmSetCursor htLo=1 setOk=False
+18:22:46.263 TsJrc fail=no-edges
+18:22:46.263 WmSetCursor htLo=1 setOk=False
+18:22:46.270 TsJrc fail=no-edges
+18:22:46.270 WmSetCursor htLo=1 setOk=False
+18:22:46.277 TsJrc fail=no-edges
+18:22:46.278 WmSetCursor htLo=1 setOk=False
+18:22:46.285 TsJrc fail=no-edges
+18:22:46.285 WmSetCursor htLo=1 setOk=False
+18:22:46.292 TsJrc fail=no-edges
+18:22:46.293 WmSetCursor htLo=1 setOk=False
+18:22:46.300 TsJrc fail=no-edges
+18:22:46.300 WmSetCursor htLo=1 setOk=False
+18:22:46.307 TsJrc fail=no-edges
+18:22:46.308 WmSetCursor htLo=1 setOk=False
+18:22:46.315 TsJrc fail=no-edges
+18:22:46.315 WmSetCursor htLo=1 setOk=False
+18:22:46.322 TsJrc fail=no-edges
+18:22:46.323 WmSetCursor htLo=1 setOk=False
+18:22:46.329 TsJrc fail=no-edges
+18:22:46.330 WmSetCursor htLo=1 setOk=False
+18:22:46.337 TsJrc fail=no-edges
+18:22:46.338 WmSetCursor htLo=1 setOk=False
+18:22:46.345 TsJrc fail=no-edges
+18:22:46.345 WmSetCursor htLo=1 setOk=False
+18:22:46.353 TsJrc fail=no-edges
+18:22:46.353 WmSetCursor htLo=1 setOk=False
+18:22:46.360 TsJrc fail=no-edges
+18:22:46.360 WmSetCursor htLo=1 setOk=False
+18:22:46.368 TsJrc fail=no-edges
+18:22:46.368 WmSetCursor htLo=1 setOk=False
+18:22:46.375 TsJrc fail=no-edges
+18:22:46.375 WmSetCursor htLo=1 setOk=False
+18:22:46.383 TsJrc fail=no-edges
+18:22:46.383 WmSetCursor htLo=1 setOk=False
+18:22:46.390 TsJrc fail=no-edges
+18:22:46.390 WmSetCursor htLo=1 setOk=False
+18:22:46.398 TsJrc fail=no-edges
+18:22:46.398 WmSetCursor htLo=1 setOk=False
+18:22:46.404 TsJrc fail=no-edges
+18:22:46.405 WmSetCursor htLo=1 setOk=False
+18:22:46.413 TsJrc fail=no-edges
+18:22:46.413 WmSetCursor htLo=1 setOk=False
+18:22:46.420 TsJrc fail=no-edges
+18:22:46.420 WmSetCursor htLo=1 setOk=False
+18:22:46.427 TsJrc fail=no-edges
+18:22:46.428 WmSetCursor htLo=1 setOk=False
+18:22:46.434 TsJrc fail=no-edges
+18:22:46.435 WmSetCursor htLo=1 setOk=False
+18:22:46.442 TsJrc fail=no-edges
+18:22:46.443 WmSetCursor htLo=1 setOk=False
+18:22:46.450 TsJrc fail=no-edges
+18:22:46.450 WmSetCursor htLo=1 setOk=False
+18:22:46.457 TsJrc fail=no-edges
+18:22:46.458 WmSetCursor htLo=1 setOk=False
+18:22:46.465 TsJrc fail=no-edges
+18:22:46.465 WmSetCursor htLo=1 setOk=False
+18:22:46.473 JrcEdges fail vis=(1902,439,3326,1331) raw=(1894,439,3334,1339) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:46.473 TsJrc fail=no-edges
+18:22:46.473 WmSetCursor htLo=1 setOk=False
+18:22:46.480 TsJrc fail=no-edges
+18:22:46.480 WmSetCursor htLo=1 setOk=False
+18:22:46.488 TsJrc fail=no-edges
+18:22:46.488 WmSetCursor htLo=1 setOk=False
+18:22:46.495 TsJrc fail=no-edges
+18:22:46.495 WmSetCursor htLo=1 setOk=False
+18:22:46.503 TsJrc fail=no-edges
+18:22:46.503 WmSetCursor htLo=1 setOk=False
+18:22:46.510 TsJrc fail=no-edges
+18:22:46.510 WmSetCursor htLo=1 setOk=False
+18:22:46.518 TsJrc fail=no-edges
+18:22:46.518 WmSetCursor htLo=1 setOk=False
+18:22:46.525 TsJrc fail=no-edges
+18:22:46.525 WmSetCursor htLo=1 setOk=False
+18:22:46.533 TsJrc fail=no-edges
+18:22:46.533 WmSetCursor htLo=1 setOk=False
+18:22:46.548 TsJrc fail=no-edges
+18:22:46.548 WmSetCursor htLo=1 setOk=False
+18:22:46.555 TsJrc fail=no-edges
+18:22:46.555 WmSetCursor htLo=1 setOk=False
+18:22:46.563 TsJrc fail=no-edges
+18:22:46.563 WmSetCursor htLo=1 setOk=False
+18:22:46.570 TsJrc fail=no-edges
+18:22:46.570 WmSetCursor htLo=1 setOk=False
+18:22:46.578 TsJrc fail=no-edges
+18:22:46.578 WmSetCursor htLo=1 setOk=False
+18:22:46.585 TsJrc fail=no-edges
+18:22:46.585 WmSetCursor htLo=1 setOk=False
+18:22:46.593 TsJrc fail=no-edges
+18:22:46.593 WmSetCursor htLo=1 setOk=False
+18:22:46.600 TsJrc fail=no-edges
+18:22:46.600 WmSetCursor htLo=1 setOk=False
+18:22:46.607 TsJrc fail=no-edges
+18:22:46.608 WmSetCursor htLo=1 setOk=False
+18:22:46.615 TsJrc fail=no-edges
+18:22:46.615 WmSetCursor htLo=1 setOk=False
+18:22:46.622 TsJrc fail=no-edges
+18:22:46.623 WmSetCursor htLo=1 setOk=False
+18:22:46.630 TsJrc fail=no-edges
+18:22:46.630 WmSetCursor htLo=1 setOk=False
+18:22:46.638 TsJrc fail=no-edges
+18:22:46.638 WmSetCursor htLo=1 setOk=False
+18:22:46.908 JrcEdges fail vis=(1902,439,3326,1331) raw=(1894,439,3334,1339) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:48.208 NcCalc raw=(-8,0,1928,2168) dwp=(2,10,1918,2158) client=(0,0,1920,2160) wa=(0,0,3840,2160) state=Normal
+18:22:48.209 NcRedrawSkip newWH=(1920,2160) prevWH=(1420,889)
+18:22:48.214 FsnMiss side=2 nbr=(708,136,3153,1902) gap=-1214 farDelta=687 spanOk=True our=(-2,0,1922,2162) waR=3840 waL=0
+18:22:48.224 PfCand side=R our=(-2,0,1922,2162) win=(1009,201,2773,910) gap=913 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:48.225 PfCand side=R our=(-2,0,1922,2162) win=(117,409,1589,1458) gap=1805 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:48.225 PfCand side=R our=(-2,0,1922,2162) win=(79,371,1551,1420) gap=1843 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:48.225 PfCand side=R our=(-2,0,1922,2162) win=(708,136,3153,1902) gap=1214 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:48.225 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:48.491 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:48.762 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:48.935 PfCand side=R our=(-2,0,1922,2162) win=(1009,201,2773,910) gap=913 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:48.936 PfCand side=R our=(-2,0,1922,2162) win=(117,409,1589,1458) gap=1805 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:48.936 PfCand side=R our=(-2,0,1922,2162) win=(79,371,1551,1420) gap=1843 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:48.936 PfCand side=R our=(-2,0,1922,2162) win=(708,136,3153,1902) gap=1214 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:49.028 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:49.296 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:49.315 TsJrc fail=band sl=False sr=True dl=2147483647 dr=45 cur=(1877,679) vis=(-2,1922)
+18:22:49.315 WmSetCursor htLo=1 setOk=False
+18:22:49.323 TsJrc fail=band sl=False sr=True dl=2147483647 dr=81 cur=(1841,670) vis=(-2,1922)
+18:22:49.323 WmSetCursor htLo=1 setOk=False
+18:22:49.330 TsJrc fail=band sl=False sr=True dl=2147483647 dr=114 cur=(1808,659) vis=(-2,1922)
+18:22:49.330 WmSetCursor htLo=1 setOk=False
+18:22:49.338 TsJrc fail=band sl=False sr=True dl=2147483647 dr=141 cur=(1781,647) vis=(-2,1922)
+18:22:49.338 WmSetCursor htLo=1 setOk=False
+18:22:49.345 TsJrc fail=band sl=False sr=True dl=2147483647 dr=171 cur=(1751,634) vis=(-2,1922)
+18:22:49.345 WmSetCursor htLo=1 setOk=False
+18:22:49.353 TsJrc fail=band sl=False sr=True dl=2147483647 dr=184 cur=(1738,626) vis=(-2,1922)
+18:22:49.353 WmSetCursor htLo=1 setOk=False
+18:22:49.360 TsJrc fail=band sl=False sr=True dl=2147483647 dr=224 cur=(1698,606) vis=(-2,1922)
+18:22:49.360 WmSetCursor htLo=1 setOk=False
+18:22:49.368 TsJrc fail=band sl=False sr=True dl=2147483647 dr=278 cur=(1644,584) vis=(-2,1922)
+18:22:49.368 WmSetCursor htLo=1 setOk=False
+18:22:49.375 TsJrc fail=band sl=False sr=True dl=2147483647 dr=328 cur=(1594,566) vis=(-2,1922)
+18:22:49.375 WmSetCursor htLo=1 setOk=False
+18:22:49.383 TsJrc fail=band sl=False sr=True dl=2147483647 dr=366 cur=(1556,549) vis=(-2,1922)
+18:22:49.383 WmSetCursor htLo=1 setOk=False
+18:22:49.390 TsJrc fail=band sl=False sr=True dl=2147483647 dr=386 cur=(1536,538) vis=(-2,1922)
+18:22:49.390 WmSetCursor htLo=1 setOk=False
+18:22:49.398 TsJrc fail=band sl=False sr=True dl=2147483647 dr=393 cur=(1529,534) vis=(-2,1922)
+18:22:49.398 WmSetCursor htLo=1 setOk=False
+18:22:49.405 TsJrc fail=band sl=False sr=True dl=2147483647 dr=410 cur=(1512,524) vis=(-2,1922)
+18:22:49.405 WmSetCursor htLo=1 setOk=False
+18:22:49.413 TsJrc fail=band sl=False sr=True dl=2147483647 dr=412 cur=(1510,521) vis=(-2,1922)
+18:22:49.413 WmSetCursor htLo=1 setOk=False
+18:22:49.551 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:49.630 PfCand side=R our=(-2,0,1922,2162) win=(1009,201,2773,910) gap=913 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:49.630 PfCand side=R our=(-2,0,1922,2162) win=(117,409,1589,1458) gap=1805 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:49.630 PfCand side=R our=(-2,0,1922,2162) win=(79,371,1551,1420) gap=1843 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:49.630 PfCand side=R our=(-2,0,1922,2162) win=(708,136,3153,1902) gap=1214 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:49.638 TsJrc fail=band sl=False sr=True dl=2147483647 dr=413 cur=(1509,521) vis=(-2,1922)
+18:22:49.638 WmSetCursor htLo=1 setOk=False
+18:22:49.656 TsJrc fail=band sl=False sr=True dl=2147483647 dr=413 cur=(1509,521) vis=(-2,1922)
+18:22:49.656 WmSetCursor htLo=1 setOk=False
+18:22:49.660 TsJrc fail=band sl=False sr=True dl=2147483647 dr=428 cur=(1494,525) vis=(-2,1922)
+18:22:49.660 WmSetCursor htLo=1 setOk=False
+18:22:49.668 TsJrc fail=band sl=False sr=True dl=2147483647 dr=433 cur=(1489,527) vis=(-2,1922)
+18:22:49.668 WmSetCursor htLo=1 setOk=False
+18:22:49.674 TsJrc fail=band sl=False sr=True dl=2147483647 dr=433 cur=(1489,527) vis=(-2,1922)
+18:22:49.674 WmSetCursor htLo=1 setOk=False
+18:22:49.675 TsJrc fail=band sl=False sr=True dl=2147483647 dr=434 cur=(1488,528) vis=(-2,1922)
+18:22:49.675 WmSetCursor htLo=1 setOk=False
+18:22:49.690 TsJrc fail=band sl=False sr=True dl=2147483647 dr=434 cur=(1488,528) vis=(-2,1922)
+18:22:49.690 WmSetCursor htLo=1 setOk=False
+18:22:49.750 TsJrc fail=band sl=False sr=True dl=2147483647 dr=434 cur=(1488,528) vis=(-2,1922)
+18:22:49.750 WmSetCursor htLo=1 setOk=False
+18:22:49.773 TsJrc fail=band sl=False sr=True dl=2147483647 dr=434 cur=(1488,527) vis=(-2,1922)
+18:22:49.773 WmSetCursor htLo=1 setOk=False
+18:22:49.820 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:49.998 TsJrc fail=band sl=False sr=True dl=2147483647 dr=436 cur=(1486,526) vis=(-2,1922)
+18:22:49.999 WmSetCursor htLo=1 setOk=False
+18:22:50.005 TsJrc fail=band sl=False sr=True dl=2147483647 dr=446 cur=(1476,523) vis=(-2,1922)
+18:22:50.005 WmSetCursor htLo=1 setOk=False
+18:22:50.013 TsJrc fail=band sl=False sr=True dl=2147483647 dr=494 cur=(1428,505) vis=(-2,1922)
+18:22:50.013 WmSetCursor htLo=1 setOk=False
+18:22:50.020 TsJrc fail=band sl=False sr=True dl=2147483647 dr=544 cur=(1378,484) vis=(-2,1922)
+18:22:50.020 WmSetCursor htLo=1 setOk=False
+18:22:50.028 TsJrc fail=band sl=False sr=True dl=2147483647 dr=559 cur=(1363,475) vis=(-2,1922)
+18:22:50.028 WmSetCursor htLo=1 setOk=False
+18:22:50.035 TsJrc fail=band sl=False sr=True dl=2147483647 dr=585 cur=(1337,457) vis=(-2,1922)
+18:22:50.035 WmSetCursor htLo=1 setOk=False
+18:22:50.043 TsJrc fail=band sl=False sr=True dl=2147483647 dr=606 cur=(1316,440) vis=(-2,1922)
+18:22:50.044 WmSetCursor htLo=1 setOk=False
+18:22:50.050 TsJrc fail=band sl=False sr=True dl=2147483647 dr=618 cur=(1304,428) vis=(-2,1922)
+18:22:50.050 WmSetCursor htLo=1 setOk=False
+18:22:50.058 TsJrc fail=band sl=False sr=True dl=2147483647 dr=629 cur=(1293,417) vis=(-2,1922)
+18:22:50.058 WmSetCursor htLo=1 setOk=False
+18:22:50.065 TsJrc fail=band sl=False sr=True dl=2147483647 dr=653 cur=(1269,395) vis=(-2,1922)
+18:22:50.065 WmSetCursor htLo=1 setOk=False
+18:22:50.073 TsJrc fail=band sl=False sr=True dl=2147483647 dr=668 cur=(1254,384) vis=(-2,1922)
+18:22:50.073 WmSetCursor htLo=1 setOk=False
+18:22:50.080 TsJrc fail=band sl=False sr=True dl=2147483647 dr=683 cur=(1239,370) vis=(-2,1922)
+18:22:50.080 WmSetCursor htLo=1 setOk=False
+18:22:50.088 TsJrc fail=band sl=False sr=True dl=2147483647 dr=696 cur=(1226,359) vis=(-2,1922)
+18:22:50.088 WmSetCursor htLo=1 setOk=False
+18:22:50.090 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:50.095 TsJrc fail=band sl=False sr=True dl=2147483647 dr=711 cur=(1211,347) vis=(-2,1922)
+18:22:50.095 WmSetCursor htLo=1 setOk=False
+18:22:50.103 TsJrc fail=band sl=False sr=True dl=2147483647 dr=716 cur=(1206,342) vis=(-2,1922)
+18:22:50.103 WmSetCursor htLo=1 setOk=False
+18:22:50.110 TsJrc fail=band sl=False sr=True dl=2147483647 dr=728 cur=(1194,330) vis=(-2,1922)
+18:22:50.110 WmSetCursor htLo=1 setOk=False
+18:22:50.118 TsJrc fail=band sl=False sr=True dl=2147483647 dr=739 cur=(1183,315) vis=(-2,1922)
+18:22:50.118 WmSetCursor htLo=1 setOk=False
+18:22:50.125 TsJrc fail=band sl=False sr=True dl=2147483647 dr=751 cur=(1171,298) vis=(-2,1922)
+18:22:50.125 WmSetCursor htLo=1 setOk=False
+18:22:50.133 TsJrc fail=band sl=False sr=True dl=2147483647 dr=754 cur=(1168,290) vis=(-2,1922)
+18:22:50.133 WmSetCursor htLo=1 setOk=False
+18:22:50.140 TsJrc fail=band sl=False sr=True dl=2147483647 dr=763 cur=(1159,269) vis=(-2,1922)
+18:22:50.140 WmSetCursor htLo=1 setOk=False
+18:22:50.148 TsJrc fail=band sl=False sr=True dl=2147483647 dr=767 cur=(1155,260) vis=(-2,1922)
+18:22:50.148 WmSetCursor htLo=1 setOk=False
+18:22:50.155 TsJrc fail=band sl=False sr=True dl=2147483647 dr=776 cur=(1146,243) vis=(-2,1922)
+18:22:50.155 WmSetCursor htLo=1 setOk=False
+18:22:50.163 TsJrc fail=band sl=False sr=True dl=2147483647 dr=780 cur=(1142,234) vis=(-2,1922)
+18:22:50.163 WmSetCursor htLo=1 setOk=False
+18:22:50.170 TsJrc fail=band sl=False sr=True dl=2147483647 dr=788 cur=(1134,218) vis=(-2,1922)
+18:22:50.170 WmSetCursor htLo=1 setOk=False
+18:22:50.178 TsJrc fail=band sl=False sr=True dl=2147483647 dr=792 cur=(1130,212) vis=(-2,1922)
+18:22:50.178 WmSetCursor htLo=1 setOk=False
+18:22:50.185 TsJrc fail=band sl=False sr=True dl=2147483647 dr=798 cur=(1124,201) vis=(-2,1922)
+18:22:50.185 WmSetCursor htLo=1 setOk=False
+18:22:50.193 TsJrc fail=band sl=False sr=True dl=2147483647 dr=801 cur=(1121,196) vis=(-2,1922)
+18:22:50.193 WmSetCursor htLo=1 setOk=False
+18:22:50.200 TsJrc fail=band sl=False sr=True dl=2147483647 dr=803 cur=(1119,193) vis=(-2,1922)
+18:22:50.200 WmSetCursor htLo=1 setOk=False
+18:22:50.208 TsJrc fail=band sl=False sr=True dl=2147483647 dr=810 cur=(1112,180) vis=(-2,1922)
+18:22:50.208 WmSetCursor htLo=1 setOk=False
+18:22:50.215 TsJrc fail=band sl=False sr=True dl=2147483647 dr=815 cur=(1107,173) vis=(-2,1922)
+18:22:50.215 WmSetCursor htLo=1 setOk=False
+18:22:50.223 TsJrc fail=band sl=False sr=True dl=2147483647 dr=819 cur=(1103,166) vis=(-2,1922)
+18:22:50.224 WmSetCursor htLo=1 setOk=False
+18:22:50.230 TsJrc fail=band sl=False sr=True dl=2147483647 dr=831 cur=(1091,147) vis=(-2,1922)
+18:22:50.231 WmSetCursor htLo=1 setOk=False
+18:22:50.239 TsJrc fail=band sl=False sr=True dl=2147483647 dr=839 cur=(1083,137) vis=(-2,1922)
+18:22:50.239 WmSetCursor htLo=1 setOk=False
+18:22:50.245 TsJrc fail=band sl=False sr=True dl=2147483647 dr=845 cur=(1077,128) vis=(-2,1922)
+18:22:50.245 WmSetCursor htLo=1 setOk=False
+18:22:50.249 TsJrc fail=band sl=False sr=True dl=2147483647 dr=845 cur=(1077,128) vis=(-2,1922)
+18:22:50.249 WmSetCursor htLo=1 setOk=False
+18:22:50.253 TsJrc fail=band sl=False sr=True dl=2147483647 dr=853 cur=(1069,117) vis=(-2,1922)
+18:22:50.253 WmSetCursor htLo=1 setOk=False
+18:22:50.260 TsJrc fail=band sl=False sr=True dl=2147483647 dr=879 cur=(1043,85) vis=(-2,1922)
+18:22:50.261 WmSetCursor htLo=1 setOk=False
+18:22:50.268 TsJrc fail=band sl=False sr=True dl=2147483647 dr=888 cur=(1034,74) vis=(-2,1922)
+18:22:50.268 WmSetCursor htLo=1 setOk=False
+18:22:50.275 TsJrc fail=band sl=False sr=True dl=2147483647 dr=896 cur=(1026,63) vis=(-2,1922)
+18:22:50.275 WmSetCursor htLo=1 setOk=False
+18:22:50.283 TsJrc fail=band sl=False sr=True dl=2147483647 dr=904 cur=(1018,54) vis=(-2,1922)
+18:22:50.283 WmSetCursor htLo=1 setOk=False
+18:22:50.290 TsJrc fail=band sl=False sr=True dl=2147483647 dr=911 cur=(1011,43) vis=(-2,1922)
+18:22:50.290 WmSetCursor htLo=1 setOk=False
+18:22:50.298 TsJrc fail=band sl=False sr=True dl=2147483647 dr=913 cur=(1009,41) vis=(-2,1922)
+18:22:50.298 WmSetCursor htLo=1 setOk=False
+18:22:50.306 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.306 TsJrc fail=band sl=False sr=True dl=2147483647 dr=915 cur=(1007,36) vis=(-2,1922)
+18:22:50.306 WmSetCursor htLo=1 setOk=False
+18:22:50.313 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.313 TsJrc fail=band sl=False sr=True dl=2147483647 dr=916 cur=(1006,34) vis=(-2,1922)
+18:22:50.313 WmSetCursor htLo=1 setOk=False
+18:22:50.320 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.320 TsJrc fail=band sl=False sr=True dl=2147483647 dr=917 cur=(1005,29) vis=(-2,1922)
+18:22:50.320 WmSetCursor htLo=1 setOk=False
+18:22:50.328 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.328 TsJrc fail=band sl=False sr=True dl=2147483647 dr=918 cur=(1004,27) vis=(-2,1922)
+18:22:50.328 WmSetCursor htLo=1 setOk=False
+18:22:50.335 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.335 TsJrc fail=band sl=False sr=True dl=2147483647 dr=919 cur=(1003,25) vis=(-2,1922)
+18:22:50.335 WmSetCursor htLo=1 setOk=False
+18:22:50.343 PfCand side=R our=(-2,0,1922,2162) win=(1009,201,2773,910) gap=913 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:50.343 PfCand side=R our=(-2,0,1922,2162) win=(117,409,1589,1458) gap=1805 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:50.343 PfCand side=R our=(-2,0,1922,2162) win=(79,371,1551,1420) gap=1843 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:50.343 PfCand side=R our=(-2,0,1922,2162) win=(708,136,3153,1902) gap=1214 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:50.343 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.344 TsJrc fail=band sl=False sr=True dl=2147483647 dr=920 cur=(1002,23) vis=(-2,1922)
+18:22:50.344 WmSetCursor htLo=1 setOk=False
+18:22:50.350 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.350 TsJrc fail=band sl=False sr=True dl=2147483647 dr=920 cur=(1002,22) vis=(-2,1922)
+18:22:50.350 WmSetCursor htLo=1 setOk=False
+18:22:50.358 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:50.358 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.358 TsJrc fail=band sl=False sr=True dl=2147483647 dr=922 cur=(1000,20) vis=(-2,1922)
+18:22:50.358 WmSetCursor htLo=1 setOk=False
+18:22:50.374 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.374 TsJrc fail=band sl=False sr=True dl=2147483647 dr=923 cur=(999,19) vis=(-2,1922)
+18:22:50.374 WmSetCursor htLo=1 setOk=False
+18:22:50.380 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.380 TsJrc fail=band sl=False sr=True dl=2147483647 dr=925 cur=(997,16) vis=(-2,1922)
+18:22:50.380 WmSetCursor htLo=1 setOk=False
+18:22:50.388 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.388 TsJrc fail=band sl=False sr=True dl=2147483647 dr=926 cur=(996,14) vis=(-2,1922)
+18:22:50.388 WmSetCursor htLo=1 setOk=False
+18:22:50.395 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.395 TsJrc fail=band sl=False sr=True dl=2147483647 dr=926 cur=(996,12) vis=(-2,1922)
+18:22:50.396 WmSetCursor htLo=1 setOk=False
+18:22:50.605 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.605 TsJrc fail=band sl=False sr=True dl=2147483647 dr=946 cur=(976,11) vis=(-2,1922)
+18:22:50.606 WmSetCursor htLo=1 setOk=False
+18:22:50.606 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.606 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.620 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.620 TsJrc fail=band sl=False sr=True dl=2147483647 dr=947 cur=(975,11) vis=(-2,1922)
+18:22:50.620 WmSetCursor htLo=1 setOk=False
+18:22:50.621 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:50.628 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.628 TsJrc fail=band sl=False sr=True dl=2147483647 dr=948 cur=(974,12) vis=(-2,1922)
+18:22:50.628 WmSetCursor htLo=1 setOk=False
+18:22:50.635 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.635 TsJrc fail=band sl=False sr=True dl=2147483647 dr=949 cur=(973,13) vis=(-2,1922)
+18:22:50.635 WmSetCursor htLo=1 setOk=False
+18:22:50.643 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.643 TsJrc fail=band sl=False sr=True dl=2147483647 dr=950 cur=(972,14) vis=(-2,1922)
+18:22:50.643 WmSetCursor htLo=1 setOk=False
+18:22:50.650 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.650 TsJrc fail=band sl=False sr=True dl=2147483647 dr=950 cur=(972,15) vis=(-2,1922)
+18:22:50.650 WmSetCursor htLo=1 setOk=False
+18:22:50.665 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.665 TsJrc fail=band sl=False sr=True dl=2147483647 dr=951 cur=(971,16) vis=(-2,1922)
+18:22:50.665 WmSetCursor htLo=1 setOk=False
+18:22:50.695 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.695 TsJrc fail=band sl=False sr=True dl=2147483647 dr=952 cur=(970,16) vis=(-2,1922)
+18:22:50.695 WmSetCursor htLo=1 setOk=False
+18:22:50.878 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:50.995 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.996 TsJrc fail=band sl=False sr=True dl=2147483647 dr=952 cur=(970,16) vis=(-2,1922)
+18:22:50.996 WmSetCursor htLo=1 setOk=False
+18:22:50.996 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.997 CapDown state=Normal cur=(970,16) win=(-8,0,1928,2168) cand=True cacheValid=True cache=(1894,439,3334,1339) wpOk=True np=(1894,439,3334,1339) gotRestore=True restore=(1894,439,3334,1339) hasInternalDiv=True
+18:22:50.997 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:50.997 UpdFirst cur=(970,16) down=(970,16) pending=True dragging=False
+18:22:50.998 WmCaptureChanged newCap=0x680C18 pending=True dragging=False
+18:22:51.037 PfCand side=R our=(-2,0,1922,2162) win=(1009,201,2773,910) gap=913 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:51.037 PfCand side=R our=(-2,0,1922,2162) win=(117,409,1589,1458) gap=1805 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:51.037 PfCand side=R our=(-2,0,1922,2162) win=(79,371,1551,1420) gap=1843 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:51.037 PfCand side=R our=(-2,0,1922,2162) win=(708,136,3153,1902) gap=1214 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:51.148 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(-2,0,1922,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:51.416 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:51.439 FsnMiss side=2 nbr=(708,136,3153,1902) gap=-1214 farDelta=687 spanOk=True our=(-2,0,1922,2162) waR=3840 waL=0
+18:22:51.440 WeMoveSizeStart armValid=True
+18:22:51.566 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:51.695 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:51.821 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:51.941 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.070 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.196 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.317 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.451 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.550 FsnMiss side=2 nbr=none our=(796,2720)
+18:22:52.553 PfCand side=L our=(796,0,2720,2162) win=(1009,201,2773,910) gap=1977 ov=709/432 far=False perp=False sideOk=False tile=False
+18:22:52.553 PfCand side=L our=(796,0,2720,2162) win=(117,409,1589,1458) gap=793 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:52.553 PfCand side=L our=(796,0,2720,2162) win=(79,371,1551,1420) gap=755 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:52.553 PfCand side=L our=(796,0,2720,2162) win=(708,136,3153,1902) gap=2357 ov=1766/432 far=False perp=False sideOk=False tile=False
+18:22:52.553 PfCand side=R our=(796,0,2720,2162) win=(1009,201,2773,910) gap=1711 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:52.554 PfCand side=R our=(796,0,2720,2162) win=(117,409,1589,1458) gap=2603 ov=1049/432 far=False perp=False sideOk=False tile=False
+18:22:52.554 PfCand side=R our=(796,0,2720,2162) win=(79,371,1551,1420) gap=2641 ov=1049/432 far=False perp=False sideOk=False tile=False
+18:22:52.554 PfCand side=R our=(796,0,2720,2162) win=(708,136,3153,1902) gap=2012 ov=1766/432 far=False perp=False sideOk=False tile=False
+18:22:52.554 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(796,0,2720,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:52.554 WeMoveSizeEnd armValid=True
+18:22:52.554 WeRestore SKIP dy=-5 curH=2168 restoreH=900 stillGrown=True cur=(790,0,2726,2168)
+18:22:52.557 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.557 TsJrc fail=band sl=True sr=True dl=1004 dr=920 cur=(1800,11) vis=(796,2720)
+18:22:52.558 WmSetCursor htLo=1 setOk=False
+18:22:52.687 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.699 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.699 TsJrc fail=band sl=True sr=True dl=1005 dr=919 cur=(1801,11) vis=(796,2720)
+18:22:52.699 WmSetCursor htLo=1 setOk=False
+18:22:52.706 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.706 TsJrc fail=band sl=True sr=True dl=1006 dr=918 cur=(1802,12) vis=(796,2720)
+18:22:52.706 WmSetCursor htLo=1 setOk=False
+18:22:52.714 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.714 TsJrc fail=band sl=True sr=True dl=1008 dr=916 cur=(1804,13) vis=(796,2720)
+18:22:52.714 WmSetCursor htLo=1 setOk=False
+18:22:52.721 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.721 TsJrc fail=band sl=True sr=True dl=1009 dr=915 cur=(1805,13) vis=(796,2720)
+18:22:52.721 WmSetCursor htLo=1 setOk=False
+18:22:52.736 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.736 TsJrc fail=band sl=True sr=True dl=1010 dr=914 cur=(1806,13) vis=(796,2720)
+18:22:52.736 WmSetCursor htLo=1 setOk=False
+18:22:52.744 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.744 TsJrc fail=band sl=True sr=True dl=1010 dr=914 cur=(1806,14) vis=(796,2720)
+18:22:52.744 WmSetCursor htLo=1 setOk=False
+18:22:52.759 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.759 TsJrc fail=band sl=True sr=True dl=1011 dr=913 cur=(1807,14) vis=(796,2720)
+18:22:52.759 WmSetCursor htLo=1 setOk=False
+18:22:52.766 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.766 TsJrc fail=band sl=True sr=True dl=1012 dr=912 cur=(1808,14) vis=(796,2720)
+18:22:52.766 WmSetCursor htLo=1 setOk=False
+18:22:52.774 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.774 TsJrc fail=band sl=True sr=True dl=1013 dr=911 cur=(1809,14) vis=(796,2720)
+18:22:52.774 WmSetCursor htLo=1 setOk=False
+18:22:52.796 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.796 TsJrc fail=band sl=True sr=True dl=1014 dr=910 cur=(1810,14) vis=(796,2720)
+18:22:52.796 WmSetCursor htLo=1 setOk=False
+18:22:52.804 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.804 TsJrc fail=band sl=True sr=True dl=1015 dr=909 cur=(1811,14) vis=(796,2720)
+18:22:52.804 WmSetCursor htLo=1 setOk=False
+18:22:52.831 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(796,0,2720,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:52.834 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.834 TsJrc fail=band sl=True sr=True dl=1016 dr=908 cur=(1812,14) vis=(796,2720)
+18:22:52.834 WmSetCursor htLo=1 setOk=False
+18:22:52.841 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:52.841 TsJrc fail=band sl=True sr=True dl=1017 dr=907 cur=(1813,15) vis=(796,2720)
+18:22:52.841 WmSetCursor htLo=1 setOk=False
+18:22:53.036 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:53.036 TsJrc fail=band sl=True sr=True dl=1017 dr=907 cur=(1813,15) vis=(796,2720)
+18:22:53.037 WmSetCursor htLo=1 setOk=False
+18:22:53.037 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:53.037 CapDown state=Normal cur=(1813,15) win=(790,0,2726,2168) cand=True cacheValid=True cache=(1894,439,3334,1339) wpOk=True np=(1894,439,3334,1339) gotRestore=True restore=(1894,439,3334,1339) hasInternalDiv=True
+18:22:53.038 GetRestore PICK=cache rc=(1894,439,3334,1339)
+18:22:53.038 UpdFirst cur=(1813,15) down=(1813,15) pending=True dragging=False
+18:22:53.038 WmCaptureChanged newCap=0x680C18 pending=True dragging=False
+18:22:53.085 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(796,0,2720,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:53.231 CapThreshold dy=31 dx=12 cur=(1825,46) ticks=57
+18:22:53.231 CapRestoreMove cur=(1825,46) restore=(1894,439,3334,1339) snap=(790,0,2726,2168) offset=(761,15)
+18:22:53.231 NcCalc raw=(1064,31,2504,931) dwp=(1074,41,2494,921) client=(1074,32,2494,921) wa=(0,0,3840,2160) state=Normal
+18:22:53.231 NcRedrawSkip newWH=(1420,889) prevWH=(1920,2160)
+18:22:53.236 JrcEdges fail vis=(1072,31,2496,923) raw=(1064,31,2504,931) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:53.236 CacheSet win=(1064,31,2504,931) prevValid=True prev=(1894,439,3334,1339) hasInternalDiv=False
+18:22:53.241 CacheSet win=(1065,34,2505,934) prevValid=True prev=(1064,31,2504,931) hasInternalDiv=False
+18:22:53.246 CacheSet win=(1066,40,2506,940) prevValid=True prev=(1065,34,2505,934) hasInternalDiv=False
+18:22:53.254 CacheSet win=(1068,48,2508,948) prevValid=True prev=(1066,40,2506,940) hasInternalDiv=False
+18:22:53.261 CacheSet win=(1071,59,2511,959) prevValid=True prev=(1068,48,2508,948) hasInternalDiv=False
+18:22:53.269 CacheSet win=(1072,63,2512,963) prevValid=True prev=(1071,59,2511,959) hasInternalDiv=False
+18:22:53.276 CacheSet win=(1077,78,2517,978) prevValid=True prev=(1072,63,2512,963) hasInternalDiv=False
+18:22:53.284 CacheSet win=(1078,86,2518,986) prevValid=True prev=(1077,78,2517,978) hasInternalDiv=False
+18:22:53.291 CacheSet win=(1081,106,2521,1006) prevValid=True prev=(1078,86,2518,986) hasInternalDiv=False
+18:22:53.299 CacheSet win=(1087,135,2527,1035) prevValid=True prev=(1081,106,2521,1006) hasInternalDiv=False
+18:22:53.306 CacheSet win=(1090,149,2530,1049) prevValid=True prev=(1087,135,2527,1035) hasInternalDiv=False
+18:22:53.314 CacheSet win=(1094,164,2534,1064) prevValid=True prev=(1090,149,2530,1049) hasInternalDiv=False
+18:22:53.321 CacheSet win=(1102,208,2542,1108) prevValid=True prev=(1094,164,2534,1064) hasInternalDiv=False
+18:22:53.329 CacheSet win=(1106,224,2546,1124) prevValid=True prev=(1102,208,2542,1108) hasInternalDiv=False
+18:22:53.336 CacheSet win=(1115,276,2555,1176) prevValid=True prev=(1106,224,2546,1124) hasInternalDiv=False
+18:22:53.344 CacheSet win=(1118,297,2558,1197) prevValid=True prev=(1115,276,2555,1176) hasInternalDiv=False
+18:22:53.351 CacheSet win=(1120,315,2560,1215) prevValid=True prev=(1118,297,2558,1197) hasInternalDiv=False
+18:22:53.359 CacheSet win=(1131,370,2571,1270) prevValid=True prev=(1120,315,2560,1215) hasInternalDiv=False
+18:22:53.366 CacheSet win=(1136,387,2576,1287) prevValid=True prev=(1131,370,2571,1270) hasInternalDiv=False
+18:22:53.374 CacheSet win=(1146,417,2586,1317) prevValid=True prev=(1136,387,2576,1287) hasInternalDiv=False
+18:22:53.381 CacheSet win=(1149,423,2589,1323) prevValid=True prev=(1146,417,2586,1317) hasInternalDiv=False
+18:22:53.389 CacheSet win=(1155,438,2595,1338) prevValid=True prev=(1149,423,2589,1323) hasInternalDiv=False
+18:22:53.396 CacheSet win=(1160,447,2600,1347) prevValid=True prev=(1155,438,2595,1338) hasInternalDiv=False
+18:22:53.404 CacheSet win=(1163,454,2603,1354) prevValid=True prev=(1160,447,2600,1347) hasInternalDiv=False
+18:22:53.411 CacheSet win=(1165,460,2605,1360) prevValid=True prev=(1163,454,2603,1354) hasInternalDiv=False
+18:22:53.419 CacheSet win=(1165,467,2605,1367) prevValid=True prev=(1165,460,2605,1360) hasInternalDiv=False
+18:22:53.426 CacheSet win=(1168,475,2608,1375) prevValid=True prev=(1165,467,2605,1367) hasInternalDiv=False
+18:22:53.434 CacheSet win=(1170,484,2610,1384) prevValid=True prev=(1168,475,2608,1375) hasInternalDiv=False
+18:22:53.442 CacheSet win=(1171,492,2611,1392) prevValid=True prev=(1170,484,2610,1384) hasInternalDiv=False
+18:22:53.449 CacheSet win=(1172,504,2612,1404) prevValid=True prev=(1171,492,2611,1392) hasInternalDiv=False
+18:22:53.456 CacheSet win=(1174,511,2614,1411) prevValid=True prev=(1172,504,2612,1404) hasInternalDiv=False
+18:22:53.464 CacheSet win=(1175,521,2615,1421) prevValid=True prev=(1174,511,2614,1411) hasInternalDiv=False
+18:22:53.471 CacheSet win=(1175,527,2615,1427) prevValid=True prev=(1175,521,2615,1421) hasInternalDiv=False
+18:22:53.479 CacheSet win=(1177,536,2617,1436) prevValid=True prev=(1175,527,2615,1427) hasInternalDiv=False
+18:22:53.486 CacheSet win=(1178,540,2618,1440) prevValid=True prev=(1177,536,2617,1436) hasInternalDiv=False
+18:22:53.487 JrcEdges fail vis=(1186,540,2610,1432) raw=(1178,540,2618,1440) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:53.494 CacheSet win=(1178,547,2618,1447) prevValid=True prev=(1178,540,2618,1440) hasInternalDiv=False
+18:22:53.501 CacheSet win=(1178,551,2618,1451) prevValid=True prev=(1178,547,2618,1447) hasInternalDiv=False
+18:22:53.509 CacheSet win=(1178,556,2618,1456) prevValid=True prev=(1178,551,2618,1451) hasInternalDiv=False
+18:22:53.516 CacheSet win=(1178,557,2618,1457) prevValid=True prev=(1178,556,2618,1456) hasInternalDiv=False
+18:22:53.524 CacheSet win=(1178,558,2618,1458) prevValid=True prev=(1178,557,2618,1457) hasInternalDiv=False
+18:22:53.531 CacheSet win=(1179,558,2619,1458) prevValid=True prev=(1178,558,2618,1458) hasInternalDiv=False
+18:22:53.599 CacheSet win=(1179,559,2619,1459) prevValid=True prev=(1179,558,2619,1458) hasInternalDiv=False
+18:22:53.606 CacheSet win=(1179,560,2619,1460) prevValid=True prev=(1179,559,2619,1459) hasInternalDiv=False
+18:22:53.615 CacheSet win=(1179,564,2619,1464) prevValid=True prev=(1179,560,2619,1460) hasInternalDiv=False
+18:22:53.621 CacheSet win=(1180,566,2620,1466) prevValid=True prev=(1179,564,2619,1464) hasInternalDiv=False
+18:22:53.629 CacheSet win=(1180,569,2620,1469) prevValid=True prev=(1180,566,2620,1466) hasInternalDiv=False
+18:22:53.636 CacheSet win=(1181,570,2621,1470) prevValid=True prev=(1180,569,2620,1469) hasInternalDiv=False
+18:22:53.644 CacheSet win=(1181,572,2621,1472) prevValid=True prev=(1181,570,2621,1470) hasInternalDiv=False
+18:22:53.651 CacheSet win=(1181,573,2621,1473) prevValid=True prev=(1181,572,2621,1472) hasInternalDiv=False
+18:22:53.659 CacheSet win=(1181,574,2621,1474) prevValid=True prev=(1181,573,2621,1473) hasInternalDiv=False
+18:22:53.666 CacheSet win=(1182,574,2622,1474) prevValid=True prev=(1181,574,2621,1474) hasInternalDiv=False
+18:22:53.753 JrcEdges fail vis=(1190,574,2614,1466) raw=(1182,574,2622,1474) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:22:53.861 WmLBtnUp pending=False dragging=True
+18:22:53.862 CapEnd src=wm-lbuttonup wasPending=False wasDragging=True ticks=317 releaseCapture=True
+18:22:55.121 NcCalc raw=(1912,0,3848,2168) dwp=(1922,10,3838,2158) client=(1920,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:55.122 NcRedrawSkip newWH=(1920,2160) prevWH=(1420,889)
+18:22:55.127 FsnMiss side=1 nbr=(708,136,3153,1902) gap=-1235 farDelta=708 spanOk=True our=(1918,0,3842,2162) waR=3840 waL=0
+18:22:55.130 PfCand side=L our=(1918,0,3842,2162) win=(1009,201,2773,910) gap=855 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:55.131 PfCand side=L our=(1918,0,3842,2162) win=(117,409,1589,1458) gap=329 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:55.131 PfCand side=L our=(1918,0,3842,2162) win=(79,371,1551,1420) gap=367 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:55.131 PfCand side=L our=(1918,0,3842,2162) win=(708,136,3153,1902) gap=1235 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:55.131 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:55.133 TsJrc fail=band sl=True sr=False dl=25 dr=2147483647 cur=(1943,589) vis=(1918,3842)
+18:22:55.133 WmSetCursor htLo=1 setOk=False
+18:22:55.266 TsJrc fail=band sl=True sr=False dl=25 dr=2147483647 cur=(1943,589) vis=(1918,3842)
+18:22:55.266 WmSetCursor htLo=1 setOk=False
+18:22:55.300 TsJrc fail=band sl=True sr=False dl=25 dr=2147483647 cur=(1943,589) vis=(1918,3842)
+18:22:55.300 WmSetCursor htLo=1 setOk=False
+18:22:55.398 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:55.670 PfWatch am=True le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:55.842 PfCand side=L our=(1918,0,3842,2162) win=(1009,201,2773,910) gap=855 ov=709/432 far=False perp=False sideOk=True tile=False
+18:22:55.842 PfCand side=L our=(1918,0,3842,2162) win=(117,409,1589,1458) gap=329 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:55.842 PfCand side=L our=(1918,0,3842,2162) win=(79,371,1551,1420) gap=367 ov=1049/432 far=False perp=False sideOk=True tile=False
+18:22:55.842 PfCand side=L our=(1918,0,3842,2162) win=(708,136,3153,1902) gap=1235 ov=1766/432 far=False perp=False sideOk=True tile=False
+18:22:55.925 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:55.954 TsJrc fail=band sl=True sr=False dl=21 dr=2147483647 cur=(1939,585) vis=(1918,3842)
+18:22:55.954 WmSetCursor htLo=1 setOk=False
+18:22:55.962 FsnMiss side=1 nbr=(708,136,3153,1902) gap=-1235 farDelta=708 spanOk=True our=(1918,0,3842,2162) waR=3840 waL=0
+18:22:55.962 TsJrc fail=free-edge grabRight=False dl=4 dr=2147483647 cur=(1922,575) vis=(1918,3842)
+18:22:55.962 WmSetCursor htLo=1 setOk=False
+18:22:56.195 PfWatch am=False le=0 lf=0 baseLe=0 baseLf=0 baseOurL=0 re=0 nlSame=True haveL=False haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:56.465 PfWatch am=True le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:56.734 PfWatch am=True le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:56.854 TsJrc fail=band sl=True sr=False dl=24 dr=2147483647 cur=(1942,562) vis=(1918,3842)
+18:22:56.855 WmSetCursor htLo=1 setOk=False
+18:22:56.861 TsJrc fail=band sl=True sr=False dl=31 dr=2147483647 cur=(1949,562) vis=(1918,3842)
+18:22:56.862 WmSetCursor htLo=1 setOk=False
+18:22:56.869 TsJrc fail=band sl=True sr=False dl=37 dr=2147483647 cur=(1955,563) vis=(1918,3842)
+18:22:56.870 WmSetCursor htLo=1 setOk=False
+18:22:56.877 TsJrc fail=band sl=True sr=False dl=39 dr=2147483647 cur=(1957,564) vis=(1918,3842)
+18:22:56.877 WmSetCursor htLo=1 setOk=False
+18:22:56.884 TsJrc fail=band sl=True sr=False dl=41 dr=2147483647 cur=(1959,564) vis=(1918,3842)
+18:22:56.885 WmSetCursor htLo=1 setOk=False
+18:22:56.891 TsJrc fail=band sl=True sr=False dl=41 dr=2147483647 cur=(1959,565) vis=(1918,3842)
+18:22:56.892 WmSetCursor htLo=1 setOk=False
+18:22:56.899 TsJrc fail=band sl=True sr=False dl=41 dr=2147483647 cur=(1959,566) vis=(1918,3842)
+18:22:56.900 WmSetCursor htLo=1 setOk=False
+18:22:56.906 TsJrc fail=band sl=True sr=False dl=41 dr=2147483647 cur=(1959,567) vis=(1918,3842)
+18:22:56.907 WmSetCursor htLo=1 setOk=False
+18:22:56.914 TsJrc fail=band sl=True sr=False dl=42 dr=2147483647 cur=(1960,569) vis=(1918,3842)
+18:22:56.915 WmSetCursor htLo=1 setOk=False
+18:22:56.921 TsJrc fail=band sl=True sr=False dl=42 dr=2147483647 cur=(1960,570) vis=(1918,3842)
+18:22:56.922 WmSetCursor htLo=1 setOk=False
+18:22:56.929 TsJrc fail=band sl=True sr=False dl=42 dr=2147483647 cur=(1960,571) vis=(1918,3842)
+18:22:56.930 WmSetCursor htLo=1 setOk=False
+18:22:56.981 TsJrc fail=band sl=True sr=False dl=43 dr=2147483647 cur=(1961,572) vis=(1918,3842)
+18:22:56.982 WmSetCursor htLo=1 setOk=False
+18:22:56.989 PfWatch am=True le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:56.989 TsJrc fail=band sl=True sr=False dl=44 dr=2147483647 cur=(1962,574) vis=(1918,3842)
+18:22:56.990 WmSetCursor htLo=1 setOk=False
+18:22:56.996 TsJrc fail=band sl=True sr=False dl=45 dr=2147483647 cur=(1963,576) vis=(1918,3842)
+18:22:56.997 WmSetCursor htLo=1 setOk=False
+18:22:57.005 TsJrc fail=band sl=True sr=False dl=48 dr=2147483647 cur=(1966,580) vis=(1918,3842)
+18:22:57.005 WmSetCursor htLo=1 setOk=False
+18:22:57.011 TsJrc fail=band sl=True sr=False dl=50 dr=2147483647 cur=(1968,581) vis=(1918,3842)
+18:22:57.011 WmSetCursor htLo=1 setOk=False
+18:22:57.019 TsJrc fail=band sl=True sr=False dl=53 dr=2147483647 cur=(1971,583) vis=(1918,3842)
+18:22:57.020 WmSetCursor htLo=1 setOk=False
+18:22:57.026 TsJrc fail=band sl=True sr=False dl=57 dr=2147483647 cur=(1975,586) vis=(1918,3842)
+18:22:57.027 WmSetCursor htLo=1 setOk=False
+18:22:57.034 TsJrc fail=band sl=True sr=False dl=58 dr=2147483647 cur=(1976,587) vis=(1918,3842)
+18:22:57.035 WmSetCursor htLo=1 setOk=False
+18:22:57.041 TsJrc fail=band sl=True sr=False dl=60 dr=2147483647 cur=(1978,588) vis=(1918,3842)
+18:22:57.042 WmSetCursor htLo=1 setOk=False
+18:22:57.049 TsJrc fail=band sl=True sr=False dl=61 dr=2147483647 cur=(1979,589) vis=(1918,3842)
+18:22:57.050 WmSetCursor htLo=1 setOk=False
+18:22:57.087 TsJrc fail=band sl=True sr=False dl=61 dr=2147483647 cur=(1979,591) vis=(1918,3842)
+18:22:57.087 WmSetCursor htLo=1 setOk=False
+18:22:57.094 TsJrc fail=band sl=True sr=False dl=60 dr=2147483647 cur=(1978,592) vis=(1918,3842)
+18:22:57.095 WmSetCursor htLo=1 setOk=False
+18:22:57.101 TsJrc fail=band sl=True sr=False dl=58 dr=2147483647 cur=(1976,595) vis=(1918,3842)
+18:22:57.102 WmSetCursor htLo=1 setOk=False
+18:22:57.110 TsJrc fail=band sl=True sr=False dl=56 dr=2147483647 cur=(1974,597) vis=(1918,3842)
+18:22:57.110 WmSetCursor htLo=1 setOk=False
+18:22:57.116 TsJrc fail=band sl=True sr=False dl=54 dr=2147483647 cur=(1972,599) vis=(1918,3842)
+18:22:57.117 WmSetCursor htLo=1 setOk=False
+18:22:57.124 TsJrc fail=band sl=True sr=False dl=51 dr=2147483647 cur=(1969,601) vis=(1918,3842)
+18:22:57.125 WmSetCursor htLo=1 setOk=False
+18:22:57.132 TsJrc fail=band sl=True sr=False dl=49 dr=2147483647 cur=(1967,603) vis=(1918,3842)
+18:22:57.132 WmSetCursor htLo=1 setOk=False
+18:22:57.139 TsJrc fail=band sl=True sr=False dl=45 dr=2147483647 cur=(1963,606) vis=(1918,3842)
+18:22:57.140 WmSetCursor htLo=1 setOk=False
+18:22:57.146 TsJrc fail=band sl=True sr=False dl=44 dr=2147483647 cur=(1962,608) vis=(1918,3842)
+18:22:57.147 WmSetCursor htLo=1 setOk=False
+18:22:57.155 TsJrc fail=band sl=True sr=False dl=42 dr=2147483647 cur=(1960,609) vis=(1918,3842)
+18:22:57.155 WmSetCursor htLo=1 setOk=False
+18:22:57.161 TsJrc fail=band sl=True sr=False dl=41 dr=2147483647 cur=(1959,609) vis=(1918,3842)
+18:22:57.162 WmSetCursor htLo=1 setOk=False
+18:22:57.169 TsJrc fail=band sl=True sr=False dl=41 dr=2147483647 cur=(1959,610) vis=(1918,3842)
+18:22:57.170 WmSetCursor htLo=1 setOk=False
+18:22:57.177 TsJrc fail=band sl=True sr=False dl=40 dr=2147483647 cur=(1958,610) vis=(1918,3842)
+18:22:57.177 WmSetCursor htLo=1 setOk=False
+18:22:57.185 TsJrc fail=band sl=True sr=False dl=40 dr=2147483647 cur=(1958,611) vis=(1918,3842)
+18:22:57.185 WmSetCursor htLo=1 setOk=False
+18:22:57.199 TsJrc fail=band sl=True sr=False dl=39 dr=2147483647 cur=(1957,611) vis=(1918,3842)
+18:22:57.200 WmSetCursor htLo=1 setOk=False
+18:22:57.215 TsJrc fail=band sl=True sr=False dl=38 dr=2147483647 cur=(1956,611) vis=(1918,3842)
+18:22:57.215 WmSetCursor htLo=1 setOk=False
+18:22:57.221 TsJrc fail=band sl=True sr=False dl=37 dr=2147483647 cur=(1955,611) vis=(1918,3842)
+18:22:57.222 WmSetCursor htLo=1 setOk=False
+18:22:57.236 TsJrc fail=band sl=True sr=False dl=36 dr=2147483647 cur=(1954,611) vis=(1918,3842)
+18:22:57.237 WmSetCursor htLo=1 setOk=False
+18:22:57.251 TsJrc fail=band sl=True sr=False dl=35 dr=2147483647 cur=(1953,612) vis=(1918,3842)
+18:22:57.252 WmSetCursor htLo=1 setOk=False
+18:22:57.260 PfWatch am=False le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:57.260 TsJrc fail=band sl=True sr=False dl=34 dr=2147483647 cur=(1952,612) vis=(1918,3842)
+18:22:57.260 WmSetCursor htLo=1 setOk=False
+18:22:57.274 TsJrc fail=band sl=True sr=False dl=33 dr=2147483647 cur=(1951,612) vis=(1918,3842)
+18:22:57.275 WmSetCursor htLo=1 setOk=False
+18:22:57.281 TsJrc fail=band sl=True sr=False dl=33 dr=2147483647 cur=(1951,613) vis=(1918,3842)
+18:22:57.282 WmSetCursor htLo=1 setOk=False
+18:22:57.290 TsJrc fail=band sl=True sr=False dl=31 dr=2147483647 cur=(1949,613) vis=(1918,3842)
+18:22:57.290 WmSetCursor htLo=1 setOk=False
+18:22:57.296 TsJrc fail=band sl=True sr=False dl=30 dr=2147483647 cur=(1948,613) vis=(1918,3842)
+18:22:57.297 WmSetCursor htLo=1 setOk=False
+18:22:57.304 TsJrc fail=band sl=True sr=False dl=29 dr=2147483647 cur=(1947,613) vis=(1918,3842)
+18:22:57.305 WmSetCursor htLo=1 setOk=False
+18:22:57.320 TsJrc fail=band sl=True sr=False dl=28 dr=2147483647 cur=(1946,613) vis=(1918,3842)
+18:22:57.320 WmSetCursor htLo=1 setOk=False
+18:22:57.335 TsJrc fail=band sl=True sr=False dl=27 dr=2147483647 cur=(1945,613) vis=(1918,3842)
+18:22:57.335 WmSetCursor htLo=1 setOk=False
+18:22:57.350 TsJrc fail=band sl=True sr=False dl=26 dr=2147483647 cur=(1944,613) vis=(1918,3842)
+18:22:57.350 WmSetCursor htLo=1 setOk=False
+18:22:57.357 TsJrc fail=band sl=True sr=False dl=25 dr=2147483647 cur=(1943,613) vis=(1918,3842)
+18:22:57.357 WmSetCursor htLo=1 setOk=False
+18:22:57.364 TsJrc fail=band sl=True sr=False dl=23 dr=2147483647 cur=(1941,613) vis=(1918,3842)
+18:22:57.365 WmSetCursor htLo=1 setOk=False
+18:22:57.371 TsJrc fail=band sl=True sr=False dl=20 dr=2147483647 cur=(1938,613) vis=(1918,3842)
+18:22:57.372 WmSetCursor htLo=1 setOk=False
+18:22:57.380 TsJrc fail=band sl=True sr=False dl=18 dr=2147483647 cur=(1936,614) vis=(1918,3842)
+18:22:57.380 WmSetCursor htLo=1 setOk=False
+18:22:57.387 TsJrc fail=band sl=True sr=False dl=16 dr=2147483647 cur=(1934,614) vis=(1918,3842)
+18:22:57.387 WmSetCursor htLo=1 setOk=False
+18:22:57.394 TsJrc fail=band sl=True sr=False dl=15 dr=2147483647 cur=(1933,615) vis=(1918,3842)
+18:22:57.395 WmSetCursor htLo=1 setOk=False
+18:22:57.401 TsJrc fail=band sl=True sr=False dl=13 dr=2147483647 cur=(1931,615) vis=(1918,3842)
+18:22:57.402 WmSetCursor htLo=1 setOk=False
+18:22:57.417 WmSetCursor htLo=1 setOk=True
+18:22:57.530 PfWatch am=False le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:57.755 DivGrip lOk=True rOk=False tOk=False bOk=False tNbr=False bNbr=False vis=(1918,0,3842,2162) lN=1 rN=0 tN=0 bN=0 tNear=0 bNear=2162
+18:22:57.756 WmSetCursor htLo=1 setOk=True
+18:22:57.758 SfLatch edge=1 cur=(1930,615) sl=True sr=False dl=12 dr=2147483647 vis=(1918,0,3842,2162) win=(1912,0,3848,2168) lFound=True lnv=(0,0,1918,2160) lGap=0 lhSet=True rFound=False rnv=(0,0,0,0) rGap=0 rhSet=False st=False sb=False tFound=False tnv=(0,0,0,0) tGap=0 thSet=False bFound=False bnv=(0,0,0,0) bGap=0 bhSet=False
+18:22:57.760 WmSetCursor htLo=1 setOk=True
+18:22:57.800 WmSetCursor htLo=1 setOk=True
+18:22:58.477 PfWatch am=False le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:58.743 PfWatch am=False le=1918 lf=0 baseLe=1918 baseLf=0 baseOurL=1912 re=0 nlSame=True haveL=True haveR=False vis=(1918,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:22:58.814 DivGrip lOk=True rOk=False tOk=False bOk=False tNbr=False bNbr=False vis=(1918,0,3842,2162) lN=1 rN=0 tN=0 bN=0 tNear=0 bNear=2162
+18:22:58.815 DivDown side=1 nbrs=1 geomOk=False
+18:22:58.862 NcCalc raw=(1916,0,3848,2168) dwp=(1926,10,3838,2158) client=(1924,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.862 NcOriginRedraw moveLT=(-4,0) old=(1920,0,3840,2160) new=(1924,0,3840,2160)
+18:22:58.864 DivMove side=1 dividerX=1922 effDiv=1922 our=(1918,3842) nbrs=1
+18:22:58.878 NcCalc raw=(1911,0,3848,2168) dwp=(1921,10,3838,2158) client=(1919,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.878 NcOriginRedraw moveLT=(5,0) old=(1924,0,3840,2160) new=(1919,0,3840,2160)
+18:22:58.893 NcCalc raw=(1907,0,3848,2168) dwp=(1917,10,3838,2158) client=(1915,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.893 NcOriginRedraw moveLT=(4,0) old=(1919,0,3840,2160) new=(1915,0,3840,2160)
+18:22:58.907 NcCalc raw=(1902,0,3848,2168) dwp=(1912,10,3838,2158) client=(1910,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.907 NcOriginRedraw moveLT=(5,0) old=(1915,0,3840,2160) new=(1910,0,3840,2160)
+18:22:58.923 NcCalc raw=(1896,0,3848,2168) dwp=(1906,10,3838,2158) client=(1904,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.923 NcOriginRedraw moveLT=(6,0) old=(1910,0,3840,2160) new=(1904,0,3840,2160)
+18:22:58.937 NcCalc raw=(1893,0,3848,2168) dwp=(1903,10,3838,2158) client=(1901,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.937 NcOriginRedraw moveLT=(3,0) old=(1904,0,3840,2160) new=(1901,0,3840,2160)
+18:22:58.951 NcCalc raw=(1888,0,3848,2168) dwp=(1898,10,3838,2158) client=(1896,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.951 NcOriginRedraw moveLT=(5,0) old=(1901,0,3840,2160) new=(1896,0,3840,2160)
+18:22:58.965 NcCalc raw=(1883,0,3848,2168) dwp=(1893,10,3838,2158) client=(1891,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.966 NcOriginRedraw moveLT=(5,0) old=(1896,0,3840,2160) new=(1891,0,3840,2160)
+18:22:58.980 NcCalc raw=(1879,0,3848,2168) dwp=(1889,10,3838,2158) client=(1887,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.981 NcOriginRedraw moveLT=(4,0) old=(1891,0,3840,2160) new=(1887,0,3840,2160)
+18:22:58.996 NcCalc raw=(1873,0,3848,2168) dwp=(1883,10,3838,2158) client=(1881,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:58.996 NcOriginRedraw moveLT=(6,0) old=(1887,0,3840,2160) new=(1881,0,3840,2160)
+18:22:58.997 DivMove side=1 dividerX=1879 effDiv=1879 our=(1885,3842) nbrs=1
+18:22:59.013 NcCalc raw=(1869,0,3848,2168) dwp=(1879,10,3838,2158) client=(1877,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.013 NcOriginRedraw moveLT=(4,0) old=(1881,0,3840,2160) new=(1877,0,3840,2160)
+18:22:59.026 NcCalc raw=(1860,0,3848,2168) dwp=(1870,10,3838,2158) client=(1868,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.026 NcOriginRedraw moveLT=(9,0) old=(1877,0,3840,2160) new=(1868,0,3840,2160)
+18:22:59.041 NcCalc raw=(1854,0,3848,2168) dwp=(1864,10,3838,2158) client=(1862,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.041 NcOriginRedraw moveLT=(6,0) old=(1868,0,3840,2160) new=(1862,0,3840,2160)
+18:22:59.055 NcCalc raw=(1840,0,3848,2168) dwp=(1850,10,3838,2158) client=(1848,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.055 NcOriginRedraw moveLT=(14,0) old=(1862,0,3840,2160) new=(1848,0,3840,2160)
+18:22:59.068 NcCalc raw=(1829,0,3848,2168) dwp=(1839,10,3838,2158) client=(1837,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.068 NcOriginRedraw moveLT=(11,0) old=(1848,0,3840,2160) new=(1837,0,3840,2160)
+18:22:59.081 NcCalc raw=(1808,0,3848,2168) dwp=(1818,10,3838,2158) client=(1816,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.081 NcOriginRedraw moveLT=(21,0) old=(1837,0,3840,2160) new=(1816,0,3840,2160)
+18:22:59.094 NcCalc raw=(1781,0,3848,2168) dwp=(1791,10,3838,2158) client=(1789,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.094 NcOriginRedraw moveLT=(27,0) old=(1816,0,3840,2160) new=(1789,0,3840,2160)
+18:22:59.108 NcCalc raw=(1771,0,3848,2168) dwp=(1781,10,3838,2158) client=(1779,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.108 NcOriginRedraw moveLT=(10,0) old=(1789,0,3840,2160) new=(1779,0,3840,2160)
+18:22:59.122 NcCalc raw=(1725,0,3848,2168) dwp=(1735,10,3838,2158) client=(1733,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.122 NcOriginRedraw moveLT=(46,0) old=(1779,0,3840,2160) new=(1733,0,3840,2160)
+18:22:59.128 DivMove side=1 dividerX=1731 effDiv=1731 our=(1777,3842) nbrs=1
+18:22:59.141 NcCalc raw=(1643,0,3848,2168) dwp=(1653,10,3838,2158) client=(1651,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.141 NcOriginRedraw moveLT=(82,0) old=(1733,0,3840,2160) new=(1651,0,3840,2160)
+18:22:59.157 NcCalc raw=(1570,0,3848,2168) dwp=(1580,10,3838,2158) client=(1578,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.157 NcOriginRedraw moveLT=(73,0) old=(1651,0,3840,2160) new=(1578,0,3840,2160)
+18:22:59.174 NcCalc raw=(1491,0,3848,2168) dwp=(1501,10,3838,2158) client=(1499,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.174 NcOriginRedraw moveLT=(79,0) old=(1578,0,3840,2160) new=(1499,0,3840,2160)
+18:22:59.190 NcCalc raw=(1447,0,3848,2168) dwp=(1457,10,3838,2158) client=(1455,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.190 NcOriginRedraw moveLT=(44,0) old=(1499,0,3840,2160) new=(1455,0,3840,2160)
+18:22:59.207 NcCalc raw=(1377,0,3848,2168) dwp=(1387,10,3838,2158) client=(1385,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.207 NcOriginRedraw moveLT=(70,0) old=(1455,0,3840,2160) new=(1385,0,3840,2160)
+18:22:59.223 NcCalc raw=(1345,0,3848,2168) dwp=(1355,10,3838,2158) client=(1353,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.223 NcOriginRedraw moveLT=(32,0) old=(1385,0,3840,2160) new=(1353,0,3840,2160)
+18:22:59.239 NcCalc raw=(1303,0,3848,2168) dwp=(1313,10,3838,2158) client=(1311,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.239 NcOriginRedraw moveLT=(42,0) old=(1353,0,3840,2160) new=(1311,0,3840,2160)
+18:22:59.240 DivMove side=1 dividerX=1309 effDiv=1309 our=(1351,3842) nbrs=1
+18:22:59.254 NcCalc raw=(1288,0,3848,2168) dwp=(1298,10,3838,2158) client=(1296,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.254 NcOriginRedraw moveLT=(15,0) old=(1311,0,3840,2160) new=(1296,0,3840,2160)
+18:22:59.268 NcCalc raw=(1267,0,3848,2168) dwp=(1277,10,3838,2158) client=(1275,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.269 NcOriginRedraw moveLT=(21,0) old=(1296,0,3840,2160) new=(1275,0,3840,2160)
+18:22:59.284 NcCalc raw=(1251,0,3848,2168) dwp=(1261,10,3838,2158) client=(1259,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.284 NcOriginRedraw moveLT=(16,0) old=(1275,0,3840,2160) new=(1259,0,3840,2160)
+18:22:59.299 NcCalc raw=(1239,0,3848,2168) dwp=(1249,10,3838,2158) client=(1247,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.299 NcOriginRedraw moveLT=(12,0) old=(1259,0,3840,2160) new=(1247,0,3840,2160)
+18:22:59.315 NcCalc raw=(1235,0,3848,2168) dwp=(1245,10,3838,2158) client=(1243,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.315 NcOriginRedraw moveLT=(4,0) old=(1247,0,3840,2160) new=(1243,0,3840,2160)
+18:22:59.522 NcCalc raw=(1238,0,3848,2168) dwp=(1248,10,3838,2158) client=(1246,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.522 NcOriginRedraw moveLT=(-3,0) old=(1243,0,3840,2160) new=(1246,0,3840,2160)
+18:22:59.524 DivMove side=1 dividerX=1244 effDiv=1244 our=(1241,3842) nbrs=1
+18:22:59.537 NcCalc raw=(1241,0,3848,2168) dwp=(1251,10,3838,2158) client=(1249,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.537 NcOriginRedraw moveLT=(-3,0) old=(1246,0,3840,2160) new=(1249,0,3840,2160)
+18:22:59.551 NcCalc raw=(1265,0,3848,2168) dwp=(1275,10,3838,2158) client=(1273,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.551 NcOriginRedraw moveLT=(-24,0) old=(1249,0,3840,2160) new=(1273,0,3840,2160)
+18:22:59.566 NcCalc raw=(1295,0,3848,2168) dwp=(1305,10,3838,2158) client=(1303,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.567 NcOriginRedraw moveLT=(-30,0) old=(1273,0,3840,2160) new=(1303,0,3840,2160)
+18:22:59.582 NcCalc raw=(1338,0,3848,2168) dwp=(1348,10,3838,2158) client=(1346,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.583 NcOriginRedraw moveLT=(-43,0) old=(1303,0,3840,2160) new=(1346,0,3840,2160)
+18:22:59.600 NcCalc raw=(1417,0,3848,2168) dwp=(1427,10,3838,2158) client=(1425,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.600 NcOriginRedraw moveLT=(-79,0) old=(1346,0,3840,2160) new=(1425,0,3840,2160)
+18:22:59.617 NcCalc raw=(1501,0,3848,2168) dwp=(1511,10,3838,2158) client=(1509,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.618 NcOriginRedraw moveLT=(-84,0) old=(1425,0,3840,2160) new=(1509,0,3840,2160)
+18:22:59.632 NcCalc raw=(1564,0,3848,2168) dwp=(1574,10,3838,2158) client=(1572,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.632 NcOriginRedraw moveLT=(-63,0) old=(1509,0,3840,2160) new=(1572,0,3840,2160)
+18:22:59.649 NcCalc raw=(1622,0,3848,2168) dwp=(1632,10,3838,2158) client=(1630,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.649 NcOriginRedraw moveLT=(-58,0) old=(1572,0,3840,2160) new=(1630,0,3840,2160)
+18:22:59.652 DivMove side=1 dividerX=1628 effDiv=1628 our=(1570,3842) nbrs=1
+18:22:59.666 NcCalc raw=(1729,0,3848,2168) dwp=(1739,10,3838,2158) client=(1737,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.666 NcOriginRedraw moveLT=(-107,0) old=(1630,0,3840,2160) new=(1737,0,3840,2160)
+18:22:59.681 NcCalc raw=(1804,0,3848,2168) dwp=(1814,10,3838,2158) client=(1812,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.681 NcOriginRedraw moveLT=(-75,0) old=(1737,0,3840,2160) new=(1812,0,3840,2160)
+18:22:59.702 NcCalc raw=(1853,0,3848,2168) dwp=(1863,10,3838,2158) client=(1861,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.702 NcOriginRedraw moveLT=(-49,0) old=(1812,0,3840,2160) new=(1861,0,3840,2160)
+18:22:59.716 NcCalc raw=(1967,0,3848,2168) dwp=(1977,10,3838,2158) client=(1975,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.716 NcOriginRedraw moveLT=(-114,0) old=(1861,0,3840,2160) new=(1975,0,3840,2160)
+18:22:59.736 NcCalc raw=(2097,0,3848,2168) dwp=(2107,10,3838,2158) client=(2105,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.736 NcOriginRedraw moveLT=(-130,0) old=(1975,0,3840,2160) new=(2105,0,3840,2160)
+18:22:59.749 NcCalc raw=(2184,0,3848,2168) dwp=(2194,10,3838,2158) client=(2192,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.749 NcOriginRedraw moveLT=(-87,0) old=(2105,0,3840,2160) new=(2192,0,3840,2160)
+18:22:59.764 NcCalc raw=(2265,0,3848,2168) dwp=(2275,10,3838,2158) client=(2273,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.764 NcOriginRedraw moveLT=(-81,0) old=(2192,0,3840,2160) new=(2273,0,3840,2160)
+18:22:59.783 NcCalc raw=(2312,0,3848,2168) dwp=(2322,10,3838,2158) client=(2320,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.783 NcOriginRedraw moveLT=(-47,0) old=(2273,0,3840,2160) new=(2320,0,3840,2160)
+18:22:59.785 DivMove side=1 dividerX=2318 effDiv=2318 our=(2271,3842) nbrs=1
+18:22:59.796 NcCalc raw=(2321,0,3848,2168) dwp=(2331,10,3838,2158) client=(2329,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.796 NcOriginRedraw moveLT=(-9,0) old=(2320,0,3840,2160) new=(2329,0,3840,2160)
+18:22:59.888 NcCalc raw=(2320,0,3848,2168) dwp=(2330,10,3838,2158) client=(2328,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.888 NcOriginRedraw moveLT=(1,0) old=(2329,0,3840,2160) new=(2328,0,3840,2160)
+18:22:59.903 NcCalc raw=(2319,0,3848,2168) dwp=(2329,10,3838,2158) client=(2327,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.903 NcOriginRedraw moveLT=(1,0) old=(2328,0,3840,2160) new=(2327,0,3840,2160)
+18:22:59.904 DivMove side=1 dividerX=2325 effDiv=2325 our=(2326,3842) nbrs=1
+18:22:59.916 NcCalc raw=(2294,0,3848,2168) dwp=(2304,10,3838,2158) client=(2302,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.916 NcOriginRedraw moveLT=(25,0) old=(2327,0,3840,2160) new=(2302,0,3840,2160)
+18:22:59.930 NcCalc raw=(2274,0,3848,2168) dwp=(2284,10,3838,2158) client=(2282,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.930 NcOriginRedraw moveLT=(20,0) old=(2302,0,3840,2160) new=(2282,0,3840,2160)
+18:22:59.943 NcCalc raw=(2243,0,3848,2168) dwp=(2253,10,3838,2158) client=(2251,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.943 NcOriginRedraw moveLT=(31,0) old=(2282,0,3840,2160) new=(2251,0,3840,2160)
+18:22:59.957 NcCalc raw=(2218,0,3848,2168) dwp=(2228,10,3838,2158) client=(2226,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.957 NcOriginRedraw moveLT=(25,0) old=(2251,0,3840,2160) new=(2226,0,3840,2160)
+18:22:59.971 NcCalc raw=(2196,0,3848,2168) dwp=(2206,10,3838,2158) client=(2204,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.972 NcOriginRedraw moveLT=(22,0) old=(2226,0,3840,2160) new=(2204,0,3840,2160)
+18:22:59.984 NcCalc raw=(2156,0,3848,2168) dwp=(2166,10,3838,2158) client=(2164,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.984 NcOriginRedraw moveLT=(40,0) old=(2204,0,3840,2160) new=(2164,0,3840,2160)
+18:22:59.999 NcCalc raw=(2116,0,3848,2168) dwp=(2126,10,3838,2158) client=(2124,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:22:59.999 NcOriginRedraw moveLT=(40,0) old=(2164,0,3840,2160) new=(2124,0,3840,2160)
+18:23:00.012 NcCalc raw=(2073,0,3848,2168) dwp=(2083,10,3838,2158) client=(2081,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.012 NcOriginRedraw moveLT=(43,0) old=(2124,0,3840,2160) new=(2081,0,3840,2160)
+18:23:00.026 NcCalc raw=(2043,0,3848,2168) dwp=(2053,10,3838,2158) client=(2051,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.027 NcOriginRedraw moveLT=(30,0) old=(2081,0,3840,2160) new=(2051,0,3840,2160)
+18:23:00.028 DivMove side=1 dividerX=2049 effDiv=2049 our=(2079,3842) nbrs=1
+18:23:00.040 NcCalc raw=(1944,0,3848,2168) dwp=(1954,10,3838,2158) client=(1952,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.040 NcOriginRedraw moveLT=(99,0) old=(2051,0,3840,2160) new=(1952,0,3840,2160)
+18:23:00.054 NcCalc raw=(1926,0,3848,2168) dwp=(1936,10,3838,2158) client=(1934,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.054 NcOriginRedraw moveLT=(18,0) old=(1952,0,3840,2160) new=(1934,0,3840,2160)
+18:23:00.068 NcCalc raw=(1868,0,3848,2168) dwp=(1878,10,3838,2158) client=(1876,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.068 NcOriginRedraw moveLT=(58,0) old=(1934,0,3840,2160) new=(1876,0,3840,2160)
+18:23:00.083 NcCalc raw=(1820,0,3848,2168) dwp=(1830,10,3838,2158) client=(1828,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.083 NcOriginRedraw moveLT=(48,0) old=(1876,0,3840,2160) new=(1828,0,3840,2160)
+18:23:00.097 NcCalc raw=(1794,0,3848,2168) dwp=(1804,10,3838,2158) client=(1802,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.097 NcOriginRedraw moveLT=(26,0) old=(1828,0,3840,2160) new=(1802,0,3840,2160)
+18:23:00.110 NcCalc raw=(1742,0,3848,2168) dwp=(1752,10,3838,2158) client=(1750,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.110 NcOriginRedraw moveLT=(52,0) old=(1802,0,3840,2160) new=(1750,0,3840,2160)
+18:23:00.125 NcCalc raw=(1673,0,3848,2168) dwp=(1683,10,3838,2158) client=(1681,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.125 NcOriginRedraw moveLT=(69,0) old=(1750,0,3840,2160) new=(1681,0,3840,2160)
+18:23:00.139 NcCalc raw=(1633,0,3848,2168) dwp=(1643,10,3838,2158) client=(1641,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.139 NcOriginRedraw moveLT=(40,0) old=(1681,0,3840,2160) new=(1641,0,3840,2160)
+18:23:00.157 NcCalc raw=(1559,0,3848,2168) dwp=(1569,10,3838,2158) client=(1567,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.157 NcOriginRedraw moveLT=(74,0) old=(1641,0,3840,2160) new=(1567,0,3840,2160)
+18:23:00.159 DivMove side=1 dividerX=1565 effDiv=1565 our=(1639,3842) nbrs=1
+18:23:00.173 NcCalc raw=(1517,0,3848,2168) dwp=(1527,10,3838,2158) client=(1525,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.173 NcOriginRedraw moveLT=(42,0) old=(1567,0,3840,2160) new=(1525,0,3840,2160)
+18:23:00.189 NcCalc raw=(1474,0,3848,2168) dwp=(1484,10,3838,2158) client=(1482,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.189 NcOriginRedraw moveLT=(43,0) old=(1525,0,3840,2160) new=(1482,0,3840,2160)
+18:23:00.204 NcCalc raw=(1432,0,3848,2168) dwp=(1442,10,3838,2158) client=(1440,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.204 NcOriginRedraw moveLT=(42,0) old=(1482,0,3840,2160) new=(1440,0,3840,2160)
+18:23:00.219 NcCalc raw=(1360,0,3848,2168) dwp=(1370,10,3838,2158) client=(1368,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.219 NcOriginRedraw moveLT=(72,0) old=(1440,0,3840,2160) new=(1368,0,3840,2160)
+18:23:00.234 NcCalc raw=(1326,0,3848,2168) dwp=(1336,10,3838,2158) client=(1334,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.234 NcOriginRedraw moveLT=(34,0) old=(1368,0,3840,2160) new=(1334,0,3840,2160)
+18:23:00.249 NcCalc raw=(1306,0,3848,2168) dwp=(1316,10,3838,2158) client=(1314,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.249 NcOriginRedraw moveLT=(20,0) old=(1334,0,3840,2160) new=(1314,0,3840,2160)
+18:23:00.377 NcCalc raw=(1310,0,3848,2168) dwp=(1320,10,3838,2158) client=(1318,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.378 NcOriginRedraw moveLT=(-4,0) old=(1314,0,3840,2160) new=(1318,0,3840,2160)
+18:23:00.379 DivMove side=1 dividerX=1316 effDiv=1316 our=(1312,3842) nbrs=1
+18:23:00.392 NcCalc raw=(1346,0,3848,2168) dwp=(1356,10,3838,2158) client=(1354,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.392 NcOriginRedraw moveLT=(-36,0) old=(1318,0,3840,2160) new=(1354,0,3840,2160)
+18:23:00.408 NcCalc raw=(1429,0,3848,2168) dwp=(1439,10,3838,2158) client=(1437,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.408 NcOriginRedraw moveLT=(-83,0) old=(1354,0,3840,2160) new=(1437,0,3840,2160)
+18:23:00.425 NcCalc raw=(1629,0,3848,2168) dwp=(1639,10,3838,2158) client=(1637,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.425 NcOriginRedraw moveLT=(-200,0) old=(1437,0,3840,2160) new=(1637,0,3840,2160)
+18:23:00.441 NcCalc raw=(1787,0,3848,2168) dwp=(1797,10,3838,2158) client=(1795,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.442 NcOriginRedraw moveLT=(-158,0) old=(1637,0,3840,2160) new=(1795,0,3840,2160)
+18:23:00.456 NcCalc raw=(1930,0,3848,2168) dwp=(1940,10,3838,2158) client=(1938,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.456 NcOriginRedraw moveLT=(-143,0) old=(1795,0,3840,2160) new=(1938,0,3840,2160)
+18:23:00.469 NcCalc raw=(2021,0,3848,2168) dwp=(2031,10,3838,2158) client=(2029,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.469 NcOriginRedraw moveLT=(-91,0) old=(1938,0,3840,2160) new=(2029,0,3840,2160)
+18:23:00.483 NcCalc raw=(2084,0,3848,2168) dwp=(2094,10,3838,2158) client=(2092,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.483 NcOriginRedraw moveLT=(-63,0) old=(2029,0,3840,2160) new=(2092,0,3840,2160)
+18:23:00.497 NcCalc raw=(2170,0,3848,2168) dwp=(2180,10,3838,2158) client=(2178,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.497 NcOriginRedraw moveLT=(-86,0) old=(2092,0,3840,2160) new=(2178,0,3840,2160)
+18:23:00.510 NcCalc raw=(2228,0,3848,2168) dwp=(2238,10,3838,2158) client=(2236,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.511 NcOriginRedraw moveLT=(-58,0) old=(2178,0,3840,2160) new=(2236,0,3840,2160)
+18:23:00.512 DivMove side=1 dividerX=2234 effDiv=2234 our=(2176,3842) nbrs=1
+18:23:00.524 NcCalc raw=(2367,0,3848,2168) dwp=(2377,10,3838,2158) client=(2375,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.524 NcOriginRedraw moveLT=(-139,0) old=(2236,0,3840,2160) new=(2375,0,3840,2160)
+18:23:00.538 NcCalc raw=(2451,0,3848,2168) dwp=(2461,10,3838,2158) client=(2459,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.538 NcOriginRedraw moveLT=(-84,0) old=(2375,0,3840,2160) new=(2459,0,3840,2160)
+18:23:00.551 NcCalc raw=(2559,0,3848,2168) dwp=(2569,10,3838,2158) client=(2567,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.551 NcOriginRedraw moveLT=(-108,0) old=(2459,0,3840,2160) new=(2567,0,3840,2160)
+18:23:00.565 NcCalc raw=(2626,0,3848,2168) dwp=(2636,10,3838,2158) client=(2634,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.565 NcOriginRedraw moveLT=(-67,0) old=(2567,0,3840,2160) new=(2634,0,3840,2160)
+18:23:00.581 NcCalc raw=(2679,0,3848,2168) dwp=(2689,10,3838,2158) client=(2687,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.581 NcOriginRedraw moveLT=(-53,0) old=(2634,0,3840,2160) new=(2687,0,3840,2160)
+18:23:00.594 NcCalc raw=(2754,0,3848,2168) dwp=(2764,10,3838,2158) client=(2762,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.594 NcOriginRedraw moveLT=(-75,0) old=(2687,0,3840,2160) new=(2762,0,3840,2160)
+18:23:00.608 NcCalc raw=(2768,0,3848,2168) dwp=(2778,10,3838,2158) client=(2776,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.608 NcOriginRedraw moveLT=(-14,0) old=(2762,0,3840,2160) new=(2776,0,3840,2160)
+18:23:00.624 NcCalc raw=(2779,0,3848,2168) dwp=(2789,10,3838,2158) client=(2787,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.624 NcOriginRedraw moveLT=(-11,0) old=(2776,0,3840,2160) new=(2787,0,3840,2160)
+18:23:00.638 NcCalc raw=(2782,0,3848,2168) dwp=(2792,10,3838,2158) client=(2790,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.639 NcOriginRedraw moveLT=(-3,0) old=(2787,0,3840,2160) new=(2790,0,3840,2160)
+18:23:00.640 DivMove side=1 dividerX=2788 effDiv=2788 our=(2785,3842) nbrs=1
+18:23:00.683 NcCalc raw=(2779,0,3848,2168) dwp=(2789,10,3838,2158) client=(2787,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.683 NcOriginRedraw moveLT=(3,0) old=(2790,0,3840,2160) new=(2787,0,3840,2160)
+18:23:00.697 NcCalc raw=(2776,0,3848,2168) dwp=(2786,10,3838,2158) client=(2784,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.697 NcOriginRedraw moveLT=(3,0) old=(2787,0,3840,2160) new=(2784,0,3840,2160)
+18:23:00.711 NcCalc raw=(2752,0,3848,2168) dwp=(2762,10,3838,2158) client=(2760,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.711 NcOriginRedraw moveLT=(24,0) old=(2784,0,3840,2160) new=(2760,0,3840,2160)
+18:23:00.724 NcCalc raw=(2720,0,3848,2168) dwp=(2730,10,3838,2158) client=(2728,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.724 NcOriginRedraw moveLT=(32,0) old=(2760,0,3840,2160) new=(2728,0,3840,2160)
+18:23:00.738 NcCalc raw=(2671,0,3848,2168) dwp=(2681,10,3838,2158) client=(2679,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.738 NcOriginRedraw moveLT=(49,0) old=(2728,0,3840,2160) new=(2679,0,3840,2160)
+18:23:00.751 NcCalc raw=(2642,0,3848,2168) dwp=(2652,10,3838,2158) client=(2650,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.751 NcOriginRedraw moveLT=(29,0) old=(2679,0,3840,2160) new=(2650,0,3840,2160)
+18:23:00.764 NcCalc raw=(2576,0,3848,2168) dwp=(2586,10,3838,2158) client=(2584,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.765 NcOriginRedraw moveLT=(66,0) old=(2650,0,3840,2160) new=(2584,0,3840,2160)
+18:23:00.766 DivMove side=1 dividerX=2582 effDiv=2582 our=(2648,3842) nbrs=1
+18:23:00.777 NcCalc raw=(2548,0,3848,2168) dwp=(2558,10,3838,2158) client=(2556,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.778 NcOriginRedraw moveLT=(28,0) old=(2584,0,3840,2160) new=(2556,0,3840,2160)
+18:23:00.790 NcCalc raw=(2512,0,3848,2168) dwp=(2522,10,3838,2158) client=(2520,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.791 NcOriginRedraw moveLT=(36,0) old=(2556,0,3840,2160) new=(2520,0,3840,2160)
+18:23:00.804 NcCalc raw=(2482,0,3848,2168) dwp=(2492,10,3838,2158) client=(2490,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.804 NcOriginRedraw moveLT=(30,0) old=(2520,0,3840,2160) new=(2490,0,3840,2160)
+18:23:00.816 NcCalc raw=(2474,0,3848,2168) dwp=(2484,10,3838,2158) client=(2482,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.816 NcOriginRedraw moveLT=(8,0) old=(2490,0,3840,2160) new=(2482,0,3840,2160)
+18:23:00.830 NcCalc raw=(2437,0,3848,2168) dwp=(2447,10,3838,2158) client=(2445,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.830 NcOriginRedraw moveLT=(37,0) old=(2482,0,3840,2160) new=(2445,0,3840,2160)
+18:23:00.843 NcCalc raw=(2387,0,3848,2168) dwp=(2397,10,3838,2158) client=(2395,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.843 NcOriginRedraw moveLT=(50,0) old=(2445,0,3840,2160) new=(2395,0,3840,2160)
+18:23:00.856 NcCalc raw=(2330,0,3848,2168) dwp=(2340,10,3838,2158) client=(2338,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.856 NcOriginRedraw moveLT=(57,0) old=(2395,0,3840,2160) new=(2338,0,3840,2160)
+18:23:00.870 NcCalc raw=(2188,0,3848,2168) dwp=(2198,10,3838,2158) client=(2196,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.870 NcOriginRedraw moveLT=(142,0) old=(2338,0,3840,2160) new=(2196,0,3840,2160)
+18:23:00.884 NcCalc raw=(2001,0,3848,2168) dwp=(2011,10,3838,2158) client=(2009,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.884 NcOriginRedraw moveLT=(187,0) old=(2196,0,3840,2160) new=(2009,0,3840,2160)
+18:23:00.885 DivMove side=1 dividerX=2007 effDiv=2007 our=(2194,3842) nbrs=1
+18:23:00.897 NcCalc raw=(1798,0,3848,2168) dwp=(1808,10,3838,2158) client=(1806,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.897 NcOriginRedraw moveLT=(203,0) old=(2009,0,3840,2160) new=(1806,0,3840,2160)
+18:23:00.911 NcCalc raw=(1679,0,3848,2168) dwp=(1689,10,3838,2158) client=(1687,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.912 NcOriginRedraw moveLT=(119,0) old=(1806,0,3840,2160) new=(1687,0,3840,2160)
+18:23:00.925 NcCalc raw=(1650,0,3848,2168) dwp=(1660,10,3838,2158) client=(1658,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.925 NcOriginRedraw moveLT=(29,0) old=(1687,0,3840,2160) new=(1658,0,3840,2160)
+18:23:00.938 NcCalc raw=(1635,0,3848,2168) dwp=(1645,10,3838,2158) client=(1643,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.938 NcOriginRedraw moveLT=(15,0) old=(1658,0,3840,2160) new=(1643,0,3840,2160)
+18:23:00.951 NcCalc raw=(1623,0,3848,2168) dwp=(1633,10,3838,2158) client=(1631,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.951 NcOriginRedraw moveLT=(12,0) old=(1643,0,3840,2160) new=(1631,0,3840,2160)
+18:23:00.965 NcCalc raw=(1593,0,3848,2168) dwp=(1603,10,3838,2158) client=(1601,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.965 NcOriginRedraw moveLT=(30,0) old=(1631,0,3840,2160) new=(1601,0,3840,2160)
+18:23:00.980 NcCalc raw=(1569,0,3848,2168) dwp=(1579,10,3838,2158) client=(1577,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.980 NcOriginRedraw moveLT=(24,0) old=(1601,0,3840,2160) new=(1577,0,3840,2160)
+18:23:00.996 NcCalc raw=(1531,0,3848,2168) dwp=(1541,10,3838,2158) client=(1539,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:00.996 NcOriginRedraw moveLT=(38,0) old=(1577,0,3840,2160) new=(1539,0,3840,2160)
+18:23:01.009 NcCalc raw=(1495,0,3848,2168) dwp=(1505,10,3838,2158) client=(1503,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.009 NcOriginRedraw moveLT=(36,0) old=(1539,0,3840,2160) new=(1503,0,3840,2160)
+18:23:01.010 DivMove side=1 dividerX=1501 effDiv=1501 our=(1537,3842) nbrs=1
+18:23:01.024 NcCalc raw=(1465,0,3848,2168) dwp=(1475,10,3838,2158) client=(1473,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.024 NcOriginRedraw moveLT=(30,0) old=(1503,0,3840,2160) new=(1473,0,3840,2160)
+18:23:01.041 NcCalc raw=(1429,0,3848,2168) dwp=(1439,10,3838,2158) client=(1437,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.041 NcOriginRedraw moveLT=(36,0) old=(1473,0,3840,2160) new=(1437,0,3840,2160)
+18:23:01.056 NcCalc raw=(1415,0,3848,2168) dwp=(1425,10,3838,2158) client=(1423,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.056 NcOriginRedraw moveLT=(14,0) old=(1437,0,3840,2160) new=(1423,0,3840,2160)
+18:23:01.069 NcCalc raw=(1414,0,3848,2168) dwp=(1424,10,3838,2158) client=(1422,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.069 NcOriginRedraw moveLT=(1,0) old=(1423,0,3840,2160) new=(1422,0,3840,2160)
+18:23:01.119 NcCalc raw=(1415,0,3848,2168) dwp=(1425,10,3838,2158) client=(1423,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.119 NcOriginRedraw moveLT=(-1,0) old=(1422,0,3840,2160) new=(1423,0,3840,2160)
+18:23:01.134 NcCalc raw=(1425,0,3848,2168) dwp=(1435,10,3838,2158) client=(1433,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.134 NcOriginRedraw moveLT=(-10,0) old=(1423,0,3840,2160) new=(1433,0,3840,2160)
+18:23:01.135 DivMove side=1 dividerX=1431 effDiv=1431 our=(1421,3842) nbrs=1
+18:23:01.150 NcCalc raw=(1433,0,3848,2168) dwp=(1443,10,3838,2158) client=(1441,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.150 NcOriginRedraw moveLT=(-8,0) old=(1433,0,3840,2160) new=(1441,0,3840,2160)
+18:23:01.167 NcCalc raw=(1504,0,3848,2168) dwp=(1514,10,3838,2158) client=(1512,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.167 NcOriginRedraw moveLT=(-71,0) old=(1441,0,3840,2160) new=(1512,0,3840,2160)
+18:23:01.181 NcCalc raw=(1546,0,3848,2168) dwp=(1556,10,3838,2158) client=(1554,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.182 NcOriginRedraw moveLT=(-42,0) old=(1512,0,3840,2160) new=(1554,0,3840,2160)
+18:23:01.199 NcCalc raw=(1634,0,3848,2168) dwp=(1644,10,3838,2158) client=(1642,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.199 NcOriginRedraw moveLT=(-88,0) old=(1554,0,3840,2160) new=(1642,0,3840,2160)
+18:23:01.215 NcCalc raw=(1704,0,3848,2168) dwp=(1714,10,3838,2158) client=(1712,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.215 NcOriginRedraw moveLT=(-70,0) old=(1642,0,3840,2160) new=(1712,0,3840,2160)
+18:23:01.230 NcCalc raw=(1752,0,3848,2168) dwp=(1762,10,3838,2158) client=(1760,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.230 NcOriginRedraw moveLT=(-48,0) old=(1712,0,3840,2160) new=(1760,0,3840,2160)
+18:23:01.243 NcCalc raw=(1827,0,3848,2168) dwp=(1837,10,3838,2158) client=(1835,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.243 NcOriginRedraw moveLT=(-75,0) old=(1760,0,3840,2160) new=(1835,0,3840,2160)
+18:23:01.257 NcCalc raw=(1877,0,3848,2168) dwp=(1887,10,3838,2158) client=(1885,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.257 NcOriginRedraw moveLT=(-50,0) old=(1835,0,3840,2160) new=(1885,0,3840,2160)
+18:23:01.258 DivMove side=1 dividerX=1883 effDiv=1883 our=(1833,3842) nbrs=1
+18:23:01.271 NcCalc raw=(1940,0,3848,2168) dwp=(1950,10,3838,2158) client=(1948,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.271 NcOriginRedraw moveLT=(-63,0) old=(1885,0,3840,2160) new=(1948,0,3840,2160)
+18:23:01.283 NcCalc raw=(1996,0,3848,2168) dwp=(2006,10,3838,2158) client=(2004,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.283 NcOriginRedraw moveLT=(-56,0) old=(1948,0,3840,2160) new=(2004,0,3840,2160)
+18:23:01.297 NcCalc raw=(2039,0,3848,2168) dwp=(2049,10,3838,2158) client=(2047,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.297 NcOriginRedraw moveLT=(-43,0) old=(2004,0,3840,2160) new=(2047,0,3840,2160)
+18:23:01.310 NcCalc raw=(2098,0,3848,2168) dwp=(2108,10,3838,2158) client=(2106,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.310 NcOriginRedraw moveLT=(-59,0) old=(2047,0,3840,2160) new=(2106,0,3840,2160)
+18:23:01.323 NcCalc raw=(2130,0,3848,2168) dwp=(2140,10,3838,2158) client=(2138,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.323 NcOriginRedraw moveLT=(-32,0) old=(2106,0,3840,2160) new=(2138,0,3840,2160)
+18:23:01.336 NcCalc raw=(2167,0,3848,2168) dwp=(2177,10,3838,2158) client=(2175,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.336 NcOriginRedraw moveLT=(-37,0) old=(2138,0,3840,2160) new=(2175,0,3840,2160)
+18:23:01.350 NcCalc raw=(2189,0,3848,2168) dwp=(2199,10,3838,2158) client=(2197,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.350 NcOriginRedraw moveLT=(-22,0) old=(2175,0,3840,2160) new=(2197,0,3840,2160)
+18:23:01.363 NcCalc raw=(2205,0,3848,2168) dwp=(2215,10,3838,2158) client=(2213,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.363 NcOriginRedraw moveLT=(-16,0) old=(2197,0,3840,2160) new=(2213,0,3840,2160)
+18:23:01.395 NcCalc raw=(2203,0,3848,2168) dwp=(2213,10,3838,2158) client=(2211,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.395 NcOriginRedraw moveLT=(2,0) old=(2213,0,3840,2160) new=(2211,0,3840,2160)
+18:23:01.397 DivMove side=1 dividerX=2209 effDiv=2209 our=(2211,3842) nbrs=1
+18:23:01.409 NcCalc raw=(2201,0,3848,2168) dwp=(2211,10,3838,2158) client=(2209,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.409 NcOriginRedraw moveLT=(2,0) old=(2211,0,3840,2160) new=(2209,0,3840,2160)
+18:23:01.423 NcCalc raw=(2199,0,3848,2168) dwp=(2209,10,3838,2158) client=(2207,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.423 NcOriginRedraw moveLT=(2,0) old=(2209,0,3840,2160) new=(2207,0,3840,2160)
+18:23:01.456 NcCalc raw=(2197,0,3848,2168) dwp=(2207,10,3838,2158) client=(2205,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.456 NcOriginRedraw moveLT=(2,0) old=(2207,0,3840,2160) new=(2205,0,3840,2160)
+18:23:01.469 NcCalc raw=(2193,0,3848,2168) dwp=(2203,10,3838,2158) client=(2201,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.469 NcOriginRedraw moveLT=(4,0) old=(2205,0,3840,2160) new=(2201,0,3840,2160)
+18:23:01.482 NcCalc raw=(2174,0,3848,2168) dwp=(2184,10,3838,2158) client=(2182,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.483 NcOriginRedraw moveLT=(19,0) old=(2201,0,3840,2160) new=(2182,0,3840,2160)
+18:23:01.495 NcCalc raw=(2134,0,3848,2168) dwp=(2144,10,3838,2158) client=(2142,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.495 NcOriginRedraw moveLT=(40,0) old=(2182,0,3840,2160) new=(2142,0,3840,2160)
+18:23:01.508 NcCalc raw=(2124,0,3848,2168) dwp=(2134,10,3838,2158) client=(2132,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.508 NcOriginRedraw moveLT=(10,0) old=(2142,0,3840,2160) new=(2132,0,3840,2160)
+18:23:01.522 NcCalc raw=(2084,0,3848,2168) dwp=(2094,10,3838,2158) client=(2092,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.522 NcOriginRedraw moveLT=(40,0) old=(2132,0,3840,2160) new=(2092,0,3840,2160)
+18:23:01.523 DivMove side=1 dividerX=2090 effDiv=2090 our=(2130,3842) nbrs=1
+18:23:01.534 NcCalc raw=(2038,0,3848,2168) dwp=(2048,10,3838,2158) client=(2046,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.534 NcOriginRedraw moveLT=(46,0) old=(2092,0,3840,2160) new=(2046,0,3840,2160)
+18:23:01.546 NcCalc raw=(1995,0,3848,2168) dwp=(2005,10,3838,2158) client=(2003,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.547 NcOriginRedraw moveLT=(43,0) old=(2046,0,3840,2160) new=(2003,0,3840,2160)
+18:23:01.560 NcCalc raw=(1983,0,3848,2168) dwp=(1993,10,3838,2158) client=(1991,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.560 NcOriginRedraw moveLT=(12,0) old=(2003,0,3840,2160) new=(1991,0,3840,2160)
+18:23:01.574 NcCalc raw=(1943,0,3848,2168) dwp=(1953,10,3838,2158) client=(1951,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.574 NcOriginRedraw moveLT=(40,0) old=(1991,0,3840,2160) new=(1951,0,3840,2160)
+18:23:01.587 NcCalc raw=(1890,0,3848,2168) dwp=(1900,10,3838,2158) client=(1898,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.587 NcOriginRedraw moveLT=(53,0) old=(1951,0,3840,2160) new=(1898,0,3840,2160)
+18:23:01.600 NcCalc raw=(1862,0,3848,2168) dwp=(1872,10,3838,2158) client=(1870,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.600 NcOriginRedraw moveLT=(28,0) old=(1898,0,3840,2160) new=(1870,0,3840,2160)
+18:23:01.614 NcCalc raw=(1837,0,3848,2168) dwp=(1847,10,3838,2158) client=(1845,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.614 NcOriginRedraw moveLT=(25,0) old=(1870,0,3840,2160) new=(1845,0,3840,2160)
+18:23:01.627 NcCalc raw=(1820,0,3848,2168) dwp=(1830,10,3838,2158) client=(1828,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.627 NcOriginRedraw moveLT=(17,0) old=(1845,0,3840,2160) new=(1828,0,3840,2160)
+18:23:01.640 NcCalc raw=(1816,0,3848,2168) dwp=(1826,10,3838,2158) client=(1824,0,3840,2160) wa=(0,0,3840,2160) state=Normal
+18:23:01.640 NcOriginRedraw moveLT=(4,0) old=(1828,0,3840,2160) new=(1824,0,3840,2160)
+18:23:01.776 DivRelArm side=1 nbrs=1
+18:23:01.776 DivUp
+18:23:01.777 DivGrip lOk=True rOk=False tOk=False bOk=False tNbr=False bNbr=False vis=(1822,0,3842,2162) lN=1 rN=0 tN=0 bN=0 tNear=0 bNear=2162
+18:23:01.778 PfWatch am=False le=1822 lf=0 baseLe=1822 baseLf=0 baseOurL=1816 re=0 nlSame=True haveL=True haveR=False vis=(1822,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:23:01.842 WmSetCursor htLo=1 setOk=True
+18:23:01.850 TsJrc fail=band sl=True sr=False dl=21 dr=2147483647 cur=(1843,695) vis=(1822,3842)
+18:23:01.850 WmSetCursor htLo=1 setOk=False
+18:23:01.857 TsJrc fail=band sl=True sr=False dl=33 dr=2147483647 cur=(1855,687) vis=(1822,3842)
+18:23:01.857 WmSetCursor htLo=1 setOk=False
+18:23:01.865 TsJrc fail=band sl=True sr=False dl=73 dr=2147483647 cur=(1895,672) vis=(1822,3842)
+18:23:01.865 WmSetCursor htLo=1 setOk=False
+18:23:01.873 TsJrc fail=band sl=True sr=False dl=105 dr=2147483647 cur=(1927,663) vis=(1822,3842)
+18:23:01.873 WmSetCursor htLo=1 setOk=False
+18:23:01.880 TsJrc fail=band sl=True sr=False dl=153 dr=2147483647 cur=(1975,653) vis=(1822,3842)
+18:23:01.880 WmSetCursor htLo=1 setOk=False
+18:23:01.887 TsJrc fail=band sl=True sr=False dl=225 dr=2147483647 cur=(2047,635) vis=(1822,3842)
+18:23:01.887 WmSetCursor htLo=1 setOk=False
+18:23:01.895 TsJrc fail=band sl=True sr=False dl=326 dr=2147483647 cur=(2148,613) vis=(1822,3842)
+18:23:01.895 WmSetCursor htLo=1 setOk=False
+18:23:01.902 TsJrc fail=band sl=True sr=False dl=446 dr=2147483647 cur=(2268,587) vis=(1822,3842)
+18:23:01.902 WmSetCursor htLo=1 setOk=False
+18:23:01.910 TsJrc fail=band sl=True sr=False dl=527 dr=2147483647 cur=(2349,570) vis=(1822,3842)
+18:23:01.910 WmSetCursor htLo=1 setOk=False
+18:23:01.917 TsJrc fail=band sl=True sr=False dl=669 dr=2147483647 cur=(2491,526) vis=(1822,3842)
+18:23:01.917 WmSetCursor htLo=1 setOk=False
+18:23:01.925 TsJrc fail=band sl=True sr=False dl=754 dr=2147483647 cur=(2576,498) vis=(1822,3842)
+18:23:01.925 WmSetCursor htLo=1 setOk=False
+18:23:01.932 TsJrc fail=band sl=True sr=False dl=832 dr=2147483647 cur=(2654,468) vis=(1822,3842)
+18:23:01.932 WmSetCursor htLo=1 setOk=False
+18:23:01.936 DivGrip lOk=True rOk=False tOk=False bOk=False tNbr=False bNbr=False vis=(1822,0,3842,2162) lN=1 rN=0 tN=0 bN=0 tNear=0 bNear=2162
+18:23:01.940 TsJrc fail=band sl=True sr=False dl=907 dr=2147483647 cur=(2729,438) vis=(1822,3842)
+18:23:01.940 WmSetCursor htLo=1 setOk=False
+18:23:01.947 TsJrc fail=band sl=True sr=False dl=978 dr=2147483647 cur=(2800,403) vis=(1822,3842)
+18:23:01.947 WmSetCursor htLo=1 setOk=False
+18:23:01.955 TsJrc fail=band sl=True sr=False dl=1037 dr=2147483647 cur=(2859,374) vis=(1822,3842)
+18:23:01.955 WmSetCursor htLo=1 setOk=False
+18:23:01.962 TsJrc fail=band sl=True sr=False dl=1073 dr=2147483647 cur=(2895,353) vis=(1822,3842)
+18:23:01.962 WmSetCursor htLo=1 setOk=False
+18:23:01.970 TsJrc fail=band sl=True sr=False dl=1121 dr=2147483647 cur=(2943,323) vis=(1822,3842)
+18:23:01.970 WmSetCursor htLo=1 setOk=False
+18:23:01.977 TsJrc fail=band sl=True sr=False dl=1143 dr=2147483647 cur=(2965,308) vis=(1822,3842)
+18:23:01.977 WmSetCursor htLo=1 setOk=False
+18:23:01.985 TsJrc fail=band sl=True sr=False dl=1159 dr=2147483647 cur=(2981,296) vis=(1822,3842)
+18:23:01.986 WmSetCursor htLo=1 setOk=False
+18:23:02.000 TsJrc fail=band sl=True sr=False dl=1173 dr=2147483647 cur=(2995,283) vis=(1822,3842)
+18:23:02.000 WmSetCursor htLo=1 setOk=False
+18:23:02.007 TsJrc fail=band sl=True sr=False dl=1182 dr=2147483647 cur=(3004,270) vis=(1822,3842)
+18:23:02.007 WmSetCursor htLo=1 setOk=False
+18:23:02.015 TsJrc fail=band sl=True sr=False dl=1190 dr=2147483647 cur=(3012,257) vis=(1822,3842)
+18:23:02.015 WmSetCursor htLo=1 setOk=False
+18:23:02.022 TsJrc fail=band sl=True sr=False dl=1201 dr=2147483647 cur=(3023,222) vis=(1822,3842)
+18:23:02.022 WmSetCursor htLo=1 setOk=False
+18:23:02.031 TsJrc fail=band sl=True sr=False dl=1202 dr=2147483647 cur=(3024,217) vis=(1822,3842)
+18:23:02.031 WmSetCursor htLo=1 setOk=False
+18:23:02.037 TsJrc fail=band sl=True sr=False dl=1207 dr=2147483647 cur=(3029,204) vis=(1822,3842)
+18:23:02.037 WmSetCursor htLo=1 setOk=False
+18:23:02.038 PfWatch am=False le=1822 lf=0 baseLe=1822 baseLf=0 baseOurL=1816 re=0 nlSame=True haveL=True haveR=False vis=(1822,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:23:02.045 TsJrc fail=band sl=True sr=False dl=1210 dr=2147483647 cur=(3032,194) vis=(1822,3842)
+18:23:02.045 WmSetCursor htLo=1 setOk=False
+18:23:02.052 TsJrc fail=band sl=True sr=False dl=1212 dr=2147483647 cur=(3034,189) vis=(1822,3842)
+18:23:02.052 WmSetCursor htLo=1 setOk=False
+18:23:02.060 TsJrc fail=band sl=True sr=False dl=1219 dr=2147483647 cur=(3041,176) vis=(1822,3842)
+18:23:02.060 WmSetCursor htLo=1 setOk=False
+18:23:02.067 TsJrc fail=band sl=True sr=False dl=1221 dr=2147483647 cur=(3043,171) vis=(1822,3842)
+18:23:02.067 WmSetCursor htLo=1 setOk=False
+18:23:02.075 TsJrc fail=band sl=True sr=False dl=1229 dr=2147483647 cur=(3051,160) vis=(1822,3842)
+18:23:02.075 WmSetCursor htLo=1 setOk=False
+18:23:02.082 TsJrc fail=band sl=True sr=False dl=1231 dr=2147483647 cur=(3053,155) vis=(1822,3842)
+18:23:02.082 WmSetCursor htLo=1 setOk=False
+18:23:02.090 TsJrc fail=band sl=True sr=False dl=1241 dr=2147483647 cur=(3063,142) vis=(1822,3842)
+18:23:02.090 WmSetCursor htLo=1 setOk=False
+18:23:02.095 DivGrip lOk=True rOk=False tOk=False bOk=False tNbr=False bNbr=False vis=(1822,0,3842,2162) lN=1 rN=0 tN=0 bN=0 tNear=0 bNear=2162
+18:23:02.097 TsJrc fail=band sl=True sr=False dl=1244 dr=2147483647 cur=(3066,137) vis=(1822,3842)
+18:23:02.097 WmSetCursor htLo=1 setOk=False
+18:23:02.105 TsJrc fail=band sl=True sr=False dl=1252 dr=2147483647 cur=(3074,126) vis=(1822,3842)
+18:23:02.105 WmSetCursor htLo=1 setOk=False
+18:23:02.112 TsJrc fail=band sl=True sr=False dl=1254 dr=2147483647 cur=(3076,121) vis=(1822,3842)
+18:23:02.112 WmSetCursor htLo=1 setOk=False
+18:23:02.120 TsJrc fail=band sl=True sr=False dl=1258 dr=2147483647 cur=(3080,118) vis=(1822,3842)
+18:23:02.120 WmSetCursor htLo=1 setOk=False
+18:23:02.127 TsJrc fail=band sl=True sr=False dl=1266 dr=2147483647 cur=(3088,105) vis=(1822,3842)
+18:23:02.127 WmSetCursor htLo=1 setOk=False
+18:23:02.135 TsJrc fail=band sl=True sr=False dl=1270 dr=2147483647 cur=(3092,98) vis=(1822,3842)
+18:23:02.135 WmSetCursor htLo=1 setOk=False
+18:23:02.142 TsJrc fail=band sl=True sr=False dl=1274 dr=2147483647 cur=(3096,93) vis=(1822,3842)
+18:23:02.142 WmSetCursor htLo=1 setOk=False
+18:23:02.150 TsJrc fail=band sl=True sr=False dl=1278 dr=2147483647 cur=(3100,86) vis=(1822,3842)
+18:23:02.150 WmSetCursor htLo=1 setOk=False
+18:23:02.157 TsJrc fail=band sl=True sr=False dl=1290 dr=2147483647 cur=(3112,71) vis=(1822,3842)
+18:23:02.157 WmSetCursor htLo=1 setOk=False
+18:23:02.165 TsJrc fail=band sl=True sr=False dl=1293 dr=2147483647 cur=(3115,65) vis=(1822,3842)
+18:23:02.165 WmSetCursor htLo=1 setOk=False
+18:23:02.172 TsJrc fail=band sl=True sr=False dl=1298 dr=2147483647 cur=(3120,58) vis=(1822,3842)
+18:23:02.172 WmSetCursor htLo=1 setOk=False
+18:23:02.180 TsJrc fail=band sl=True sr=False dl=1300 dr=2147483647 cur=(3122,54) vis=(1822,3842)
+18:23:02.180 WmSetCursor htLo=1 setOk=False
+18:23:02.187 TsJrc fail=band sl=True sr=False dl=1308 dr=2147483647 cur=(3130,42) vis=(1822,3842)
+18:23:02.187 WmSetCursor htLo=1 setOk=False
+18:23:02.195 TsJrc fail=band sl=True sr=False dl=1310 dr=2147483647 cur=(3132,39) vis=(1822,3842)
+18:23:02.195 WmSetCursor htLo=1 setOk=False
+18:23:02.202 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.202 TsJrc fail=band sl=True sr=False dl=1313 dr=2147483647 cur=(3135,34) vis=(1822,3842)
+18:23:02.202 WmSetCursor htLo=1 setOk=False
+18:23:02.210 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.211 TsJrc fail=band sl=True sr=False dl=1315 dr=2147483647 cur=(3137,31) vis=(1822,3842)
+18:23:02.211 WmSetCursor htLo=1 setOk=False
+18:23:02.217 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.217 TsJrc fail=band sl=True sr=False dl=1316 dr=2147483647 cur=(3138,29) vis=(1822,3842)
+18:23:02.217 WmSetCursor htLo=1 setOk=False
+18:23:02.225 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.225 TsJrc fail=band sl=True sr=False dl=1317 dr=2147483647 cur=(3139,28) vis=(1822,3842)
+18:23:02.226 WmSetCursor htLo=1 setOk=False
+18:23:02.232 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.233 TsJrc fail=band sl=True sr=False dl=1318 dr=2147483647 cur=(3140,25) vis=(1822,3842)
+18:23:02.233 WmSetCursor htLo=1 setOk=False
+18:23:02.240 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.240 TsJrc fail=band sl=True sr=False dl=1319 dr=2147483647 cur=(3141,23) vis=(1822,3842)
+18:23:02.241 WmSetCursor htLo=1 setOk=False
+18:23:02.241 DivGrip lOk=True rOk=False tOk=False bOk=False tNbr=False bNbr=False vis=(1822,0,3842,2162) lN=1 rN=0 tN=0 bN=0 tNear=0 bNear=2162
+18:23:02.247 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.248 TsJrc fail=band sl=True sr=False dl=1321 dr=2147483647 cur=(3143,21) vis=(1822,3842)
+18:23:02.248 WmSetCursor htLo=1 setOk=False
+18:23:02.262 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.263 TsJrc fail=band sl=True sr=False dl=1322 dr=2147483647 cur=(3144,20) vis=(1822,3842)
+18:23:02.263 WmSetCursor htLo=1 setOk=False
+18:23:02.271 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.271 TsJrc fail=band sl=True sr=False dl=1323 dr=2147483647 cur=(3145,18) vis=(1822,3842)
+18:23:02.271 WmSetCursor htLo=1 setOk=False
+18:23:02.277 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.278 TsJrc fail=band sl=True sr=False dl=1324 dr=2147483647 cur=(3146,16) vis=(1822,3842)
+18:23:02.278 WmSetCursor htLo=1 setOk=False
+18:23:02.285 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.286 TsJrc fail=band sl=True sr=False dl=1326 dr=2147483647 cur=(3148,11) vis=(1822,3842)
+18:23:02.286 WmSetCursor htLo=1 setOk=False
+18:23:02.302 PfWatch am=False le=1822 lf=0 baseLe=1822 baseLf=0 baseOurL=1816 re=0 nlSame=True haveL=True haveR=False vis=(1822,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:23:02.571 PfWatch am=False le=1822 lf=0 baseLe=1822 baseLf=0 baseOurL=1816 re=0 nlSame=True haveL=True haveR=False vis=(1822,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:23:02.637 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.638 TsJrc fail=band sl=True sr=False dl=1326 dr=2147483647 cur=(3148,11) vis=(1822,3842)
+18:23:02.638 WmSetCursor htLo=1 setOk=False
+18:23:02.638 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.638 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.645 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.645 TsJrc fail=band sl=True sr=False dl=1326 dr=2147483647 cur=(3148,12) vis=(1822,3842)
+18:23:02.646 WmSetCursor htLo=1 setOk=False
+18:23:02.652 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.652 TsJrc fail=band sl=True sr=False dl=1325 dr=2147483647 cur=(3147,13) vis=(1822,3842)
+18:23:02.653 WmSetCursor htLo=1 setOk=False
+18:23:02.660 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.661 TsJrc fail=band sl=True sr=False dl=1324 dr=2147483647 cur=(3146,14) vis=(1822,3842)
+18:23:02.661 WmSetCursor htLo=1 setOk=False
+18:23:02.667 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.668 TsJrc fail=band sl=True sr=False dl=1324 dr=2147483647 cur=(3146,16) vis=(1822,3842)
+18:23:02.668 WmSetCursor htLo=1 setOk=False
+18:23:02.675 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.676 TsJrc fail=band sl=True sr=False dl=1323 dr=2147483647 cur=(3145,17) vis=(1822,3842)
+18:23:02.676 WmSetCursor htLo=1 setOk=False
+18:23:02.683 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.683 TsJrc fail=band sl=True sr=False dl=1323 dr=2147483647 cur=(3145,18) vis=(1822,3842)
+18:23:02.683 WmSetCursor htLo=1 setOk=False
+18:23:02.690 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.691 TsJrc fail=band sl=True sr=False dl=1322 dr=2147483647 cur=(3144,19) vis=(1822,3842)
+18:23:02.691 WmSetCursor htLo=1 setOk=False
+18:23:02.735 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.736 TsJrc fail=band sl=True sr=False dl=1322 dr=2147483647 cur=(3144,20) vis=(1822,3842)
+18:23:02.736 WmSetCursor htLo=1 setOk=False
+18:23:02.839 PfWatch am=False le=1822 lf=0 baseLe=1822 baseLf=0 baseOurL=1816 re=0 nlSame=True haveL=True haveR=False vis=(1822,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:23:02.923 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.924 TsJrc fail=band sl=True sr=False dl=1322 dr=2147483647 cur=(3144,20) vis=(1822,3842)
+18:23:02.924 WmSetCursor htLo=1 setOk=False
+18:23:02.925 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.925 CapDown state=Normal cur=(3144,20) win=(1816,0,3848,2168) cand=True cacheValid=True cache=(1182,574,2622,1474) wpOk=True np=(1894,439,3334,1339) gotRestore=True restore=(1182,574,2622,1474) hasInternalDiv=True
+18:23:02.925 GetRestore PICK=cache rc=(1182,574,2622,1474)
+18:23:02.926 UpdFirst cur=(3144,20) down=(3144,20) pending=True dragging=False
+18:23:02.926 WmCaptureChanged newCap=0x680C18 pending=True dragging=False
+18:23:03.109 PfWatch am=True le=1822 lf=0 baseLe=1822 baseLf=0 baseOurL=1816 re=0 nlSame=True haveL=True haveR=False vis=(1822,0,3842,2162) rf=0 rv=(0,0,0,0) baseRe=0 baseRf=0 baseOurR=0 baseRp0=0 baseRp1=0
+18:23:03.313 CapThreshold dy=31 dx=-27 cur=(3117,51) ticks=92
+18:23:03.313 CapRestoreMove cur=(3117,51) restore=(1182,574,2622,1474) snap=(1816,0,3848,2168) offset=(941,20)
+18:23:03.313 NcCalc raw=(2176,31,3616,931) dwp=(2186,41,3606,921) client=(2186,32,3606,921) wa=(0,0,3840,2160) state=Normal
+18:23:03.313 NcRedrawSkip newWH=(1420,889) prevWH=(2016,2160)
+18:23:03.317 JrcEdges fail vis=(2184,31,3608,923) raw=(2176,31,3616,931) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:03.318 CacheSet win=(2176,31,3616,931) prevValid=True prev=(1182,574,2622,1474) hasInternalDiv=False
+18:23:03.322 CacheSet win=(2174,33,3614,933) prevValid=True prev=(2176,31,3616,931) hasInternalDiv=False
+18:23:03.328 CacheSet win=(2170,37,3610,937) prevValid=True prev=(2174,33,3614,933) hasInternalDiv=False
+18:23:03.336 CacheSet win=(2163,46,3603,946) prevValid=True prev=(2170,37,3610,937) hasInternalDiv=False
+18:23:03.343 CacheSet win=(2160,49,3600,949) prevValid=True prev=(2163,46,3603,946) hasInternalDiv=False
+18:23:03.351 CacheSet win=(2158,57,3598,957) prevValid=True prev=(2160,49,3600,949) hasInternalDiv=False
+18:23:03.358 CacheSet win=(2157,59,3597,959) prevValid=True prev=(2158,57,3598,957) hasInternalDiv=False
+18:23:03.366 CacheSet win=(2157,60,3597,960) prevValid=True prev=(2157,59,3597,959) hasInternalDiv=False
+18:23:03.373 CacheSet win=(2157,61,3597,961) prevValid=True prev=(2157,60,3597,960) hasInternalDiv=False
+18:23:03.524 CacheSet win=(2156,62,3596,962) prevValid=True prev=(2157,61,3597,961) hasInternalDiv=False
+18:23:03.531 CacheSet win=(2155,62,3595,962) prevValid=True prev=(2156,62,3596,962) hasInternalDiv=False
+18:23:03.538 CacheSet win=(2152,66,3592,966) prevValid=True prev=(2155,62,3595,962) hasInternalDiv=False
+18:23:03.546 CacheSet win=(2111,98,3551,998) prevValid=True prev=(2152,66,3592,966) hasInternalDiv=False
+18:23:03.553 CacheSet win=(2094,109,3534,1009) prevValid=True prev=(2111,98,3551,998) hasInternalDiv=False
+18:23:03.561 CacheSet win=(2057,134,3497,1034) prevValid=True prev=(2094,109,3534,1009) hasInternalDiv=False
+18:23:03.568 CacheSet win=(2008,166,3448,1066) prevValid=True prev=(2057,134,3497,1034) hasInternalDiv=False
+18:23:03.576 CacheSet win=(1950,212,3390,1112) prevValid=True prev=(2008,166,3448,1066) hasInternalDiv=False
+18:23:03.583 JrcEdges fail vis=(1926,244,3350,1136) raw=(1918,244,3358,1144) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:03.583 CacheSet win=(1918,244,3358,1144) prevValid=True prev=(1950,212,3390,1112) hasInternalDiv=False
+18:23:03.591 CacheSet win=(1863,317,3303,1217) prevValid=True prev=(1918,244,3358,1144) hasInternalDiv=False
+18:23:03.598 CacheSet win=(1836,369,3276,1269) prevValid=True prev=(1863,317,3303,1217) hasInternalDiv=False
+18:23:03.606 CacheSet win=(1805,428,3245,1328) prevValid=True prev=(1836,369,3276,1269) hasInternalDiv=False
+18:23:03.613 CacheSet win=(1777,484,3217,1384) prevValid=True prev=(1805,428,3245,1328) hasInternalDiv=False
+18:23:03.621 CacheSet win=(1750,539,3190,1439) prevValid=True prev=(1777,484,3217,1384) hasInternalDiv=False
+18:23:03.628 CacheSet win=(1727,582,3167,1482) prevValid=True prev=(1750,539,3190,1439) hasInternalDiv=False
+18:23:03.636 CacheSet win=(1707,622,3147,1522) prevValid=True prev=(1727,582,3167,1482) hasInternalDiv=False
+18:23:03.643 CacheSet win=(1692,649,3132,1549) prevValid=True prev=(1707,622,3147,1522) hasInternalDiv=False
+18:23:03.651 CacheSet win=(1684,666,3124,1566) prevValid=True prev=(1692,649,3132,1549) hasInternalDiv=False
+18:23:03.658 CacheSet win=(1679,676,3119,1576) prevValid=True prev=(1684,666,3124,1566) hasInternalDiv=False
+18:23:03.666 CacheSet win=(1677,681,3117,1581) prevValid=True prev=(1679,676,3119,1576) hasInternalDiv=False
+18:23:03.673 CacheSet win=(1676,682,3116,1582) prevValid=True prev=(1677,681,3117,1581) hasInternalDiv=False
+18:23:04.056 WmLBtnUp pending=False dragging=True
+18:23:04.056 JrcEdges fail vis=(1684,682,3108,1574) raw=(1676,682,3116,1582) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:04.057 CapEnd src=wm-lbuttonup wasPending=False wasDragging=True ticks=297 releaseCapture=True
+18:23:04.866 JrcEdges fail vis=(1684,682,3108,1574) raw=(1676,682,3116,1582) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:05.136 JrcEdges fail vis=(1684,682,3108,1574) raw=(1676,682,3116,1582) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:05.468 JrcEdges fail vis=(1684,682,3108,1574) raw=(1676,682,3116,1582) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:05.616 TsJrc fail=no-edges
+18:23:05.616 WmSetCursor htLo=1 setOk=False
+18:23:05.623 TsJrc fail=no-edges
+18:23:05.623 WmSetCursor htLo=1 setOk=False
+18:23:05.631 TsJrc fail=no-edges
+18:23:05.631 WmSetCursor htLo=1 setOk=False
+18:23:05.638 TsJrc fail=no-edges
+18:23:05.638 WmSetCursor htLo=1 setOk=False
+18:23:05.646 TsJrc fail=no-edges
+18:23:05.646 WmSetCursor htLo=1 setOk=False
+18:23:05.653 TsJrc fail=no-edges
+18:23:05.653 WmSetCursor htLo=1 setOk=False
+18:23:06.171 JrcEdges fail vis=(1684,682,3108,1574) raw=(1676,682,3116,1582) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal
+18:23:06.178 TsJrc fail=no-edges
+18:23:06.178 WmSetCursor htLo=1 setOk=False
+18:23:06.186 TsJrc fail=no-edges
+18:23:06.186 WmSetCursor htLo=1 setOk=False
+18:23:06.283 TsJrc fail=no-edges
+18:23:06.283 WmSetCursor htLo=1 setOk=False
+18:23:06.291 TsJrc fail=no-edges
+18:23:06.291 WmSetCursor htLo=1 setOk=False
+18:23:06.298 TsJrc fail=no-edges
+18:23:06.298 WmSetCursor htLo=1 setOk=False
+18:23:06.328 TsJrc fail=no-edges
+18:23:06.328 WmSetCursor htLo=1 setOk=False
+18:23:06.418 TsJrc fail=no-edges
+18:23:06.418 WmSetCursor htLo=1 setOk=False
+18:23:06.464 JrcEdges fail vis=(1684,682,3108,1574) raw=(1676,682,3116,1582) work=(0,0,3840,2160) tol=13 tL=False tR=False tT=False tB=False spanH=False spanW=False vSnap=False hSnap=False state=Normal

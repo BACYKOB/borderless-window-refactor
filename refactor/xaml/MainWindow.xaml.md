@@ -1,0 +1,196 @@
+# MainWindow.xaml
+
+Источник: `MainWindow.xaml` в корне проекта.
+
+Стиль `BorderlessWindow` (толщина рамки, триггер на `Maximized`) задан inline в этом файле — отдельного `ControlTemplate` для `BorderlessWindow` нет; chrome настраивается в коде (`BorderlessWindow.cs`, `WindowChromeBehavior`).
+
+```xml
+<local:BorderlessWindow x:Class="ControlPanel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlPanel"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        mc:Ignorable="d"
+        Title="Control Panel"
+        Icon="/Images/Candle.ico"
+        Height="600" Width="960" Background="{StaticResource WindowBackgroundBrush}"
+        BorderBrush="{StaticResource BorderBrush}">
+
+    <local:BorderlessWindow.Style>
+        <Style TargetType="{x:Type local:BorderlessWindow}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Style.Triggers>
+                <Trigger Property="WindowState" Value="Maximized">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </local:BorderlessWindow.Style>
+
+    <!-- остальная разметка Grid/TitleBar/MainArea — без изменений, MainArea в Grid.Row="1" -->
+
+
+
+
+<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0 0 0 1" BorderBrush="{StaticResource BorderBrush}" />
+
+        <Grid Grid.Row="0" x:Name="TitleBar" local:TitleMenuBehavior.Enable="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="97" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="97" />
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0 0 1 0" BorderBrush="{StaticResource BorderBrush}" />
+
+            <Canvas Grid.Column="5" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                <Button x:Name="CloseButton" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                        Content="✕" FontSize="12" Canvas.Right="0" Height="25" Width="32"
+                        Command="{x:Static SystemCommands.CloseWindowCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                    Style="{DynamicResource ExitKey}"/>
+                <Button x:Name="MaxButton" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                        Content="⛶" FontSize="14" Canvas.Right="32" Height="25" Width="32"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource SystemKey}">
+                            <Setter Property="Command" Value="{x:Static SystemCommands.MaximizeWindowCommand}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Value="Maximized">
+                                    <Setter Property="Command" Value="{x:Static SystemCommands.RestoreWindowCommand}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Name="MinButton" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                          FontSize="16" Canvas.Right="64" Height="25" Width="32"
+                        Command="{x:Static SystemCommands.MinimizeWindowCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                    Style="{DynamicResource SystemKey}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/cross-2.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+            </Canvas>
+
+            <StackPanel Grid.Column="1" x:Name="SettingsArea" Orientation="Horizontal" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+
+                <ToggleButton Content="Test" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+FontSize="14" Canvas.Left="0"  Width="Auto"
+Template="{StaticResource NewButton}" local:TitleMenuBehavior.IsMenuButton="True">
+                </ToggleButton>
+
+                <Rectangle Width="1" Height="25" VerticalAlignment="Top">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush >
+                            <GradientStop Color="#323440" Offset="0.1" />
+                            <GradientStop x:Name="Separator2" Color="#323440" Offset="0.5" />
+                            <GradientStop Color="#323440" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <ToggleButton Content="Индикаторы" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+         FontSize="14" Canvas.Left="0"  Width="Auto"
+          Template="{StaticResource NewButton}" local:TitleMenuBehavior.IsMenuButton="True">
+
+                    <ToggleButton.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetProperty="Color" TargetName="Separator2">
+                                        <ColorAnimation Duration="0:0:0.24" To="#858baa">
+                                            <ColorAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseOut"/>
+                                            </ColorAnimation.EasingFunction>
+                                        </ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetProperty="Color" TargetName="Separator2">
+                                        <ColorAnimation Duration="0:0:0.24" To="#323440">
+                                            <ColorAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseOut"/>
+                                            </ColorAnimation.EasingFunction>
+                                        </ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ToggleButton.Triggers>
+
+                </ToggleButton>
+
+                <Rectangle Width="1" Height="25" VerticalAlignment="Top">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush >
+                            <GradientStop Color="#323440" Offset="0.1" />
+                            <GradientStop x:Name="Separator4" Color="#323440" Offset="0.5" />
+                            <GradientStop Color="#323440" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <ListBox Template="{StaticResource MyButtonWithMenu}" x:Name="TestButton" ItemsSource="{Binding Instruments}">
+
+                </ListBox>
+
+                <Rectangle Width="1" Height="25" VerticalAlignment="Top">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush >
+                            <GradientStop Color="#323440" Offset="0.1" />
+                            <GradientStop x:Name="Separator5" Color="#323440" Offset="0.5" />
+                            <GradientStop Color="#323440" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+            </StackPanel>
+
+            <Canvas x:Name="ModeMenu" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+
+                <Canvas.Resources>
+                    <Style TargetType="{x:Type Canvas}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, ElementName=ModeMenuButton}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource SlideDown}" />
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource SlideUp}" />
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </Canvas.Resources>
+
+                <ToggleButton Style="{DynamicResource TitleToggleButtonStyle}" x:Name="ModeMenuButton" Height="25" Width="96"  HorizontalAlignment="Left"
+                              >
+                    <ToggleButton.Background>
+                        <ImageBrush ImageSource="Images/cross-2.png" Stretch="Fill"  />
+                    </ToggleButton.Background>
+                </ToggleButton>
+            </Canvas>
+
+        </Grid>
+
+        <Grid Grid.Row="1" x:Name="MainArea">
+
+        </Grid>
+
+    </Grid>
+
+</local:BorderlessWindow>
+```

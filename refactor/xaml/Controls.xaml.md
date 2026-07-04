@@ -1,0 +1,620 @@
+# Themes/Controls.xaml
+
+Источник: `Themes/Controls.xaml`. Подключается из `App.xaml` как `Application.Resources`.
+
+Содержит стили и `ControlTemplate` для элементов шапки окна (системные кнопки, кнопки меню, выпадающий ListBox). Отдельного `ControlTemplate` для типа `BorderlessWindow` в проекте нет.
+
+```xml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ControlPanel">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml"/>
+        <ResourceDictionary Source="Converters.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- ============================================================ -->
+    <!--  Системные кнопки окна (свернуть / развернуть / закрыть)      -->
+    <!-- ============================================================ -->
+
+    <!-- Системная кнопка -->
+    <Style x:Key="SystemKey" TargetType="{x:Type Button}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                BorderThickness="0 0 0 1"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource SystemButtonHoverBrush}"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Кнопка выхода -->
+    <Style x:Key="ExitKey" TargetType="{x:Type Button}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                BorderThickness="0 0 0 1"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="DarkRed"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ============================================================ -->
+    <!--  Шаблон кнопки верхнего меню (горизонтальный ряд) с glow      -->
+    <!-- ============================================================ -->
+    <ControlTemplate x:Key="NewButton" TargetType="ToggleButton">
+        <Border x:Name="MyBorder" BorderThickness="0 0 0 1" Height="25" Width="Auto" Background="#12131c">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5" >
+                    <GradientStop Color="#323440" Offset="0" />
+                    <GradientStop x:Name="GradientStop2" Color="#323440" Offset="0.5" />
+                    <GradientStop Color="#323440" Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Grid>
+
+                <TextBlock x:Name="Back1" HorizontalAlignment="Center" FontWeight="Medium" Foreground="#12131c"
+        VerticalAlignment="Center" Text="{TemplateBinding Content}"  Margin="3 0 3 0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect x:Name="Blur1" BlurRadius="0" Color="#a6a7ce" ShadowDepth="0" Opacity="1"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock x:Name="Back2" HorizontalAlignment="Center" FontWeight="Medium" Foreground="#12131c"
+        VerticalAlignment="Center" Text="{TemplateBinding Content}"  Margin="3 0 3 0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect x:Name="Blur2" BlurRadius="0" Color="#a6a7ce" ShadowDepth="0" Opacity="1"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock x:Name="MyText" HorizontalAlignment="Center" FontWeight="Medium" Foreground="DimGray"
+        VerticalAlignment="Center" Text="{TemplateBinding Content}"  Margin="3 0 3 0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect x:Name="Blur3" BlurRadius="0" Color="#a6a7ce" ShadowDepth="0" Opacity="1"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+            </Grid>
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Blur1"
+                        Storyboard.TargetProperty="BlurRadius" To="10" Duration="0:0:0.24">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="Blur2"
+                        Storyboard.TargetProperty="BlurRadius" To="15" Duration="0:0:0.24">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="Blur3"
+                        Storyboard.TargetProperty="BlurRadius" To="20" Duration="0:0:0.24">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+
+                            <ColorAnimation Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                        Storyboard.TargetName="MyText" Duration="0:0:0.24" To="#f5f5f5">
+                                <ColorAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </ColorAnimation.EasingFunction>
+                            </ColorAnimation>
+
+                            <ColorAnimation Storyboard.TargetName="GradientStop2" Storyboard.TargetProperty="Color"
+                        To="#858baa" Duration="0:0:0.24"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="Blur1"
+                        Storyboard.TargetProperty="BlurRadius" To="0" Duration="0:0:0.24">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="Blur2"
+                        Storyboard.TargetProperty="BlurRadius" To="0" Duration="0:0:0.24">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="Blur3"
+                        Storyboard.TargetProperty="BlurRadius" To="0" Duration="0:0:0.24">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+
+                            <ColorAnimation Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                        Storyboard.TargetName="MyText" Duration="0:0:0.24" To="DimGray">
+                                <ColorAnimation.EasingFunction>
+                                    <PowerEase EasingMode="EaseOut"/>
+                                </ColorAnimation.EasingFunction>
+                            </ColorAnimation>
+
+                            <ColorAnimation Storyboard.TargetName="GradientStop2" Storyboard.TargetProperty="Color"
+                        To="#323440" Duration="0:0:0.24"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Border>
+    </ControlTemplate>
+
+    <!-- ============================================================ -->
+    <!--  Стиль кнопки-переключателя в шапке окна                      -->
+    <!-- ============================================================ -->
+    <Style x:Key="TitleToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="#32335f"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="MinHeight" Value="25"/>
+        <Setter Property="Padding" Value="5 6"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="BorderThickness" TargetName="Border" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="#2b2c34"/>
+                <Setter Property="BorderBrush" Value="#5a5b6f"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsChecked" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="White"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsChecked" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="#3a3b48"/>
+            </MultiTrigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#202024"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ============================================================ -->
+    <!--  Анимации выезжающего меню режима                            -->
+    <!-- ============================================================ -->
+    <Storyboard x:Key="SlideUp">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+    To="-100" Duration="0:0:0.4">
+            <DoubleAnimation.EasingFunction>
+                <PowerEase EasingMode="EaseIn"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+
+    <Storyboard x:Key="SlideDown">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+    To="-1" Duration="0:0:0.4">
+            <DoubleAnimation.EasingFunction>
+                <PowerEase EasingMode="EaseOut"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+
+    <!-- Разделитель в шапке -->
+    <ControlTemplate x:Key="TitleSeparator" TargetType="{x:Type Separator}">
+        <Border Background="{TemplateBinding Background}" BorderThickness="0.5" Height="30" SnapsToDevicePixels="true" >
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0" >
+                    <GradientStop Color="#12131c" Offset="0" />
+                    <GradientStop x:Name="GradientStop2" Color="#444656" Offset="0.5" />
+                    <GradientStop Color="#12131c" Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+    </ControlTemplate>
+
+    <PopupAnimation x:Key="{x:Static SystemParameters.ComboBoxPopupAnimationKey}">Fade</PopupAnimation>
+
+    <!-- ============================================================ -->
+    <!--  Кнопка в шапке с выпадающим меню (ListBox с радиальной       -->
+    <!--  подсветкой). Открытием/закрытием управляет TitleMenuBehavior. -->
+    <!-- ============================================================ -->
+    <ControlTemplate x:Key="MyButtonWithMenu" TargetType="ListBox">
+
+        <ControlTemplate.Resources>
+
+            <!-- Стиль списка -->
+            <SolidColorBrush x:Key="ListBox.Static.Background" Color="#12131c"/>
+            <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
+            <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
+            <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="#FFD9D9D9"/>
+            <Style x:Key="ListBoxNoBorder" TargetType="{x:Type ListBox}">
+                <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBox">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+
+                                <!-- Постоянная серая рамка вокруг области меню (лево/право/низ).
+                                     Отдельный слой, Opacity не анимируется → не мерцает. Свечение
+                                     рисуется ПОВЕРХ неё, поэтому у текущего пункта рамка подсвечена. -->
+                                <Border Grid.ColumnSpan="2" IsHitTestVisible="False"
+                                        BorderThickness="1 0 1 1" BorderBrush="#323440"/>
+
+                                <!-- SHARED HIGHLIGHT -->
+                                <!-- Боковые свечения: крайний стоп ПРОЗРАЧНЫЙ, поэтому Border рисует
+                                     только пятно свечения (высотой в один пункт), а не весь столбец.
+                                     Тёмный фон панели даёт ListBox.Static.Background (#12131c).
+                                     Opacity свечения проседает на переходе через HighlightOpacity —
+                                     гаснет только пятно, фон панели не мерцает. -->
+                                <Border Grid.Column="1" IsHitTestVisible="False" BorderThickness="0 0 1 1"
+                                        Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ListBoxHighlight.HighlightOpacity)}">
+                                    <Border.BorderBrush>
+                                        <RadialGradientBrush x:Name="RightBorderGlow" MappingMode="Absolute" RadiusX="20" RadiusY="17">
+
+                                            <RadialGradientBrush.Center>
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}"
+Path="(local:ListBoxHighlight.HighlightOrigin)"/>
+                                            </RadialGradientBrush.Center>
+
+                                            <RadialGradientBrush.GradientOrigin>
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                       Path="(local:ListBoxHighlight.HighlightOrigin)"/>
+                                            </RadialGradientBrush.GradientOrigin>
+
+                                            <GradientStop Color="#00323440" Offset="1" />
+                                            <GradientStop Color="#5a5b6f" Offset="0.4"/>
+                                            <GradientStop Color="White" Offset="0"/>
+                                        </RadialGradientBrush>
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <RadialGradientBrush MappingMode="Absolute" RadiusX="20" RadiusY="12">
+
+                                            <RadialGradientBrush.Center>
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}"
+            Path="(local:ListBoxHighlight.HighlightOrigin)"/>
+                                            </RadialGradientBrush.Center>
+
+                                            <RadialGradientBrush.GradientOrigin>
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                                   Path="(local:ListBoxHighlight.HighlightOrigin)"/>
+                                            </RadialGradientBrush.GradientOrigin>
+
+                                            <GradientStop Color="#0012131c" Offset="1" />
+                                            <GradientStop Color="#2e3054" Offset="0.6" />
+                                            <GradientStop Color="#43456d" Offset="0.4"/>
+                                            <GradientStop Color="#70728b" Offset="0"/>
+                                        </RadialGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <Border Grid.Column="0" IsHitTestVisible="False" BorderThickness="1 0 0 1"
+                                        Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ListBoxHighlight.HighlightOpacity)}">
+                                    <Border.BorderBrush>
+                                        <RadialGradientBrush MappingMode="Absolute" RadiusX="20" RadiusY="17">
+
+                                            <RadialGradientBrush.Center>
+                                                <Binding ElementName="RightBorderGlow" Path="Center" Converter="{StaticResource GetLeftSymmetricalPoint}"/>
+                                            </RadialGradientBrush.Center>
+
+                                            <RadialGradientBrush.GradientOrigin>
+                                                <Binding ElementName="RightBorderGlow" Path="GradientOrigin" Converter="{StaticResource GetLeftSymmetricalPoint}"/>
+                                            </RadialGradientBrush.GradientOrigin>
+
+                                            <GradientStop Color="#00323440" Offset="1" />
+                                            <GradientStop Color="#5a5b6f" Offset="0.4"/>
+                                            <GradientStop Color="White" Offset="0"/>
+                                        </RadialGradientBrush>
+                                    </Border.BorderBrush>
+
+                                    <Border.Background>
+                                        <RadialGradientBrush MappingMode="Absolute" RadiusX="20" RadiusY="12">
+
+                                            <RadialGradientBrush.Center>
+                                                <Binding ElementName="RightBorderGlow" Path="Center" Converter="{StaticResource GetLeftSymmetricalPoint}"/>
+                                            </RadialGradientBrush.Center>
+
+                                            <RadialGradientBrush.GradientOrigin>
+                                                <Binding ElementName="RightBorderGlow" Path="GradientOrigin" Converter="{StaticResource GetLeftSymmetricalPoint}"/>
+                                            </RadialGradientBrush.GradientOrigin>
+
+                                            <GradientStop Color="#0012131c" Offset="1" />
+                                            <GradientStop Color="#2e3054" Offset="0.6" />
+                                            <GradientStop Color="#43456d" Offset="0.4"/>
+                                            <GradientStop Color="#70728b" Offset="0"/>
+                                        </RadialGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <!-- Прямоугольная подсветка ТЕКУЩЕГО пункта: едет вместе с боковыми
+                                     радиальными свечениями (привязана к той же HighlightOrigin), светлее
+                                     в центре пункта и темнее к его верхнему/нижнему краю, по краям тает.
+                                     Height ≈ высоте пункта; Margin сверху = -Height/2 центрирует полосу
+                                     на HighlightOrigin.Y. Opacity проседает вместе с боковыми
+                                     свечениями (один пункт). -->
+                                <Border Grid.ColumnSpan="2" IsHitTestVisible="False"
+                                        VerticalAlignment="Top" Height="34" Margin="0 -17 0 0"
+                                        Opacity="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ListBoxHighlight.HighlightOpacity)}">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform Y="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:ListBoxHighlight.HighlightOrigin).Y}"/>
+                                    </Border.RenderTransform>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                            <GradientStop Color="#00000000" Offset="0"/>
+                                            <GradientStop Color="#22000000" Offset="0.22"/>
+                                            <GradientStop Color="#16FFFFFF" Offset="0.5"/>
+                                            <GradientStop Color="#22000000" Offset="0.78"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <ItemsPresenter Grid.ColumnSpan="2" Margin="10 0 10 0"/>
+
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Стиль элемента списка -->
+            <Style x:Key="{x:Type ListBoxItem}" x:Name="ListBoxItem" TargetType="ListBoxItem">
+
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+
+                            <Border x:Name="Border" SnapsToDevicePixels="true" Background="Transparent">
+
+                                <!-- Пункты — строки, рисуем явным TextBlock. Foreground — ОТДЕЛЬНЫЙ
+                                     <SolidColorBrush>-элемент (мутабельный, свой на каждый пункт): брушь,
+                                     заданная строкой-атрибутом, замораживается и не анимируется. Анимация
+                                     целится в (TextBlock.Foreground).(SolidColorBrush.Color) по ИМЕНИ элемента.
+                                     Выравнивание берём с ListBoxItem, как делал ContentPresenter.
+
+                                     Цвет переключаем через VisualStateManager (CommonStates), как в рабочем
+                                     старом проекте: ListBoxItem сам гоняет состояния Normal/MouseOver, и переход
+                                     одной анимации корректно перехватывает другую. Конкурирующие
+                                     ControlTemplate.Triggers с HoldEnd-анимациями (старый вариант) перебивали
+                                     наведение и текст не белел. -->
+                                <TextBlock x:Name="ItemText" Text="{TemplateBinding Content}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush x:Name="ItemForeground" Color="#FFABADB3"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="ItemForeground"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="#FFABADB3" Duration="0:0:0.15"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="MouseOver">
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="ItemForeground"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="#f5f5f5" Duration="0:0:0.15"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <!-- Выбранный пункт остаётся подсвеченным белым. -->
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="ItemForeground"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="#f5f5f5" Duration="0:0:0.15"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="local:ListBoxHighlight.RequestUpdate" Value="True"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- Анимации -->
+            <Storyboard x:Key="OpenMenu">
+                <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="MyMenuCanvas" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="MyMenuMouseArea" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                </ObjectAnimationUsingKeyFrames>
+                <!--DoubleAnimation Storyboard.TargetProperty="Height" Storyboard.TargetName="MyMenuBorder" To="{Binding ActualHeight, ElementName=MyMenu, Converter={StaticResource Plus1}}" Duration="0:0:0.24">
+                    <DoubleAnimation.EasingFunction>
+                        <PowerEase EasingMode="EaseOut" Power="4"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation-->
+                <DoubleAnimation Storyboard.TargetProperty="Height" Storyboard.TargetName="MyMenuCanvas" To="{Binding ActualHeight, ElementName=MyMenu, Converter={StaticResource Plus1}}" Duration="0:0:0.36">
+                    <DoubleAnimation.EasingFunction>
+                        <PowerEase EasingMode="EaseOut" Power="4"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DarkMask" To="0" Duration="0:0:0.24">
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase EasingMode="EaseIn" Power="4"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Key="CloseMenu">
+                <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="MyMenuMouseArea" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                </ObjectAnimationUsingKeyFrames>
+                <!--DoubleAnimation Storyboard.TargetProperty="Height" Storyboard.TargetName="MyMenuBorder" To="0" Duration="0:0:0.24">
+                    <DoubleAnimation.EasingFunction>
+                        <PowerEase EasingMode="EaseOut" Power="4"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation-->
+                <DoubleAnimation Storyboard.TargetProperty="Height" Storyboard.TargetName="MyMenuCanvas" To="0" Duration="0:0:0.24">
+                    <DoubleAnimation.EasingFunction>
+                        <PowerEase EasingMode="EaseOut" Power="4"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DarkMask" To="1" Duration="0:0:0.24">
+                    <DoubleAnimation.EasingFunction>
+                        <PowerEase EasingMode="EaseOut" Power="4"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0.24" Duration="0" Storyboard.TargetName="MyMenuCanvas" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </ControlTemplate.Resources>
+
+
+
+        <!-- Элементы управления -->
+        <Canvas x:Name="MyButtonArea" Width="{Binding ActualWidth, ElementName=MyTitleButton}">
+
+            <!--прозрачная область вокруг меню-->
+            <Canvas x:Name="MyMenuMouseArea" Margin="-26 0 0 0" Height="{Binding Height, ElementName=MyMenuCanvas, Converter={StaticResource Plus25}}" Width="{Binding Width, ElementName=MyMenuCanvas, Converter={StaticResource Plus50}}"
+                Canvas.Left="{Binding (UIElement.RenderTransform).(TranslateTransform.X), ElementName=MyMenuCanvas}" Canvas.Top="25" Visibility="Collapsed" Background="Transparent">
+            </Canvas>
+
+            <!--выпадающее меню-->
+            <Canvas x:Name="MyMenuCanvas" Height="90" Width="{Binding ActualWidth, ElementName=MyMenu}" Canvas.Top="24" ClipToBounds="True" Margin="0 0 0 0">
+
+                <Canvas.RenderTransform>
+                    <TranslateTransform>
+                        <TranslateTransform.X>
+                            <MultiBinding Converter="{StaticResource GetTitleMenuLeft}">
+                                <Binding Path="ActualWidth" ElementName="MyTitleButton" Mode="OneWay"/>
+                                <Binding Path="ActualWidth" ElementName="MyMenu" Mode="OneWay"/>
+                                <Binding Path="." ElementName="MyButtonArea" Mode="OneWay"/>
+                                <Binding Path="ActualWidth" ElementName="TitleBar" Mode="OneWay"/>
+                            </MultiBinding>
+                        </TranslateTransform.X>
+                    </TranslateTransform>
+                </Canvas.RenderTransform>
+
+                <ListBox local:ListBoxHighlight.Enable="True" x:Name="MyMenu" ItemsSource="{TemplateBinding ItemsSource}" Style="{StaticResource ListBoxNoBorder}" Foreground="Transparent"
+                        MinWidth="{Binding Path=ActualWidth, ElementName=MyTitleButton, Converter={StaticResource Plus2}}"  HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Bottom="0">
+                    <!-- Элементы приходят из ItemsSource (TemplateBinding -> TestButton.ItemsSource) -->
+                </ListBox>
+
+                <Rectangle x:Name="DarkMask" IsHitTestVisible="False" Height ="{Binding ActualHeight, ElementName=MyMenu}" Width="{Binding ActualWidth, ElementName=MyMenu}" Fill="#12131c" Opacity="0"/>
+
+            </Canvas>
+
+            <!--кнопка-->
+            <ToggleButton x:Name="MyTitleButton" Content="{TemplateBinding Name}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                FontSize="14" Width="Auto" Template="{StaticResource NewButton}" local:TitleMenuBehavior.IsMenuButton="True"
+                                          >
+                <ToggleButton.Triggers>
+                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+
+                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </ToggleButton.Triggers>
+            </ToggleButton>
+
+        </Canvas>
+
+    </ControlTemplate>
+
+</ResourceDictionary>
+
+```
