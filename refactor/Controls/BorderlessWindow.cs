@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -33,14 +32,14 @@ namespace ControlPanel
     /// CHROME / SNAP / UNSNAP / TASKBAR / ANIM. Нативный слой — в BorderlessWindow.Interop.cs.
     /// </para>
     /// </summary>
-    public partial class BorderlessWindow : Window
+    public partial class BorderlessWindow
     {
         // ====================================================================
         //  ЕДИНАЯ КАРТА ФЛАГОВ (T2)
         //  Все feature-toggle централизованы здесь. Комментарий = partial(ы),
         //  которые ПОТРЕБЛЯЮТ флаг. Значения перенесены 1:1 из исходника.
         //  (Числовые tuning-константы остаются в своих partial-ах по METHOD_MAP.)
-        // ====================================================================
+        // --------------------------------------------------------------------
         //  Удалены как мёртвые (PLAN Часть 2): AttachControlzExChrome,
         //  DisableDwmNcRendering, GripDebugLog, EnableTroubleshootLog,
         //  EnableSnapDiagLog, EnableDivider* (×6).
@@ -66,8 +65,8 @@ namespace ControlPanel
         private const bool EnableCaptionUnsnapRestoreDrag = true;   // UNSNAP
         private const bool EnableUnsnapWinEventRestore = true;      // UNSNAP
         private const bool EnableUnsnapSuppressResnapFrame = true;  // UNSNAP (Вариант A: глушить кадр реверса в snap-rect)
-        private const bool EnableUnsnapSteerGrowBack = true;        // UNSNAP (Variant A+: steer grow-back frames to floating)
-        private const bool EnableUnsnapProactiveFloat = true;       // UNSNAP (Variant A++: OS-never-floats fallback)
+        private const bool EnableUnsnapSteerGrowBack = true;       // UNSNAP (Variant A+: steer grow-back frames to floating)
+        private const bool EnableUnsnapProactiveFloat = true;      // UNSNAP (Variant A++: OS-never-floats fallback)
 
         // --- Off-screen resize (CORE) ---
         // Для floating-окна, заехавшего ЗА край монитора, bitblt НЕ подавляем — иначе DWM
@@ -96,10 +95,6 @@ namespace ControlPanel
         protected double CaptionHeight { get; set; } = 25;
 
         private bool _startupRevealStarted; // однократный старт наплыва маски (OnContentRendered/OnSourceInitialized)
-        private WindowState _prevWindowState;
-        private bool _shrunk;
-        private DispatcherTimer _edgeWatcher;
-        private bool _startupHiding;
 
         // БАГ off-screen-клон: floating-окно, заехавшее ЗА край монитора, при уменьшении
         // ресайзом оставляет «клон» (устаревшую DWM/redirection-поверхность) в ОСВОБОЖДЁННОЙ
@@ -107,37 +102,6 @@ namespace ControlPanel
         // инвалидировать именно освобождённую часть экрана.
         private RECT _offscreenPrevRect;
         private bool _offscreenPrevValid;
-
-        // --- UNSNAP caption-drag (из UNSNAP partial, но нужны в WindowProc) ---
-        private bool _captionUnsnapPending;
-        private bool _captionUnsnapDragging;
-
-        // --- Size-move cycle flags ---
-        private bool _inSizeMove;
-        private bool _userEdgeResize;
-        private bool _sizeChangedInLoop;
-        private bool _sizeAnchorValid;
-        private RECT _sizeAnchor;
-        private int _sizingEdge;
-
-        // --- Snap frame neighbors (BUG2 joint-resize) ---
-        private readonly List<IntPtr> _frameNbrsR = new();
-        private readonly List<IntPtr> _frameNbrsL = new();
-        private bool _frameJointArmed;
-
-        // --- Un-snap armed state (armed OS-unsnap) ---
-        private bool _unsnapArmValid;
-
-        // --- Snap follow state ---
-        // (Дополнительные поля для SnapFollow живут в SNAP partial)
-
-        // --- Frame release realign (BUG2) ---
-        private List<IntPtr> _divReleaseNbrs = new();
-        private int _divReleaseSide;
-        private long _divReleaseRealignUntil;
-
-        // --- Gap mask (TASKBAR) ---
-        private Window _gapMask;
 
         // ====================================================================
         //  КОНСТРУКТОР
@@ -608,63 +572,5 @@ namespace ControlPanel
             var wp = Marshal.PtrToStructure<WINDOWPOS>(lParam);
             return (wp.flags & SWP_NOSIZE) == 0;
         }
-
-        // ====================================================================
-        //  ЗАГЛУШКИ МЕТОДОВ ИЗ ДРУГИХ PARTIAL-ЫХ
-        //  Эти методы объявляются в других partial-ах (CHROME, SNAP, UNSNAP,
-        //  TASKBAR, ANIM) и вызываются отсюда. Их сигнатуры И имена менять НЕЛЬЗЯ.
-        // ====================================================================
-        private void TryStartMaskReveal() { }
-        private void EnsureResizeStyles(IntPtr handle) { }
-        private void ApplyThemedSystemFrame(IntPtr handle) { }
-        private void ApplyThemedBorderMetrics() { }
-        private void RestorePlacement(IntPtr handle) { }
-        private void HideMainForStartup(IntPtr handle) { }
-        private void UncloakMain(IntPtr handle) { }
-        private void EndMask() { }
-        private void SavePlacement(IntPtr handle) { }
-        private void InstallUnsnapWinEventHook() { }
-        private void RemoveUnsnapWinEventHook() { }
-        private void MaybeSuppressUnsnapResnapFrame(IntPtr lParam) { }
-        private void AnchorUnsnapResize(IntPtr wParam, IntPtr lParam) { }
-        private void AdjustMaximizedBounds(IntPtr hwnd, IntPtr lParam) { }
-        private IntPtr ThemedFrameNcCalcSize(IntPtr hwnd, IntPtr wParam, IntPtr lParam, ref bool handled) { return IntPtr.Zero; }
-        private int ThemedHitTest(IntPtr hwnd, IntPtr lParam) { return HTNOWHERE; }
-        private bool IsOutsideCurrentMonitor(IntPtr hwnd, IntPtr lParam) { return false; }
-        private bool IsInDraggableCaption(IntPtr hwnd, IntPtr lParam) { return false; }
-        private bool IsCaptionUnsnapRestoreCandidate(IntPtr hwnd) { return false; }
-        private bool TryGetCaptionRestoreRect(IntPtr hwnd, RECT win, out RECT rect) { rect = default; return false; }
-        private bool TrySetJointResizeCursor(IntPtr hwnd) { return false; }
-        private bool TryGetSnapInternalEdges(IntPtr hwnd, out bool fsl, out bool fsr, out bool ftop, out bool ftop2) { fsl = fsr = ftop = ftop2 = false; return false; }
-        private bool TryGetVisibleBounds(IntPtr hwnd, out RECT rect) { rect = default; return false; }
-        private void FindSnapNeighbors(IntPtr hwnd, RECT vis, bool rightSide, List<IntPtr> neighbors, out bool any) { any = false; }
-        private void FollowFrameResizeNeighbors(IntPtr hwnd) { }
-        private void MoveNeighborsFlush(IntPtr hwnd, bool rightSide, List<IntPtr> neighbors) { }
-        private void MoveNeighborsFlushV(IntPtr hwnd, bool bottomSide, List<IntPtr> neighbors) { }
-        private void ArmFrameReleaseRealign() { }
-        private bool HasInternalSnapDivider(IntPtr hwnd) { return false; }
-        private bool RectCrossesItsMonitor(IntPtr hwnd, RECT rect) { return false; }
-        private bool FloatingWindowCrossesMonitor(IntPtr hwnd) { return false; }
-        private int GetResizeGrip(IntPtr hwnd) { return 0; }
-        private void UpdateSnapDwmBorderColor(IntPtr hwnd) { }
-        private void UpdateSnapFollow() { }
-        private void StopSnapFollow() { }
-        private void RefreshEdgeGrip() { }
-        private void HideEdgeGrip() { }
-        private void StopEdgeWatcher() { }
-        private void UpdateEdgeWatcher() { }
-        private void DestroyEdgeGrip() { }
-        private void EdgeWatcher_Tick(object sender, EventArgs e) { }
-        private void StartRestoreReveal() { }
-        private void AnimateMinimize() { }
-        private void AnimateToWindowState(WindowState state) { }
-        private bool TryBeginCaptionUnsnapRestoreDrag(MouseButtonEventArgs e) { return false; }
-        private bool UpdateCaptionUnsnapRestoreDrag() { return false; }
-        private void EndCaptionUnsnapRestoreDrag(bool restore = true, string source = "") { }
-        private void UpdateCaptionUnsnapRestoreCache(IntPtr hwnd) { }
-        private void SuppressResizeBitBlt(IntPtr lParam) { }
-
-        // Константы из SNAP partial
-        private const int SnapFollowGrabBandPx = 10; // Заглушка — переопределяется в SNAP
     }
 }
