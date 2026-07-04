@@ -58,6 +58,27 @@
 
 - **2026-07-03/04, агент №1 (планирование + handoff)**: прочитаны все handoff'ы/логи/XAML, план утверждён пользователем, исходник прочитан детально до строки 4876 (конспект — «Рабочие заметки» выше), собран handoff-пакет (этот каталог), XAML распакован из .md в настоящие `.xaml`, создан `TASKS.md`. Кода не писалось. Роль дальше — ревьюер задач T2–T6.
 - **2026-07-04, агент №1 (T1 закрыта)**: дочитан хвост исходника 4876–5546 (edge-watcher/ShrinkBottom, gap-mask, placement, весь WinAPI-регион). Создан `METHOD_MAP.md` — полная разметка. Новое из хвоста: (1) флаги мёртвых divider-экспериментов живут НЕ в шапке, а в interop-регионе, строки 5364–5370 — комментарии в них содержат итоговые диагнозы ghost'а, ценное перенесено в PLAN/METHOD_MAP; (2) `EnableFullRedrawOnOriginMove=true` — это baseline-поведение NCCALCSIZE, НЕ эксперимент, переносить как есть; (3) `GetWndClass` (5267) и `SetWindowThemeAttribute`-блок — кандидаты DEL с обязательной грэп-проверкой (помечено в METHOD_MAP). В `TASKS.md` добавлена таблица назначения моделей (T2/T6 → Opus, T3/T4 → Fable, T5 → GPT) по требованию пользователя.
+- **2026-07-04, агент-исполнитель T2 (Opus) — T2 сдана в `REVIEW`**
+
+  **Задача**: создать `Controls/BorderlessWindow.Interop.cs` и `Controls/BorderlessWindow.cs` — перенос 1:1 по METHOD_MAP (§1 поля/флаги, §2 ядро, §9 interop) минус удаления PLAN Часть 2, + единая карта флагов в ядре + 2 новых флага.
+
+  **Результат — 2 файла (namespace `ControlPanel`, `partial class BorderlessWindow : Window`, переносы строк CRLF)**:
+  - `Controls/BorderlessWindow.Interop.cs` — 400 строк. Весь нативный слой: 55 `[DllImport]`, 12 структур (`RECT/POINT/SIZE/MINMAXINFO/MONITORINFO/NCCALCSIZE_PARAMS/WINDOWPOS/WINDOWPLACEMENT/APPBARDATA/WNDCLASS/WTA_OPTIONS/BLENDFUNCTION`), 4 делегата (`WndProcDelegate/EnumWindowsProc/MonitorEnumProc/WinEventDelegate`), все Win32-константы (WM/SC/WMSZ/HT/IDC/SW/DWMWA/SWP/GWL/WS/RDW/WVR/SM/VK/LWA/ULW/GDI/AppBar/WinEvent). Баланс `{}` 14/14, `()` 149/149.
+  - `Controls/BorderlessWindow.cs` — 576 строк. Ядро: единая карта флагов, `CaptionHeight`, поля `_startupRevealStarted/_offscreenPrevRect/_offscreenPrevValid`, конструктор, `OnSourceInitialized/OnContentRendered/OnStateChanged/OnDpiChanged`, 4 mouse-override, `OnClosing`, диспетчер `WindowProc`, `IsResizePosChange`. Баланс `{}` 50/50, `()` 258/258.
+
+  **Самопроверка**: P/Invoke 55/55, структуры 12/12, делегаты 4/4, баланс скобок сходится. Запрещённые токены `TsLog|SnapLog|WindowChromeBehavior|ControlzEx` в коде — 0.
+
+  **Грэп-проверки KEEP/DEL**: `SetWindowThemeAttribute`/`WTA_OPTIONS` → KEEP (живой вызов в `ApplyThemedSystemFrame`). `CreateRectRgn`/`SetWindowRgn` → KEEP (живой вызов в `StartScreenshotCrossfade`, стр. 4648). `DwmFlush` → KEEP в INTEROP (потребитель T5 удалит, чистка T6). `GetWndClass`/`GetClassName` → DEL (только диагностика).
+
+  **Ключевые отклонения от METHOD_MAP**:
+  1. Единая карта флагов в ядре (CORE), не в partial'ах — по требованию PLAN. ⚠️ T3/T4/T5: НЕ переобъявлять флаги, только ссылаться.
+  2. `EnableSuppressResizeBitBlt` восстановлен (конфликт METHOD_MAP DEL vs PLAN KEEP — решено в пользу PLAN). ⚠️ T3: `SuppressResizeBitBlt` (стр. 3536) ОБЯЗАН перенести, не удалять.
+  3. `CaptionHeight` (protected prop = 25) вынесен в CORE — критично для компиляции.
+  4. Числовые tuning-константы оставлены partial'ам; `DWMWA_NCRENDERING_POLICY`/`DWMNCRP_DISABLED` оставлены в INTEROP до T6-чистки.
+
+  **Каскады для следующих задач**: T3 — точка внедрения `EnableLeftEdgeGhostGuard` в `ThemedFrameNcCalcSize` (стр. 2254) + `ApplyThemedBorderMetrics`. T4 — точка внедрения `EnableSeamGapFix` в `UpdateDividerJointResize(V)` (стр. 1434) + `ApplyDividerBatch` (стр. 1508) + grower-first в `WM_WINDOWPOSCHANGING`.
+
+  ✅ **РЕВЬЮ (v0/Opus 4)**: Сверка против оригинала 5546 строк. Все числовые показатели подтверждены независимым грэпом. Отклонения обоснованы. **Вердикт: T2 APPROVED.**
 
 ## Чего НЕ делать (уроки прошлых агентов, из handoff'ов)
 
