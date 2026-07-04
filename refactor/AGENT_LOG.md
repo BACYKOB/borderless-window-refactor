@@ -46,7 +46,7 @@
 - Верхний ghost-guard: `ThemedFrameInset` применяется в `ThemedFrameNcCalcSize` только к top. Фикс 2 — симметрично к left + `BorderThickness.Left=0` в `ApplyThemedBorderMetrics` (XAML `BorderThickness="1,0,1,1"` — проверить точное значение в `xaml/Controls.xaml.md`; триггер Maximized ставит 0).
 - `ThemeBorderColorRef = 0x00403432` — DWM border color, совпадает с XAML BorderBrush (#323440 в BGR) — визуальная неизменность левого 1px подтверждена сверкой.
 - Unsnap-restore: Variant A/A+/A++ (manual move + WinEvent hook + handoff to shell) — НЕ ТРОГАТЬ логику, только перенос 1:1 и вычистка логов. `CaptionUnsnapRestoreThresholdDip = 20.0` — не менять.
-- Подтверждённые мёртвые ветки перечислены в PLAN.md Часть 2 — но перед удалением КАЖДОГО символа перепроверить грэпом по исходнику, что он не вызывается живым кодом (handoff'ы местами устарели).
+- Подтверждённые мёртвые ветки перечислены в PLAN.md Часть 2 — но перед удаление�� КАЖДОГО символа перепроверить грэпом по исходнику, что он не вызывается живым кодом (handoff'ы местами устарели).
 
 ## Следующи�� шаги
 
@@ -79,6 +79,29 @@
   **Каскады для следующих задач**: T3 — точка внедрения `EnableLeftEdgeGhostGuard` в `ThemedFrameNcCalcSize` (стр. 2254) + `ApplyThemedBorderMetrics`. T4 — точка внедрения `EnableSeamGapFix` в `UpdateDividerJointResize(V)` (стр. 1434) + `ApplyDividerBatch` (стр. 1508) + grower-first в `WM_WINDOWPOSCHANGING`.
 
   ✅ **РЕВЬЮ (v0/Opus 4)**: Сверка против оригинала 5546 строк. Все числовые показатели подтверждены независимым грэпом. Отклонения обоснованы. **Вердикт: T2 APPROVED.**
+
+- **2026-07-04, агент-исполнитель T3 — T3 сдана в `REVIEW`** (статус T2 в TASKS.md переведён в `DONE` по вердикту ревьюера выше)
+
+  **Задача**: создать `Controls/BorderlessWindow.Chrome.cs` — перенос chrome-методов по METHOD_MAP §1/§3 + внедрение фикса 2 (`EnableLeftEdgeGhostGuard`, PLAN Часть 4).
+
+  **Результат — `Controls/BorderlessWindow.Chrome.cs`, 590 строк.** Баланс `{}` 40/40, `()` 354/354. Состав:
+  - Константы: `ResizeGripPx`, `ResizeGripThin`, `ThemedFrameInset`, `EdgeClampMaxOverhang`, `SnapInternalDividerGuardPx`, `NcRedrawMaxDeltaPx`; поля `_snapDwmBorderColorApplied`, `_ncLastW/_ncLastH`. Значения 1:1, флаги НЕ переобъявлялись (все в ядре, по требованию T2).
+  - Методы (все сигнатуры без изменений): `EnsureResizeStyles`, `ApplyThemedSystemFrame`, `ApplyThemedBorderMetrics`, `ThemedHitTest`, `TryGetClientRectScreen`, `IsInDraggableCaption`, `GetResizeGrip`, `IsOverTitleInteractive`, `ThemedFrameNcCalcSize`, `ApplySnapLayoutGapFix`, `Near`, `UpdateSnapDwmBorderColor`, `HasInternalSnapDivider`, `TryGetSnapInternalEdges`, `TryGetWorkArea`, `IsOutsideCurrentMonitor`, `SuppressResizeBitBlt` (KEEP по указанию T2), `AdjustMaximizedBounds`.
+
+  **Удаления при переносе (по PLAN Часть 2 / METHOD_MAP)**: `TryBuildAlignedValidRects` (2375–2412) целиком + `else if`-ветка WVR_VALIDRECTS в `ThemedFrameNcCalcSize` (при `EnableFullRedrawOnOriginMove=true` она и в исходнике была мертва — WVR_REDRAW стал безусловным на изменённом client, семантика бит-в-бит); `DisableDwmNcRendering`-ветка в `ApplyThemedSystemFrame`; все TsLog/SnapLog-блоки (в т.ч. диагностический блок с `_lastNoEdgeDiagTick` в `TryGetSnapInternalEdges` — вычисления в нём side-effect-free, наружу ничего не утекает, проверено).
+
+  **ФИКС 2 внедрён** (обе точки, за флагом из ядра):
+  1. `ThemedFrameNcCalcSize`: `if (EnableLeftEdgeGhostGuard) calc.rgrc0.Left += ThemedFrameInset;` — сразу ПОСЛЕ верхнего инсета и ДО клампов к work-area / gap-fix (тот же порядок, что у top-inset; кламп при snap к левому краю экрана перекрывает инсет так же, как перекрывает верхний). База инсета — client-край DefWindowProc (= видимый левый край), НЕ raw `wl` (raw дал бы расширение клиента наружу). В maximized — ранний return как был → inset 0, поведение сохранено.
+  2. `ApplyThemedBorderMetrics`: при флаге `BorderThickness = (0, ty, tx, ty)` — левый WPF-px обнулён (компенсация двойной границы), maximized остаётся `Thickness(0)`. При `false` — прежний `(tx, ty, tx, ty)` бит-в-бит.
+  Hit-test, maximized/fullscreen-пути, `ThemeBorderColorRef` — НЕ тронуты (границы задачи соблюдены).
+
+  **Что выяснено нового / расхождения с ожиданиями**:
+  1. ⚠️ XAML-сверка: в `xaml/MainWindow.xaml` стиль задаёт `BorderThickness Value="1"` (равномерно), а НЕ `"1,0,1,1"` как записано в TASKS/PLAN/AGENT_LOG. На поведение не влияет: `ApplyThemedBorderMetrics` всегда перекрывает стиль локальным значением DP, триггер `Maximized→0` тоже перекрыт кодом (`Thickness(0)`), но формулировку «сохранить XAML-поведение 1,0,1,1» следует читать как «код задаёт метрики целиком».
+  2. Комментарии исходника у `ApplyThemedBorderMetrics`/`ThemedFrameInset` противоречат коду (говорят «только право/низ» и «инсет со всех сторон») — код-истина: бордер со всех 4 сторон, инсет только top. Перенёс поведение кода, комментарии поправил под фактическое.
+  3. **Замечание для T6/IDEAS (риск фикса 2)**: у floating-окна DWM-цвет рамки = `DWMWA_COLOR_NONE` (`UpdateSnapDwmBorderColor` включает `ThemeBorderColorRef` только при внутреннем snap-разделителе). После обнуления левого WPF-px видимая левая линия floating-окна = NC-полоса, которую DWM при COLOR_NONE может не красить → возможна визуально «пропавшая» левая 1px-линия рамки у floating. У верха аналогичная NC-полоса, но там видимую линию рисует WPF-бордер (top НЕ обнулён). Если пользователь увидит отсутствие левой линии — варианты: (а) не обнулять left-бордер, приняв 2px у snapped; (б) красить DWM-рамку всегда в `ThemeBorderColorRef`; (в) динамический inset только на время left-drag (эскалация из PLAN). Реализовано строго по утверждённому плану; альтернативы — в IDEAS.md (T6).
+  4. Grep-инструмент песочницы не индексирует каталог `refactor/` — все грэп-сверки делал через bash `grep`, работает штатно.
+
+  **Каскады**: T4 (SNAP) обязан объявить `TryGetVisibleBounds` (Chrome его вызывает в `TryGetSnapInternalEdges`), `SnapFollowGrabBandPx` (ядро использует в WM_NCHITTEST-ветке). T5 (ANIM) обязан перенести константы `MaskColorRef` (4581) и `ThemeBorderColorRef` (4582) — Chrome ссылается на обе; (TASKBAR) — `IsOnTaskbarMonitor`, `HasBottomAutoHideTaskbar`, `_shrunk` (Chrome вызывает в `AdjustMaximizedBounds`).
 
 ## Чего НЕ делать (уроки прошлых агентов, из handoff'ов)
 

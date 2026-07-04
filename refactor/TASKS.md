@@ -27,7 +27,7 @@
 
 ---
 
-## T2 — Interop + ядро (`BorderlessWindow.Interop.cs`, `BorderlessWindow.cs`) — `TODO`
+## T2 — Interop + ядро (`BorderlessWindow.Interop.cs`, `BorderlessWindow.cs`) — `DONE`
 
 **Модель**: Opus.
 
@@ -41,7 +41,7 @@
 
 ---
 
-## T3 — Chrome + фикс призрака (`BorderlessWindow.Chrome.cs`) — `TODO`
+## T3 — Chrome + фикс призрака (`BorderlessWindow.Chrome.cs`) — `REVIEW`
 
 **Модель**: Fable.
 
