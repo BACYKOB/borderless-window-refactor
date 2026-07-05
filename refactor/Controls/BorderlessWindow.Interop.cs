@@ -158,6 +158,11 @@ namespace ControlPanel
         // ------------------------------------------------------------------
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessageW(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
+        // ФИКС 1 (T4): опрос MINMAXINFO чужого окна с таймаутом (не виснем на зависшем процессе).
+        // WM_GETMINMAXINFO — системное сообщение (< WM_USER), lParam маршалится ОС кросс-процессно.
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr SendMessageTimeoutW(IntPtr hWnd, int Msg, IntPtr wParam, ref MINMAXINFO lParam, uint fuFlags, uint uTimeout, out IntPtr lpdwResult);
+        private const uint SMTO_ABORTIFHUNG = 0x0002;
         [DllImport("user32.dll")]
         private static extern bool ReleaseCapture();
         [DllImport("user32.dll")]

@@ -96,7 +96,7 @@ namespace ControlPanel
 
         private bool _startupRevealStarted; // однократный старт наплыва маски (OnContentRendered/OnSourceInitialized)
 
-        // БАГ off-screen-клон: floating-окно, заехавшее ЗА край монитора, при уменьшении
+        // БАГ off-screen-клон: floating-окно, заехавшее ЗА край монитор��, при уменьшении
         // ресайзом оставляет «клон» (устаревшую DWM/redirection-поверхность) в ОСВОБОЖДЁННОЙ
         // зоне. Запоминаем rect окна на старте цикла, чтобы на выходе вычислить и
         // инвалидировать именно освобождённую часть экрана.
@@ -225,7 +225,7 @@ namespace ControlPanel
         /// Перетаскивание окна и разворот по двойному клику за зону заголовка.
         /// <para>
         /// Пустая зона титула возвращает <c>HTCLIENT</c>, и система сама окно не двигает, поэтому
-        /// делаем это вручную. Клики по интерактивным элементам шапки (кнопки/меню) помечаются
+        /// делае�� это вручную. Клики по интерактивным элементам шапки (кнопки/меню) помечаются
         /// <c>Handled</c> и сюда не доходят. Верхние <c>ResizeBorderThickness</c> px — это
         /// <c>HTTOP</c> (нон-клиент, ресайз), не клиент, поэтому конфликта с ресайзом сверху нет.
         /// </para>
@@ -437,6 +437,11 @@ namespace ControlPanel
                     MaybeSuppressUnsnapResnapFrame(lParam);
                     if (_inSizeMove && IsResizePosChange(lParam))
                         _sizeChangedInLoop = true;
+                    // ФИКС 1 (T4, frame-resize, «grower-first»): если наш край при тяге рамки идёт
+                    // ВНУТРЬ, растущий сосед коммитится ЗДЕСЬ — до применения нашего кадра, чтобы
+                    // между кадрами не мелькал рабочий стол (см. FollowFrameResizeNeighborsPre).
+                    if (EnableSeamGapFix && _inSizeMove && _userEdgeResize && _frameJointArmed)
+                        FollowFrameResizeNeighborsPre(hwnd, lParam);
                     // ГЛАВНЫЙ ФИКС off-screen-клона: окно за краем монитора — не подавляем bitblt.
                     bool offscreenEdgeResize = AllowBitBltForOffscreenResize &&
                                                _inSizeMove && _userEdgeResize && _offscreenPrevValid;
