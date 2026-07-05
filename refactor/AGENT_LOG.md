@@ -136,6 +136,23 @@
   **Создан `refactor/IDEAS.md`** (задача T6 п.4 переформулирована: дополнить, не создавать). Внесены идеи аудита + всё накопленное журналом. **Каскад для T6**: проверить, что грэп `BorderThickness = new Thickness(0, ty` даёт 0 вхождений; что `_divMinTrackCache` очищается при захвате; ветки T3 (PR #3) слиты в main.
 
   **Дополнение (беглый аудит T2, по запросу пользователя)**: вердикт T2 `DONE` ПОДТВЕРЖДЁН. Проверено независимо: баланс `{}` 50/50 (ядро) и 14/14 (Interop); все CORE-члены METHOD_MAP §2 на месте (ctor, lifecycle-overrides, mouse-обёртки, `WindowProc`, `IsResizePosChange`, `_offscreenPrevRect`, `AllowBitBltForOffscreenResize`, `CaptionHeight`); оба новых флага (`EnableSeamGapFix`, `EnableLeftEdgeGhostGuard`) объявлены в карте флагов ядра; все 12 структур/4 делегата/DllImport'ы §9 в Interop; запрещённые токены `TsLog|SnapLog|WindowChromeBehavior|ControlzEx` в ядре и Interop — 0 (в Chrome/SnapResize встречаются только в комментариях-шапках как описание удалённого — допустимо). Условные DEL из §9 разрешены корректно: `GetWndClass` удалён (остался только в комментарии-описи удалений), `SetWindowThemeAttribute`+`WTA_OPTIONS` оставлены ПРАВИЛЬНО — живое использование в `ApplyThemedSystemFrame` под KEEP-флагом `IncludeCaptionForSnap` (предположение METHOD_MAP «только мёртвая ветка» не подтвердилось — проверка грэпом, предписанная картой, сработала). **Единственная находка → каскад для T6**: `CreateRectRgn`/`SetWindowRgn` объявлены в Interop, но по состоянию после T4 не используются ни одним partial'ом; METHOD_MAP требовал «проверить использование, если только мёртвые ветки → DEL» — вердикт возможен только после T5 (кандидаты-потребители: скриншот-маска/gap-mask в ANIM/TASKBAR). T6: грэп по обоим именам; если использований нет — удалить оба объявления из Interop.cs.
+- **2026-07-05, агент-исполнитель T5 (GPT) — T5 взята в работу**
+
+  **Задача**: создать `Controls/BorderlessWindow.Unsnap.cs`, `Controls/BorderlessWindow.Animation.cs`, `Controls/BorderlessWindow.Taskbar.cs` по METHOD_MAP §5/§7/§8: перенос 1:1 минус диагностика и подтверждённо мёртвые элементы.
+
+  **Прочитано перед стартом**: `AGENT_LOG.md`, `PLAN.md`, раздел T5 в `TASKS.md`, `METHOD_MAP.md`, handoff'ы `animation.md` и `un-snap-restore.md`.
+
+  **Грэп перед удалением**: `StartMaskCrossfade`/`MaskFadeLoop`/`Ease` найдены только в `original/`, `METHOD_MAP/TASKS/PLAN` и handoff-документах; живых вызовов в `Controls/*.cs` нет. `_captionUnsnapWatchdog` и `_captionUnsnapMoveTickCount` используются только watchdog/диагностикой исходника и не переносятся.
+
+- **2026-07-05, агент-исполнитель T5 (GPT) — T5 сдана в `REVIEW`**
+
+  **Результат — 3 файла**: `Controls/BorderlessWindow.Unsnap.cs` (caption un-snap restore, anchor resize, WinEvent-chain), `Controls/BorderlessWindow.Animation.cs` (cloak/uncloak, screenshot-mask crossfade, mask cleanup), `Controls/BorderlessWindow.Taskbar.cs` (edge-watcher, gap-mask, placement). Interop-дубли не переносились: WinEvent/GDI/placement API уже в `BorderlessWindow.Interop.cs`.
+
+  **Удаления при переносе**: вся диагностика `TsLog`/`SnapLog` call-site'ов в T5-диапазонах; `LogFirstUpdate`; `_captionUnsnapWatchdog`/`CaptionUnsnapWatchdog_Tick`/`_captionUnsnapMoveTickCount`; старая серая mask-цепочка `StartMaskCrossfade`/`MaskFadeLoop`/`Ease`. `SmoothStep`, `EndMask`, `EnsureMaskClass`, screenshot-mask путь сохранены.
+
+  **Самопроверка**: баланс новых файлов — Animation `{}` 38/38, `()` 148/148; Taskbar `{}` 66/66, `()` 144/144; Unsnap `{}` 46/46, `()` 245/245. Грэп по удалённым символам в `Controls/*.cs` (`StartMaskCrossfade|MaskFadeLoop|Ease\(|_captionUnsnapWatchdog|_captionUnsnapMoveTickCount`) — 0. `CaptionUnsnapRestoreThresholdDip = 20.0` не изменён. WinEvent-chain полная: `MaybeSuppressUnsnapResnapFrame` → `OnUnsnapWinEvent` → `FinishUnsnapWinEventRestore`.
+
+  **Что выяснено**: `CreateRectRgn`/`SetWindowRgn` после T5 имеют живой потребитель в `Animation.cs` (`StartScreenshotCrossfade`), значит T6 не должна удалять их как мёртвые. В репозитории нет `.csproj`/`.sln`, поэтому компиляцию локально выполнить невозможно; это совпадает с процессом PLAN (сборка после T6 у пользователя).
 
 ## Чего НЕ делать (уроки прошлых агентов, из handoff'ов)
 

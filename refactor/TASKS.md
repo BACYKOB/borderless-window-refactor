@@ -75,7 +75,7 @@
 
 ---
 
-## T5 — Unsnap + Animation + Taskbar — `TODO`
+## T5 — Unsnap + Animation + Taskbar — `REVIEW`
 
 **Модель**: GPT.
 
