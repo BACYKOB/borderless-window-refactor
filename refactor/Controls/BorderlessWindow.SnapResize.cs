@@ -12,21 +12,20 @@ namespace ControlPanel
     //  TryGetVisibleBounds/TryGetMaskRect (используются и UNSNAP).
     //
     //  Удалено при переносе (PLAN Часть 2 / METHOD_MAP §4):
-    //   - вся диагностика (GripLog/TsLog/SnapLog + троттлинг-поля);
-    //   - мёртвые эксперименты EnableDivider* (deferred/guide/frame-sync/no-copybits);
+    //   - вся диагностика (GripLog/TsLog/SnapLog/PfLog + троттлинг-поля);
+    //   - мёртвые эксперименты EnableDivider* (deferred/guide/frame-sync/no-copybits/
+    //     single-batch probe) — все были false;
     //   - LogNearestRejectedNeighbor / LogPassiveCandidates (диаг-дампы).
     //
-    //  ФИКС 1 (T4): EnableSeamGapFix (флаг в ядре, default true) — устранение
-    //  межкадрового зазора шва при joint-resize (PLAN Часть 3):
-    //   1) DivGrip-путь: кламп effDiv по MINMAXINFO соседа ЗАРАНЕЕ + ОДИН атомарный
-    //      BeginDefer/EndDeferWindowPos (мы + соседи + co-tiles) за кадр;
+    //  ФИКС 1 (T4, PLAN Часть 3): EnableSeamGapFix — устранение межкадрового зазора
+    //  шва при joint-resize:
+    //   1) DivGrip-путь: кламп effDiv по MINMAXINFO соседа ЗАРАНЕЕ (без реального
+    //      предиктивного сдвига) + ОДИН атомарный BeginDefer/EndDeferWindowPos
+    //      (мы + соседи + co-tiles) за кадр — нет двух раздельных коммитов, нет шва.
     //   2) Frame-resize путь: «grower-first» — растущий сосед коммитится в
     //      WM_WINDOWPOSCHANGING (до нашего кадра), сжимающийся — после
     //      WM_WINDOWPOSCHANGED (наше растущее окно само накрывает шов).
     //  При EnableSeamGapFix=false — прежняя двухпроходная схема бит-в-бит.
-    //
-    //  Флаги (DeferJointResizeToShell, EnableFreeEdgeGrip, EnableSnapFollow,
-    //  EnableJointResizeCursor, EnablePassiveFollow, EnableSeamGapFix) — в ядре.
     // ============================================================================
     public partial class BorderlessWindow
     {
@@ -87,21 +86,15 @@ namespace ControlPanel
         // must follow the divider too, else the column goes ragged (gap/overlap beside the other tile). Populated
         // only when our window is a sub-tile (a full-height window has nothing stacked above/below it).
         private readonly System.Collections.Generic.List<IntPtr> _divDragCoTiles = new();
-        private long _lastDivMoveLogTick;
         // Frame-synced divider resize (experiment): coalesce the target divider coordinate from WM_MOUSEMOVE and
         // apply it inside CompositionTarget.Rendering (right before WPF composes its next frame) so the HWND resize
         // and WPF's matching frame land together, shrinking the async gap that shows the stale surface (left-edge ghost).
-        private int _divFsPendingCoord;
-        private bool _divFsPendingValid;
-        private bool _divFsRenderHooked;
         // BUG2: лечение дрейфа после ОТПУСКАНИЯ grip/рамки. Shell д��-снапывает НАШ край (напр. 2849->2957),
         // сосед остаётся на месте -> перекрытие -> FindSnapNeighbors теряет соседа. В коротком окне после
         // релиза подтягиваем захваченного соседа вплотную к осевшему краю (хэндл соседа известен).
         private long _divReleaseRealignUntil;
         private int _divReleaseSide;
         private readonly System.Collections.Generic.List<IntPtr> _divReleaseNbrs = new System.Collections.Generic.List<IntPtr>();
-        private long _lastNbrDiagTick; // троттлинг диага FsnMiss
-        private long _lastFrmFollowLogTick; // BUG2: троттлинг лога FrmFollow
         private IntPtr _gripHwnd;
         private int _edgeGripHt;
         private bool _edgeGripResizing;
@@ -159,14 +152,14 @@ namespace ControlPanel
             if (!EnableJointResizeCursor || !EnableSnapFollow || !UseThemedSystemFrame) return false;
             if (WindowState != WindowState.Normal) return false;
             bool gotEdges = TryGetSnapInternalEdges(hwnd, out bool sl, out bool sr, out _, out _);
-            if (!gotEdges) { if (EnableTroubleshootLog) TsLog("TsJrc fail=no-edges"); return false; }
-            if (!sl && !sr) { if (EnableTroubleshootLog) TsLog($"TsJrc fail=no-vert sl={sl} sr={sr}"); return false; }
-            if (!TryGetVisibleBounds(hwnd, out RECT vis)) { if (EnableTroubleshootLog) TsLog("TsJrc fail=no-vis"); return false; }
+            if (!gotEdges) { return false; }
+            if (!sl && !sr) { return false; }
+            if (!TryGetVisibleBounds(hwnd, out RECT vis)) { return false; }
             if (!GetCursorPos(out POINT cur)) return false;
-            if (cur.Y < vis.Top || cur.Y > vis.Bottom) { if (EnableTroubleshootLog) TsLog($"TsJrc fail=Y-out cur=({cur.X},{cur.Y}) vis=({vis.Left},{vis.Top},{vis.Right},{vis.Bottom})"); return false; }
+            if (cur.Y < vis.Top || cur.Y > vis.Bottom) { return false; }
             int dl = sl ? Math.Abs(cur.X - vis.Left) : int.MaxValue;
             int dr = sr ? Math.Abs(cur.X - vis.Right) : int.MaxValue;
-            if (Math.Min(dl, dr) > SnapFollowGrabBandPx) { if (EnableTroubleshootLog) TsLog($"TsJrc fail=band sl={sl} sr={sr} dl={dl} dr={dr} cur=({cur.X},{cur.Y}) vis=({vis.Left},{vis.Right})"); return false; }
+            if (Math.Min(dl, dr) > SnapFollowGrabBandPx) { return false; }
             // BUG2a: курсор ресайза во ВНУТРЕННЕЙ области показываем только если на хватаемой стороне есть
             // РЕАЛЬНЫЙ сосед (joint-resize через разделитель). Для СВОБОДНОГО края р��са��з делае�� наруж��ая
             // полоса хвата, поэтому внутри окна стрелку НЕ показываем - иначе она висит, но не работает.
@@ -175,7 +168,7 @@ namespace ControlPanel
             bool sideHasNeighbor = grabRight
                 ? FindSnapNeighbors(hwnd, vis, true, jrcNbrs, out _)
                 : FindSnapNeighbors(hwnd, vis, false, jrcNbrs, out _);
-            if (!sideHasNeighbor) { if (EnableTroubleshootLog) TsLog($"TsJrc fail=free-edge grabRight={grabRight} dl={dl} dr={dr} cur=({cur.X},{cur.Y}) vis=({vis.Left},{vis.Right})"); return false; }
+            if (!sideHasNeighbor) { return false; }
             SetCursor(LoadCursorW(IntPtr.Zero, (IntPtr)IDC_SIZEWE));
             return true;
         }
@@ -218,7 +211,6 @@ namespace ControlPanel
                 case WM_LBUTTONDOWN:
                 {
                     var main = new WindowInteropHelper(this).Handle;
-                    GripLog("WM_LBUTTONDOWN main=" + main + " ht=" + _edgeGripHt);
                     if (main != IntPtr.Zero && _edgeGripHt != 0)
                     {
                         _edgeGripResizing = true;
@@ -273,7 +265,6 @@ namespace ControlPanel
                 GripClassName, null, WS_POPUP,
                 -32000, -32000, 1, 1,
                 IntPtr.Zero, IntPtr.Zero, GetModuleHandleW(null), IntPtr.Zero);
-            GripLog("EnsureGrip created hwnd=" + _gripHwnd);
             if (_gripHwnd != IntPtr.Zero)
             {
                 _gripOwners[_gripHwnd] = this;
@@ -351,7 +342,6 @@ namespace ControlPanel
             if (_divGripHwndR != IntPtr.Zero) { _divGripOwners.Remove(_divGripHwndR); DestroyWindow(_divGripHwndR); _divGripHwndR = IntPtr.Zero; }
             if (_divGripHwndT != IntPtr.Zero) { _divGripOwners.Remove(_divGripHwndT); DestroyWindow(_divGripHwndT); _divGripHwndT = IntPtr.Zero; }
             if (_divGripHwndB != IntPtr.Zero) { _divGripOwners.Remove(_divGripHwndB); DestroyWindow(_divGripHwndB); _divGripHwndB = IntPtr.Zero; }
-            if (_divGuideHwnd != IntPtr.Zero) { DestroyWindow(_divGuideHwnd); _divGuideHwnd = IntPtr.Zero; }
         }
 
         // ===== Divider guide line (deferred-resize UX) =====
@@ -440,8 +430,6 @@ namespace ControlPanel
             }
             else { _divNbrsT.Clear(); if (_divGripHwndT != IntPtr.Zero) ShowWindow(_divGripHwndT, SW_HIDE); }
 
-            if (EnableTroubleshootLog && (lOk || rOk || tOk || bOk))
-                TsLog($"DivGrip lOk={lOk} rOk={rOk} tOk={tOk} bOk={bOk} tNbr={tNbr} bNbr={bNbr} vis=({vis.Left},{vis.Top},{vis.Right},{vis.Bottom}) lN={_divNbrsL.Count} rN={_divNbrsR.Count} tN={_divNbrsT.Count} bN={_divNbrsB.Count} tNear={tNear} bNear={bNear}");
         }
 
         // joint-resize обоих о��он по X разделителя (экранные координаты). side: 1=сосед слева, 2=справа.
@@ -466,15 +454,33 @@ namespace ControlPanel
                 if (lo > hi) return;
                 if (dividerX < lo) dividerX = lo; else if (dividerX > hi) dividerX = hi;
                 effDiv = dividerX;
-                // Issue #3: commit neighbor(s) + our window + co-tiles in ONE DeferWindowPos batch (atomic co-present) to remove divider-drag tearing.
-                if (EnableDividerSingleBatch) { ApplyDividerBatch(main, oR, oOvR, effDiv, true, true); }
-                else {
-                ApplyDividerBatch(main, oR, oOvR, effDiv, true, false);
-                int actualDiv = effDiv;
-                foreach (var nb in _divDragNbrs)
-                    if (TryGetVisibleBounds(nb, out RECT nV2)) actualDiv = Math.Min(actualDiv, nV2.Left);
-                if (actualDiv < effDiv - 1) effDiv = actualDiv;
-                ApplyDividerBatch(main, oR, oOvR, effDiv, true, true);
+                if (EnableSeamGapFix)
+                {
+                    // ФИКС 1 (DivGrip): кламп effDiv по MINMAXINFO соседа ЗАРАНЕЕ (без реального
+                    // предиктивного сдвига) → ровно ОДИН атомарный batch за кадр (мы + соседи +
+                    // co-tiles вместе). Нет двух раздельных коммитов → нет межкадрового шва.
+                    // Если ОС всё же клампит сверх MINMAXINFO, следующий кадр читает фактический
+                    // край (hi выше) и effDiv корректируется; ArmDivReleaseRealign докрывает релиз.
+                    foreach (var nb in _divDragNbrs)
+                        if (GetWindowRect(nb, out RECT nbR) && TryGetVisibleBounds(nb, out RECT nbV) &&
+                            TryGetMinTrackSize(nb, out int minW, out _))
+                        {
+                            int nbMaxDiv = nbR.Right - (nbR.Left - nbV.Left) - minW; // ширина соседа >= его minW
+                            if (effDiv > nbMaxDiv) effDiv = nbMaxDiv;
+                        }
+                    if (effDiv < lo) effDiv = lo;
+                    ApplyDividerBatch(main, oR, oOvR, effDiv, true, true);
+                }
+                else
+                {
+                    // Двухпроходная схема (fallback): предиктивный сдвиг соседей → читаем их
+                    // фактический край (ОС могла ограничить сжатие) → финальный batch по факту.
+                    ApplyDividerBatch(main, oR, oOvR, effDiv, true, false);
+                    int actualDiv = effDiv;
+                    foreach (var nb in _divDragNbrs)
+                        if (TryGetVisibleBounds(nb, out RECT nV2)) actualDiv = Math.Min(actualDiv, nV2.Left);
+                    if (actualDiv < effDiv - 1) effDiv = actualDiv;
+                    ApplyDividerBatch(main, oR, oOvR, effDiv, true, true);
                 }
             }
             else
@@ -487,27 +493,31 @@ namespace ControlPanel
                 if (lo > hi) return;
                 if (dividerX < lo) dividerX = lo; else if (dividerX > hi) dividerX = hi;
                 effDiv = dividerX;
-                // Issue #3: commit neighbor(s) + our window + co-tiles in ONE DeferWindowPos batch (atomic co-present) to remove divider-drag tearing.
-                if (EnableDividerSingleBatch) { ApplyDividerBatch(main, oR, oOvL, effDiv, false, true); }
-                else {
-                ApplyDividerBatch(main, oR, oOvL, effDiv, false, false);
-                int actualDiv = effDiv;
-                foreach (var nb in _divDragNbrs)
-                    if (TryGetVisibleBounds(nb, out RECT nV2)) actualDiv = Math.Max(actualDiv, nV2.Right);
-                if (actualDiv > effDiv + 1) effDiv = actualDiv;
-                ApplyDividerBatch(main, oR, oOvL, effDiv, false, true);
+                if (EnableSeamGapFix)
+                {
+                    // ФИКС 1 (DivGrip, зеркало side 1): кламп по MINMAXINFO соседа СЛЕВА + один атомарный batch.
+                    foreach (var nb in _divDragNbrs)
+                        if (GetWindowRect(nb, out RECT nbR) && TryGetVisibleBounds(nb, out RECT nbV) &&
+                            TryGetMinTrackSize(nb, out int minW, out _))
+                        {
+                            int nbMinDiv = nbR.Left + (nbV.Right - nbR.Right) + minW; // effDiv+(nR.Right-nV.Right)-nR.Left >= minW
+                            if (effDiv < nbMinDiv) effDiv = nbMinDiv;
+                        }
+                    if (effDiv > hi) effDiv = hi;
+                    ApplyDividerBatch(main, oR, oOvL, effDiv, false, true);
+                }
+                else
+                {
+                    // Двухпроходная схема (fallback), см. ветку side 2.
+                    ApplyDividerBatch(main, oR, oOvL, effDiv, false, false);
+                    int actualDiv = effDiv;
+                    foreach (var nb in _divDragNbrs)
+                        if (TryGetVisibleBounds(nb, out RECT nV2)) actualDiv = Math.Max(actualDiv, nV2.Right);
+                    if (actualDiv > effDiv + 1) effDiv = actualDiv;
+                    ApplyDividerBatch(main, oR, oOvL, effDiv, false, true);
                 }
             }
 
-            if (EnableTroubleshootLog)
-            {
-                long now = Environment.TickCount64;
-                if (now - _lastDivMoveLogTick > 120)
-                {
-                    _lastDivMoveLogTick = now;
-                    TsLog($"DivMove side={_divDragSide} dividerX={dividerX} effDiv={effDiv} our=({oV.Left},{oV.Right}) nbrs={_divDragNbrs.Count}");
-                }
-            }
         }
 
         // BUG2: capture windows stacked in the SAME column as us (strictly above/below our vertical span) whose
@@ -523,10 +533,7 @@ namespace ControlPanel
         {
             IntPtr hdwp = BeginDeferWindowPos(_divDragNbrs.Count + _divDragCoTiles.Count + 1);
             if (hdwp == IntPtr.Zero) return;
-            // SWP_NOCOPYBITS experiment: applied ONLY to our window's move (origin/left edge moves here) to
-            // discard stale bits instead of a USER32 copy-blit; neighbors/co-tiles keep the plain flags.
             uint oswp = SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER;
-            if (EnableDividerNoCopyBits) oswp |= SWP_NOCOPYBITS;
             foreach (var nb in _divDragNbrs)
             {
                 if (!GetWindowRect(nb, out RECT nR) || !TryGetVisibleBounds(nb, out RECT nV)) continue;
@@ -609,8 +616,6 @@ namespace ControlPanel
                 _divDragCoTiles.Add(h);
                 return true;
             }, IntPtr.Zero);
-            if (EnableTroubleshootLog && _divDragCoTiles.Count > 0)
-                TsLog($"DivCoTiles side={side} count={_divDragCoTiles.Count} edgeX={edgeX}");
         }
 
         // BUG2: move captured same-column co-tiles so their near edge tracks the divider (effDiv, visible coords).
@@ -754,15 +759,6 @@ namespace ControlPanel
                     SetWindowPos(main, IntPtr.Zero, oR.Left, newOT, oR.Right - oR.Left, oR.Bottom - newOT, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
                     MoveDividerCoTilesV(newT);
                 }
-                if (EnableTroubleshootLog)
-                {
-                    long nowV = Environment.TickCount64;
-                    if (nowV - _lastDivMoveLogTick > 120)
-                    {
-                        _lastDivMoveLogTick = nowV;
-                        TsLog($"DivMoveV side={_divDragSide} dividerY={dividerY} our=({oV.Top},{oV.Bottom}) nbrs=0 selfOnly=1");
-                    }
-                }
                 return;
             }
 
@@ -777,17 +773,34 @@ namespace ControlPanel
                 if (lo > hi) return;
                 if (dividerY < lo) dividerY = lo; else if (dividerY > hi) dividerY = hi;
                 effDiv = dividerY;
-                foreach (var nb in _divDragNbrs)
+                if (EnableSeamGapFix)
                 {
-                    if (!GetWindowRect(nb, out RECT nR) || !TryGetVisibleBounds(nb, out RECT nV)) continue;
-                    int ovT = nR.Top - nV.Top;
-                    int newNT = dividerY + ovT;
-                    SetWindowPos(nb, IntPtr.Zero, nR.Left, newNT, nR.Right - nR.Left, nR.Bottom - newNT, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
-                    if (GetWindowRect(nb, out RECT aft)) effDiv = Math.Min(effDiv, aft.Top - ovT);
+                    // ФИКС 1 (DivGrip, Y-зеркало): кламп по MINMAXINFO соседа СНИЗУ + один атомарный batch.
+                    foreach (var nb in _divDragNbrs)
+                        if (GetWindowRect(nb, out RECT nbR) && TryGetVisibleBounds(nb, out RECT nbV) &&
+                            TryGetMinTrackSize(nb, out _, out int minH))
+                        {
+                            int nbMaxDiv = nbR.Bottom - (nbR.Top - nbV.Top) - minH; // высота соседа >= его minH
+                            if (effDiv > nbMaxDiv) effDiv = nbMaxDiv;
+                        }
+                    if (effDiv < lo) effDiv = lo;
+                    ApplyDividerBatchV(main, oR, oOvB, effDiv, true);
                 }
-                int newOB = effDiv + oOvB;
-                SetWindowPos(main, IntPtr.Zero, oR.Left, oR.Top, oR.Right - oR.Left, newOB - oR.Top, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
-                MoveDividerCoTilesV(effDiv);
+                else
+                {
+                    // Fallback: последовательные SetWindowPos (сосед → чтение факта → мы → co-tiles).
+                    foreach (var nb in _divDragNbrs)
+                    {
+                        if (!GetWindowRect(nb, out RECT nR) || !TryGetVisibleBounds(nb, out RECT nV)) continue;
+                        int ovT = nR.Top - nV.Top;
+                        int newNT = dividerY + ovT;
+                        SetWindowPos(nb, IntPtr.Zero, nR.Left, newNT, nR.Right - nR.Left, nR.Bottom - newNT, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
+                        if (GetWindowRect(nb, out RECT aft)) effDiv = Math.Min(effDiv, aft.Top - ovT);
+                    }
+                    int newOB = effDiv + oOvB;
+                    SetWindowPos(main, IntPtr.Zero, oR.Left, oR.Top, oR.Right - oR.Left, newOB - oR.Top, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
+                    MoveDividerCoTilesV(effDiv);
+                }
             }
             else // side 3, neighbor above: move neighbor BOTTOM to dividerY, then our TOP to actual
             {
@@ -812,15 +825,6 @@ namespace ControlPanel
                 MoveDividerCoTilesV(effDiv);
             }
 
-            if (EnableTroubleshootLog)
-            {
-                long now = Environment.TickCount64;
-                if (now - _lastDivMoveLogTick > 120)
-                {
-                    _lastDivMoveLogTick = now;
-                    TsLog($"DivMoveV side={_divDragSide} dividerY={dividerY} effDiv={effDiv} our=({oV.Top},{oV.Bottom}) nbrs={_divDragNbrs.Count}");
-                }
-            }
         }
 
         // Mirror of FindDividerCoTiles on the Y axis: windows in the SAME ROW (strictly left/right of us) whose near
@@ -856,8 +860,6 @@ namespace ControlPanel
                 _divDragCoTiles.Add(h);
                 return true;
             }, IntPtr.Zero);
-            if (EnableTroubleshootLog && _divDragCoTiles.Count > 0)
-                TsLog($"DivCoTilesV side={side} count={_divDragCoTiles.Count} edgeY={edgeY}");
         }
 
         // Mirror of MoveDividerCoTiles on the Y axis.
@@ -942,15 +944,6 @@ namespace ControlPanel
                 }
             }
 
-            if (EnableTroubleshootLog)
-            {
-                long now = Environment.TickCount64;
-                if (now - _lastFrmFollowLogTick > 120)
-                {
-                    _lastFrmFollowLogTick = now;
-                    TsLog($"FrmFollow edge={_sizingEdge} our=({oV.Left},{oV.Right}) rN={_frameNbrsR.Count} lN={_frameNbrsL.Count}");
-                }
-            }
         }
 
         // BUG2: двигаем соседей так, чтобы их ближний край встал ВПЛОТНУЮ к нашему текущему краю.
@@ -985,7 +978,6 @@ namespace ControlPanel
             _divReleaseNbrs.AddRange(_divDragNbrs);
             _divReleaseSide = _divDragSide;
             _divReleaseRealignUntil = Environment.TickCount64 + 350;
-            if (EnableTroubleshootLog) TsLog($"DivRelArm side={_divDragSide} nbrs={_divDragNbrs.Count}");
         }
 
         // BUG2: то же после ручного ресайза РАМ��О�� (shell может до-снапить наш край и после WeMoveSizeEnd).
@@ -999,10 +991,8 @@ namespace ControlPanel
             _divReleaseNbrs.AddRange(src);
             _divReleaseSide = right ? 2 : 1;
             _divReleaseRealignUntil = Environment.TickCount64 + 350;
-            if (EnableTroubleshootLog) TsLog($"FrmRelArm side={_divReleaseSide} nbrs={src.Count}");
         }
 
-        // BUG2 ДИА��НОСТИКА: ко��да FindSnapNeighbors никого не вернул, печатаем ближайшее окно на нужной стороне
 
         private IntPtr DivGripWndProc(IntPtr h, int msg, IntPtr w, IntPtr l, int side)
         {
@@ -1037,30 +1027,24 @@ namespace ControlPanel
                         _divDragNbrs = new System.Collections.Generic.List<IntPtr>(nbrs);
                         if (side == 3 || side == 4) FindDividerCoTilesV(side); else FindDividerCoTiles(side); // BUG2: also capture same-column/row co-tiles sharing this divider
                         SetCapture(h);
-                        GripLog("DivDown side=" + side + " nbrs=" + nbrs.Count);
-                        if (EnableTroubleshootLog) TsLog($"DivDown side={side} nbrs={nbrs.Count} geomOk={geomOk}");
                     }
                     return IntPtr.Zero;
                 }
                 case WM_MOUSEMOVE:
-                    if (_divDragging) { if (GetCursorPos(out POINT p)) { if (EnableDividerDeferredResize) { int gc = (_divDragSide == 3 || _divDragSide == 4) ? p.Y : p.X; _divFsPendingCoord = gc; _divFsPendingValid = true; ShowDivGuideAt(gc); } else if (EnableDividerFrameSync) { _divFsPendingCoord = (_divDragSide == 3 || _divDragSide == 4) ? p.Y : p.X; _divFsPendingValid = true; DivFsEnsureHook(); } else if (_divDragSide == 3 || _divDragSide == 4) UpdateDividerJointResizeV(p.Y); else UpdateDividerJointResize(p.X); } return IntPtr.Zero; }
+                    if (_divDragging) { if (GetCursorPos(out POINT p)) { if (_divDragSide == 3 || _divDragSide == 4) UpdateDividerJointResizeV(p.Y); else UpdateDividerJointResize(p.X); } return IntPtr.Zero; }
                     break;
                 case WM_LBUTTONUP:
                     if (_divDragging)
                     {
-                        HideDivGuide();
-                        if (_divFsPendingValid) { int fc = _divFsPendingCoord; _divFsPendingValid = false; if (_divDragSide == 3 || _divDragSide == 4) UpdateDividerJointResizeV(fc); else UpdateDividerJointResize(fc); }
-                        DivFsUnhook();
                         ArmDivReleaseRealign(); // BUG2: лечим пост-релизный дрейф shell-ре-снапа
                         _divDragging = false; _divDragNbrs.Clear(); _divDragCoTiles.Clear();
                         ReleaseCapture();
-                        if (EnableTroubleshootLog) TsLog("DivUp");
                         ScheduleEdgeGripRefresh();
                         return IntPtr.Zero;
                     }
                     break;
                 case WM_CAPTURECHANGED:
-                    if (_divDragging) { HideDivGuide(); DivFsUnhook(); ArmDivReleaseRealign(); _divDragging = false; _divDragNbrs.Clear(); _divDragCoTiles.Clear(); ScheduleEdgeGripRefresh(); }
+                    if (_divDragging) { ArmDivReleaseRealign(); _divDragging = false; _divDragNbrs.Clear(); _divDragCoTiles.Clear(); ScheduleEdgeGripRefresh(); }
                     break;
             }
             return DefWindowProcW(h, msg, w, l);
@@ -1078,19 +1062,16 @@ namespace ControlPanel
             var hwnd = new WindowInteropHelper(this).Handle;
             if (hwnd == IntPtr.Zero || _inSizeMove || WindowState != WindowState.Normal || !IsVisible)
             {
-                GripLog("hide: hwnd=" + hwnd + " inSize=" + _inSizeMove + " state=" + WindowState + " vis=" + IsVisible);
                 HideEdgeGrip();
                 return;
             }
             if (!TryGetSnapInternalEdges(hwnd, out bool sl, out bool sr, out _, out _) || (!sl && !sr))
             {
-                GripLog("hide: not snapped sl=" + sl + " sr=" + sr);
                 HideEdgeGrip();
                 return;
             }
             if (!TryGetVisibleBounds(hwnd, out RECT vis) || !TryGetWorkArea(hwnd, out RECT wa))
             {
-                GripLog("hide: no vis/wa");
                 HideEdgeGrip();
                 return;
             }
@@ -1109,7 +1090,6 @@ namespace ControlPanel
             bool leftNbr  = sl && HasFlushTileNeighborH(hwnd, vis, false);
             bool rightFree = sr && (wa.Right - vis.Right) > SnapInternalDividerGuardPx && !rightNbr;
             bool leftFree  = sl && (vis.Left - wa.Left) > SnapInternalDividerGuardPx && !leftNbr;
-            GripLog("sl=" + sl + " sr=" + sr + " vis=[" + vis.Left + "," + vis.Top + "," + vis.Right + "," + vis.Bottom + "] waLR=[" + wa.Left + "," + wa.Right + "] rightFree=" + rightFree + " leftFree=" + leftFree);
             if (rightFree)
             {
                 w = Math.Min(FreeEdgeGripPx, wa.Right - vis.Right);
@@ -1132,7 +1112,6 @@ namespace ControlPanel
             _edgeGripHt = ht;
             if (_gripHwnd == IntPtr.Zero) return;
             SetWindowPos(_gripHwnd, HWND_TOPMOST, x, vis.Top, w, hgt, SWP_NOACTIVATE | SWP_SHOWWINDOW);
-            GripLog("show grip x=" + x + " y=" + vis.Top + " w=" + w + " h=" + hgt + " ht=" + ht);
         }
 
 
@@ -1411,18 +1390,6 @@ namespace ControlPanel
             if (sb && TryFindPassiveNeighborV(hwnd, vis, true, out IntPtr bhc, out bv)) { nb = bhc; be = bv.Top; bf = bv.Bottom; haveB = true; }
 
             // DIAGNOSTIC ONLY: snapped on a side but no neighbor recognized there -> dump the candidate set.
-            if (EnableTroubleshootLog && ((sl && !haveL) || (sr && !haveR) || (st && !haveT) || (sb && !haveB)))
-            {
-                long nowC = Environment.TickCount64;
-                if (nowC - _lastPfCandLogTick > 700)
-                {
-                    _lastPfCandLogTick = nowC;
-                    if (sl && !haveL) LogPassiveCandidates(hwnd, vis, false, true);
-                    if (sr && !haveR) LogPassiveCandidates(hwnd, vis, true, true);
-                    if (st && !haveT) LogPassiveCandidates(hwnd, vis, false, false);
-                    if (sb && !haveB) LogPassiveCandidates(hwnd, vis, true, false);
-                }
-            }
 
             // BUG2 (decisive): a foreign snap-divider drag does NOT update the neighbor committed bounds until
             // the drag SETTLES (usually on release), so a per-tick delta reads 0 during the drag. The old code
@@ -1522,29 +1489,11 @@ namespace ControlPanel
 
             if (!moved)
             {
-                if (EnableTroubleshootLog)
-                {
-                    long now0 = Environment.TickCount64;
-                    if (now0 - _lastPfLogTick > 250)
-                    {
-                        _lastPfLogTick = now0;
-                        TsLog($"PfWatch am={allowMove} le={le} lf={lf} baseLe={_pfLe} baseLf={_pfLf} baseOurL={_pfOurL} re={re} nlSame={(nl==_pfL)} haveL={haveL} haveR={haveR} vis=({vis.Left},{vis.Top},{vis.Right},{vis.Bottom}) rf={rf} rv=({rv.Left},{rv.Top},{rv.Right},{rv.Bottom}) baseRe={_pfRe} baseRf={_pfRf} baseOurR={_pfOurR} baseRp0={_pfRp0} baseRp1={_pfRp1}");
-                    }
-                }
                 return;
             }
             if (R - L < SnapFollowMinDimPx || B - T < SnapFollowMinDimPx) return;
             if (L == win.Left && R == win.Right && T == win.Top && B == win.Bottom) return;
             SetWindowPos(hwnd, IntPtr.Zero, L, T, R - L, B - T, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
-            if (EnableTroubleshootLog)
-            {
-                long now = Environment.TickCount64;
-                if (now - _lastPfLogTick > 120)
-                {
-                    _lastPfLogTick = now;
-                    TsLog($"PfFollow winX=({win.Left},{win.Right})->({L},{R}) winY=({win.Top},{win.Bottom})->({T},{B}) le={le} lf={lf} baseLe={_pfLe} baseLf={_pfLf} re={re} te={te} be={be} rf={rf} rv=({rv.Left},{rv.Top},{rv.Right},{rv.Bottom}) baseRe={_pfRe} baseRf={_pfRf} baseOurR={_pfOurR} baseRp0={_pfRp0} baseRp1={_pfRp1}");
-                }
-            }
         }
 
         private void UpdateSnapFollow()
@@ -1654,10 +1603,6 @@ namespace ControlPanel
                     }
                     _topNbr = th;
                     _botNbr = bh;
-                    if (EnableTroubleshootLog)
-                        TsLog($"SfLatch edge={_snapDragEdge} cur=({cur.X},{cur.Y}) sl={sl} sr={sr} dl={dl} dr={dr} vis=({vis.Left},{vis.Top},{vis.Right},{vis.Bottom}) win=({win.Left},{win.Top},{win.Right},{win.Bottom}) lFound={lFound} lnv=({lnv.Left},{lnv.Top},{lnv.Right},{lnv.Bottom}) lGap={lGap} lhSet={(lh!=IntPtr.Zero)} rFound={rFound} rnv=({rnv.Left},{rnv.Top},{rnv.Right},{rnv.Bottom}) rGap={rGap} rhSet={(rh!=IntPtr.Zero)} st={st} sb={sb} tFound={tFound} tnv=({tnv.Left},{tnv.Top},{tnv.Right},{tnv.Bottom}) tGap={tGap} thSet={(th!=IntPtr.Zero)} bFound={bFound} bnv=({bnv.Left},{bnv.Top},{bnv.Right},{bnv.Bottom}) bGap={bGap} bhSet={(bh!=IntPtr.Zero)}");
-                    if (EnableSnapDiagLog)
-                        SnapLog($"SnapFollow LATCH edge={_snapDragEdge} cur=({cur.X},{cur.Y}) vis=({vis.Left},{vis.Top},{vis.Right},{vis.Bottom}) Lnbr={_leftNbr:X} Rnbr={_rightNbr:X}");
                 }
             }
 
@@ -1713,12 +1658,8 @@ namespace ControlPanel
             if (R - L < SnapFollowMinDimPx || B - T < SnapFollowMinDimPx) return;
             if (L != win.Left || R != win.Right || T != win.Top || B != win.Bottom)
             {
-                if (EnableSnapDiagLog)
-                    SnapLog($"SnapFollow MOVE edge={edge} cur.X={cur.X} win=({win.Left},{win.Right})->({L},{R})");
                 bool trackedL = _leftNbr != IntPtr.Zero;
                 bool trackedR = _rightNbr != IntPtr.Zero;
-                if (EnableTroubleshootLog)
-                    TsLog($"SfMove edge={edge} cur=({cur.X},{cur.Y}) winX=({win.Left},{win.Right})->({L},{R}) trackedL={trackedL} trackedR={trackedR} settleTicks={_snapSettleTicks} winY=({win.Top},{win.Bottom})->({T},{B}) trackedT={(_topNbr!=IntPtr.Zero)} trackedB={(_botNbr!=IntPtr.Zero)}");
                 SetWindowPos(hwnd, IntPtr.Zero, L, T, R - L, B - T,
                     SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
             }
@@ -1785,7 +1726,7 @@ namespace ControlPanel
                 return true;
             }, IntPtr.Zero);
 
-            if (cands.Count == 0) { LogNearestRejectedNeighbor(self, ourVis, rightEdge); return false; }
+            if (cands.Count == 0) return false;
             // BUG2: сначала берём ОДИНОЧНОГО соседа, закрывающего наш к��ай на ПОЛНУЮ высоту (обычный случай
             // 2 окон рядом / 3 колонок). Лишние окна, вертикально вложенные в наш край (оверлеи/диалоги/
             // фоновые окна у края экрана), НЕ должны ломать обнаружение настоящего полно-высотного соседа.
@@ -1806,7 +1747,7 @@ namespace ControlPanel
             // кандидаты должны ВМЕСТЕ замостить наш край: объединение их вертикальных интервалов ~= наша высота.
             // одиночное окно, закрывающее лишь часть ��рая, набор не образует (исключаем случайные окна рядом).
             cands.Sort((a, b) => a.v.Top.CompareTo(b.v.Top));
-            // БАГ 2c: сосед(и) тащатся вместе с нами ТОЛЬКО если их прилегающие стороны ТОЧНО мостят наш край
+            // БАГ 2c: сосед(и) тащатся вместе с нами ТОЛЬКО если их ��рилегающие стороны ТОЧНО мостят наш край
             // без перекрытий и зазоров: одно окно с равной и полностью прилегающей стороной, либо набор окон,
             // чьи стороны в сумме = нашей (stacked). Любое ли��нее/перекрывающее окно ломает мозаику -> НЕ партнёр.
             // Так случайное чужое окно у границы (в т.ч. половинной выс��ты) в группу НЕ попадает.
@@ -1829,7 +1770,7 @@ namespace ControlPanel
             // The single full-height neighbor (2 windows side-by-side / 3 columns) is taken by the branch above.
             if (!tiled || Math.Abs(expectedTop - ourBot) > tileTolPx)
             {
-                LogNearestRejectedNeighbor(self, ourVis, rightEdge); return false;
+return false;
             }
             int bestGap = int.MaxValue;
             foreach (var c in cands)
@@ -1852,9 +1793,6 @@ namespace ControlPanel
             IntPtr bestHwnd = IntPtr.Zero;
             bool found = false;
             int bestGap = int.MaxValue;
-            // ДИАГНОСТИКА (БАГ 2c): ближайший по зазору кандидат, прошедший базовые фильтры (видимый/не-cloaked/
-            // не-tool/тот же монитор/размер>=50). Нужен, чтобы при промахе видеть РЕАЛЬНУЮ позицию соседа.
-            RECT diagV = default; int diagGap = int.MaxValue, diagOverlap = 0; bool diagSideOk = false, diagSet = false;
 
             EnumWindows((h, _) =>
             {
@@ -1869,7 +1807,6 @@ namespace ControlPanel
                 int overlap = Math.Min(v.Bottom, ourVis.Bottom) - Math.Max(v.Top, ourVis.Top);
                 int rawGap = rightEdge ? Math.Abs(v.Left - ourVis.Right) : Math.Abs(v.Right - ourVis.Left);
                 bool sideOk = rightEdge ? (v.Left > ourVis.Left) : (v.Right < ourVis.Right);
-                if (rawGap < diagGap) { diagGap = rawGap; diagV = v; diagOverlap = overlap; diagSideOk = sideOk; diagSet = true; }
 
                 // BUG2: a divider neighbor is ALWAYS a full-height column - top/bottom match ours within
                 // SnapNeighborEdgeAlignPx. A partially overlapping window (e.g. the small bottom window whose
@@ -1882,8 +1819,6 @@ namespace ControlPanel
                 return true;
             }, IntPtr.Zero);
 
-            if (EnableTroubleshootLog && !found)
-                TsLog($"TfsnMiss rightEdge={rightEdge} our=({ourVis.Left},{ourVis.Right}) ourHhalf={ourH / 2} diagSet={diagSet} diagGap={diagGap} diagV=({diagV.Left},{diagV.Top},{diagV.Right},{diagV.Bottom}) diagOverlap={diagOverlap} diagSideOk={diagSideOk}");
 
             neighborHwnd = bestHwnd;
             neighborVis = best;
