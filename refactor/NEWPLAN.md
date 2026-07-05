@@ -115,3 +115,46 @@
 - Аудитор проверяет ТОЛЬКО механику (учёт строк, баланс, дубли) и НЕ предлагает поведенческих правок.
 - Единственный, кто выносит вердикт «эквивалентно/регрессия» — пользователь, после реальной сборки и теста.
 - Все идеи улучшений (включая фиксы призрака/щели) — только в IDEAS.md, реализация — отдельным проектом ПОСЛЕ приёмки этого плана.
+
+## 5. Отложенный фикс F1 — мигание рабочего стола при unsnap из maximized (реализация ПОСЛЕ приёмки N4)
+
+> Баг существует ещё в эталонном монолите, поэтому НЕ является регрессией разбиения и НЕ чинится в рамках этапов N0–N4 (см. НЕ-цели). Фиксируется здесь, чтобы рецепт не потерялся. Реализация — отдельной задачей после закрытия плана, по правилам: один флаг, диагностика включена, ручной тест до/после.
+
+### 5.1. Симптом
+
+При стягивании окна за шапку из полноэкранного (maximized) состояния окно на мгновение исчезает целиком — виден рабочий стол — и только потом появляется в маленьком размере под курсором.
+
+### 5.2. Механизм (по коду монолита, `BeginCaptionUnsnapManualMove`, ~3703–3746)
+
+Restore выполняется в две фазы:
+1. `WindowState = WindowState.Normal` → WPF транслирует в `ShowWindow(SW_RESTORE)`. ОС восстанавливает окно в **старую** `normalPosition` из WINDOWPLACEMENT (не под курсор) и запускает DWM-анимацию restore.
+2. Только затем `MoveCaptionUnsnapRestoredWindow` делает `SetWindowPos` в точку под курсором.
+
+Между фазами есть кадры, где maximized-поверхность уже сброшена, окно стоит в устаревшем rect, а WPF ещё не отрендерил контент нового размера — DWM показывает пустоту (рабочий стол). Кастомный borderless-chrome не имеет системной рамки, маскирующей переход, поэтому провал виден целиком.
+
+### 5.3. Рецепт фикса (флаг `EnableAtomicUnsnapRestore`)
+
+Заменить двухфазный «restore в старое место → переезд» на однофазный «restore сразу в точку под курсором»:
+
+1. **Атомарный restore через `SetWindowPlacement`** вместо `WindowState = Normal` + `SetWindowPos`:
+   ```csharp
+   int x = cur.X - _captionUnsnapDragOffsetX;
+   int y = cur.Y - _captionUnsnapDragOffsetY;
+   var wp = new WINDOWPLACEMENT { length = Marshal.SizeOf<WINDOWPLACEMENT>() };
+   GetWindowPlacement(hwnd, ref wp);
+   wp.normalPosition = new RECT { Left = x, Top = y, Right = x + w, Bottom = y + h };
+   wp.showCmd = SW_RESTORE;
+   SetWindowPlacement(hwnd, ref wp);
+   ```
+   `WindowState` вручную НЕ присваивать — WPF синхронизирует его сам через WM_SIZE; ручное присваивание как раз и запускает лишний SW_RESTORE в старый rect.
+2. **Отключить DWM-анимацию перехода** на время restore: `DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED /* = 3 */, ref on, sizeof(int))` до `SetWindowPlacement`, вернуть `off = 0` после (например, через `Dispatcher.BeginInvoke(DispatcherPriority.Loaded, ...)`). Анимация рисует переход от большого кадра к маленькому, и сквозь неё виден рабочий стол, пока контент нового размера не готов.
+3. **Форсировать рендер до возврата в message loop**: сразу после `SetWindowPlacement` — `UpdateLayout()` + проталкивание кадра `Dispatcher.Invoke(DispatcherPriority.Render, () => { })`, чтобы у DWM был готовый контент на первом кадре нового размера.
+
+### 5.4. Сопутствующие риски
+
+- **WinEvent-страховка (БАГ 1)**: `ArmUnsnapWinEventRestore`/`FinishUnsnapWinEventRestore` может выполнить второй restore поверх уже восстановленного окна и добавить лишнее мигание. `_unsnapArmValid = false` должен выставляться ДО `SetWindowPlacement` (в монолите он сбрасывается в начале `BeginCaptionUnsnapManualMove` — при переносе не потерять этот порядок).
+- Проверить, что в обработчиках maximize→normal (`StateChanged`, маски/crossfade из Animation-части) нет логики, прячущей окно; если есть — на время caption-unsnap её обходить.
+
+### 5.5. Приёмка фикса
+
+Ручной тест: unsnap за шапку из maximized — окно появляется маленьким под курсором сразу, без кадра с голым рабочим столом; при `EnableAtomicUnsnapRestore = false` поведение в точности эталонное. Дополнительно прогнать пункты 5 и 6 чек-листа §3 и сценарий с разным DPI (пункт 8).
