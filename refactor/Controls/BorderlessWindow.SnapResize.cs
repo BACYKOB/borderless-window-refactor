@@ -50,18 +50,7 @@ namespace ControlPanel
         //  Поля и константы: free-edge grip / divider-грипы
         // ====================================================================
         private const int FreeEdgeGripPx = 12;
-        private const int WM_NCLBUTTONDOWN = 0x00A1;
-        private const int WM_SETCURSOR = 0x0020;
-        private const int WM_LBUTTONDOWN = 0x0201;
-        private const int WM_LBUTTONUP = 0x0202;
-        private const int WM_MOUSEMOVE = 0x0200;
-        private const int WM_SYSCOMMAND = 0x0112;
-        private const int WM_CAPTURECHANGED = 0x0215;
-        private const int SC_MOVE = 0xF010;
-        private const int SC_SIZE = 0xF000;
-        private const int IDC_SIZEWE = 32644;
-        private const int IDC_SIZENS = 32645;
-        private const int SW_HIDE = 0;
+        // WM_*/SC_*/IDC_*/SW_* — в BorderlessWindow.Interop.cs (T2), здесь не дублируются.
         private const string GripClassName = "ControlPanelFreeEdgeGrip";
         private static WndProcDelegate? _gripWndProc; // держим ссылку — иначе GC соберёт делегат
         private static bool _gripClassRegistered;
@@ -102,21 +91,19 @@ namespace ControlPanel
         // ====================================================================
         //  Поля и константы: snap-follow / passive-follow
         // ====================================================================
-        private const bool EnableSnapFollow = true;
+        // Флаги EnableSnapFollow / EnableJointResizeCursor / EnablePassiveFollow — в ядре (T3).
         private const int SnapFollowGrabBandPx = 12; // допуск близости курсора к видимой границе при нажатии (px)
-        // КУРСОР joint-resize. Окно бордерлесс на внутреннем Snap-разделителе возвращает HTNOWHERE (чтобы
-        // клик не запускал индивидуальный ресайз/un-snap — БАГ 1), поэтому системный курсор «↔» появлялся
-        // только на узкой shell-полосе. Реальный ресайз делает SnapFollow в полосе SnapFollowGrabBandPx, поэтому
-        // показываем SizeWE на ТОЙ ЖЕ полосе через WM_SETCURSOR — аффорданс как у стандартных окон, без
-        // изменения WM_NCHITTEST (риска un-snap нет). false = выкл (курсор только на узкой границе, как раньше).
-        private const bool EnableJointResizeCursor = true;
+        // КУРСОР joint-resize (EnableJointResizeCursor). Окно бордерлесс на внутреннем Snap-разделителе
+        // возвращает HTNOWHERE (чтобы клик не запускал индивидуальный ресайз/un-snap — БАГ 1), поэтому
+        // системный курсор «↔» появлялся только на узкой shell-полосе. Реальный ресайз делает SnapFollow
+        // в полосе SnapFollowGrabBandPx, поэтому показываем SizeWE на ТОЙ ЖЕ полосе через WM_SETCURSOR —
+        // аффорданс как у стандартных окон, без изменения WM_NCHITTEST (риска un-snap нет).
         private const int SnapFollowMinDimPx = 200;  // не ужимать окно у́же этого (px)
         private const int SnapSettleTicks = 20;
         // Passive-follow: mirror a snap-divider dragged BETWEEN two OTHER windows onto our matching edge. To avoid
         // gluing to a freely-moved window, we require the neighbor to be RESIZED on the shared side (its FAR edge
         // stays put while its NEAR edge, shared with us, moves). A translated window moves BOTH edges together and
         // is therefore ignored. See PassiveFollowNeighbors.
-        private const bool EnablePassiveFollow = true;
         private const int PassiveMaxTravelPx = 1600; // ignore absurd neighbor edge jumps (likely a mis-detected neighbor)
         private const int PassiveFarStableTol = 6;   // neighbor FAR edge must stay within this (px) to count as a resize, not a move
         private const int PassiveMinFollowPx = 8;   // deadband: ignore sub-threshold neighbor jitter (unsnap transient); follow only real resizes
