@@ -41,15 +41,15 @@
 
 ---
 
-## T3 — Chrome + фикс призрака (`BorderlessWindow.Chrome.cs`) — `REVIEW`
+## T3 — Chrome + фикс призрака (`BorderlessWindow.Chrome.cs`) — `DONE` (принята с правкой аудитора)
 
-**Модель**: Fable.
+**Модель**: Fable. **Ревью/правка**: аудитор (Fable), 2026-07-05 — см. журнал.
 
-**Вход**: METHOD_MAP.md; PLAN.md Часть 4 (диагноз и решение); `handoffs/resize-ghost.md` (доказанные тупики — не повторять).
+**Вход**: METHOD_MAP.md; PLAN.md Часть 4 (диагноз и решение; пункт про `Left=0` отменён аудитом); `handoffs/resize-ghost.md` (доказанные тупики — не повторять).
 
 **Сделать**: перенос chrome-методов по METHOD_MAP + внедрить `EnableLeftEdgeGhostGuard`:
 - в `ThemedFrameNcCalcSize` — 1px NC-inset слева, симметрично существующему верхнему `ThemedFrameInset` (тот же порядок применения относительно клампов к work-area);
-- в `ApplyThemedBorderMetrics` — при активном флаге `BorderThickness.Left = 0` из кода (XAML: `BorderThickness="1,0,1,1"` в `xaml/MainWindow.xaml`, триггер Maximized → 0 — сохранить поведение: в maximized inset тоже 0);
+- ~~в `ApplyThemedBorderMetrics` — при активном флаге `BorderThickness.Left = 0`~~ **ИСПРАВЛЕНО АУДИТОМ**: `BorderThickness.Left` остаётся 1 (точная симметрия с верхним guard'ом; floating = 1px WPF-линия, snapped = 2px WPF+DWM — желаемое поведение, подтверждено пользователем; при `Left=0` floating терял левую линию, т.к. DWM-полоса у floating = COLOR_NONE);
 - при `EnableLeftEdgeGhostGuard=false` — поведение бит-в-бит как в исходнике.
 
 **Границы**: hit-test НЕ менять; maximized/fullscreen пути НЕ менять; только левый inset + компенсация толщины.
@@ -58,9 +58,9 @@
 
 ---
 
-## T4 — SnapResize + фикс зазора (`BorderlessWindow.SnapResize.cs`) — `REVIEW`
+## T4 — SnapResize + фикс зазора (`BorderlessWindow.SnapResize.cs`) — `DONE` (принята с правкой аудитора)
 
-**Модель**: Fable.
+**Модель**: Fable. **Ревью/правка**: аудитор (Fable), 2026-07-05 — добавлен кэш MINMAXINFO на время драга (`_divMinTrackCache`): без него `TryGetMinTrackSize` слал синхронный кросс-процессный запрос (таймаут 50ms) каждому соседу на каждый mouse-move кадр — перф-риск (рывки). См. журнал.
 
 **Вход**: METHOD_MAP.md; PLAN.md Часть 3; `handoffs/snap-joint-resize.md`, `handoffs/resize-jitter.md`; лог бага `logs/snap-joint-resize-gap.log`.
 
@@ -99,7 +99,7 @@
 1. Полнота: каждый член METHOD_MAP либо найден грэпом в `Controls/*.cs`, либо помечен DELETE. Список расхождений = пусто.
 2. Целостность: каждый вызываемый метод имеет объявление; удалённые символы — 0 вхождений; неиспользуемые P/Invoke после чисток удалены; using'и согласованы во всех 7 файлах; один и тот же namespace/имя класса везде.
 3. Баланс `{}`/`()` каждого файла.
-4. Написать `refactor/IDEAS.md`: эскалация ghost-guard (динамический 2px inset при left-drag), транзитивная 4-оконная группа, удаление ControlzEx PackageReference из csproj (руками пользователя), возможный вынос флагов в настройки, + всё накопленное в журнале сессий.
+4. ДОПОЛНИТЬ `refactor/IDEAS.md` (создан аудитором 2026-07-05, каркас с идеями T3/T4 уже есть): добавить всё накопленное в журнале сессий T5 и находки самой T6-верификации. Существующие пункты не удалять.
 5. Финальное резюме пользователю: что удалено, как выключить каждый фикс (какая константа в каком файле), 7 сценариев ручного теста (PLAN.md Часть 5 п.6).
 
 **Приёмка**: чек-листы 1–3 приложены к сдаче с фактическими числами (кол-во методов, грэп-выхлопы), не «на словах».

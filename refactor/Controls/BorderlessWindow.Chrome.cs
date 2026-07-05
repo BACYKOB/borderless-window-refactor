@@ -17,10 +17,14 @@ namespace ControlPanel
     //   - DisableDwmNcRendering-ветка (мёртвый эксперимент toolkit NC-rendering);
     //   - вся диагностика TsLog/SnapLog и троттлинг-поле _lastNoEdgeDiagTick.
     //
-    //  ФИКС 2 (T3): EnableLeftEdgeGhostGuard (флаг в ядре, default true) —
-    //  1px NC-inset на ЛЕВОМ крае в ThemedFrameNcCalcSize (симметрично верхнему
-    //  ghost-guard ThemedFrameInset) + компенсация BorderThickness.Left=0 в
-    //  ApplyThemedBorderMetrics. При false — поведение бит-в-бит как в исходнике.
+    //  ФИКС 2 (T3, скорректирован аудитом): EnableLeftEdgeGhostGuard (флаг в ядре,
+    //  default true) — 1px NC-inset на ЛЕВОМ крае в ThemedFrameNcCalcSize
+    //  (симметрично верхнему ghost-guard ThemedFrameInset). WPF-бордер слева
+    //  НЕ обнуляется (точная симметрия с верхом: там inset + top-бордер 1px
+    //  сосуществуют). Итог: floating — 1 видимый px (WPF-бордер; NC-полоса при
+    //  DWMWA_COLOR_NONE не красится), snapped с внутренним разделителем — 2 px
+    //  (WPF-бордер + DWM-полоса в ThemeBorderColorRef) — желаемое поведение,
+    //  подтверждено пользователем. При false — поведение бит-в-бит как в исходнике.
     //
     //  Флаги (UseThemedSystemFrame, ApplyDwmFrameAttributes, IncludeCaptionForSnap,
     //  ShrinkThemedFrame, EnableSnapLayoutGapFix, EnableFullRedrawOnOriginMove,
@@ -137,11 +141,12 @@ namespace ControlPanel
         /// чтобы WPF-бордер не оказывался на движущемся крае (призрак).
         /// В развёрнутом окне рамки нет.
         /// <para>
-        /// ФИКС 2 (EnableLeftEdgeGhostGuard): левый 1px становится DWM-owned NC-полосой (inset в
-        /// ThemedFrameNcCalcSize), поэтому WPF-бордер слева обнуляем — иначе суммарно было бы 2px
-        /// («двойная граница»). XAML-стиль (Setter BorderThickness, триггер Maximized→0) перекрывается
-        /// локальным значением; maximized-поведение сохранено (Thickness(0), inset в maximized тоже 0).
-        /// При флаге=false — прежняя рамка со всех 4 сторон, бит-в-бит как в исходнике.
+        /// ФИКС 2 (EnableLeftEdgeGhostGuard) — ревизия аудита: WPF-бордер слева НЕ обнуляется.
+        /// Точная симметрия с верхним ghost-guard: сверху NC-inset и top-бордер 1px сосуществуют.
+        /// Floating: DWM-рамка = COLOR_NONE → NC-полоса не красится, видимый левый край = 1px WPF-бордер.
+        /// Snapped с внутренним разделителем: DWM красит полосу в ThemeBorderColorRef → 2px суммарно —
+        /// это и есть желаемое поведение исходника (боковые 1px в обычном состоянии, 2px при снапе).
+        /// Метрики бордера при флаге on/off ИДЕНТИЧНЫ исходнику; отличается только client-rect (NCCALCSIZE).
         /// </para>
         /// </summary>
         private void ApplyThemedBorderMetrics()
@@ -152,13 +157,8 @@ namespace ControlPanel
             var dpi = System.Windows.Media.VisualTreeHelper.GetDpi(this);
             double tx = 1.0 / dpi.DpiScaleX;  // DIP, дающий ровно 1 физ. px по горизонтали
             double ty = 1.0 / dpi.DpiScaleY;  // ... по вертикали
-            if (EnableLeftEdgeGhostGuard)
-            {
-                // Левый 1px — DWM-owned (NC-inset, фикс 2): WPF-бордер слева = 0, суммарно остаётся 1px.
-                BorderThickness = new Thickness(0, ty, tx, ty);
-                return;
-            }
-            // Fallback (флаг off): рамку 1 физ. px рисует WPF-бордер со всех сторон, как в исходнике.
+            // Рамку 1 физ. px рисует WPF-бордер со всех сторон, как в исходнике (и при ghost-guard тоже:
+            // левый NC-inset живёт ЗА бордером, как верхний — см. doc-comment выше).
             BorderThickness = new Thickness(tx, ty, tx, ty);
         }
 
@@ -326,7 +326,8 @@ namespace ControlPanel
             // NC-полосой, WPF-поверхность не достаёт до движущегося края → призрак при left-drag не рисуется.
             // Порядок как у верхнего инсета: ДО клампов к work-area (кламп при snap к левому краю экрана
             // перекроет инсет, как перекрывает и верхний — там край не движется, guard не нужен).
-            // Компенсация двойной границы — BorderThickness.Left=0 в ApplyThemedBorderMetrics.
+            // WPF-бордер слева ОСТАЁТСЯ 1px (ревизия аудита, симметрия с верхом): floating — видна только
+            // WPF-линия (NC-полоса при COLOR_NONE не красится), snapped — WPF + DWM-полоса = 2px (желаемое).
             if (EnableLeftEdgeGhostGuard)
                 calc.rgrc0.Left += ThemedFrameInset;
             // SNAP: прижимаем ВИДИМЫЙ край клиента ТОЧНО к границе рабочей области. Windows при snap ставит

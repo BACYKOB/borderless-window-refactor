@@ -71,6 +71,12 @@ namespace ControlPanel
         private bool _divDragging;
         private int _divDragSide;     // 1=сосед слева, 2=сосед справа
         private System.Collections.Generic.List<IntPtr> _divDragNbrs = new();
+        // ФИКС 1 (ревизия аудита): кэш MINMAXINFO соседей на время одного драга разделителя.
+        // Без кэша TryGetMinTrackSize шлёт синхронный кросс-процессный WM_GETMINMAXINFO (таймаут 50ms)
+        // КАЖДОМУ соседу на КАЖДЫЙ mouse-move кадр: занятый (не hung) чужой процесс может съедать до
+        // 50ms×N на кадр → рывки — тот самый симптом, который фикс лечит. Min-track-size окна в течение
+        // драга практически не меняется; кэш очищается при захвате грипа (свежий на каждый драг).
+        private readonly System.Collections.Generic.Dictionary<IntPtr, (int minW, int minH, bool ok)> _divMinTrackCache = new();
         // BUG2: same-column co-tiles (a window stacked above/below us) sharing the dragged divider. Their near edge
         // must follow the divider too, else the column goes ragged (gap/overlap beside the other tile). Populated
         // only when our window is a sub-tile (a full-height window has nothing stacked above/below it).
@@ -78,7 +84,7 @@ namespace ControlPanel
         // Frame-synced divider resize (experiment): coalesce the target divider coordinate from WM_MOUSEMOVE and
         // apply it inside CompositionTarget.Rendering (right before WPF composes its next frame) so the HWND resize
         // and WPF's matching frame land together, shrinking the async gap that shows the stale surface (left-edge ghost).
-        // BUG2: лечение дрейфа после ОТПУСКАНИЯ grip/рамки. Shell до-снапывает НАШ край (напр. 2849->2957),
+        // BUG2: лечение дрейфа после ОТПУСКАНИЯ grip/рамки. Shell до-снапывает ��АШ край (напр. 2849->2957),
         // сосед остаётся на месте -> перекрытие -> FindSnapNeighbors теряет соседа. В коротком окне после
         // релиза подтягиваем захваченного соседа вплотную к осевшему краю (хэндл соседа известен).
         private long _divReleaseRealignUntil;
@@ -429,7 +435,7 @@ namespace ControlPanel
 
             // СНАЧАЛА двигаем соседей к dividerX, затем ЧИТАЕМ их ФАКТИЧЕСКИЙ край (система могла
             // ограничить сжатие мин. шириной соседа) и подгоняем НАШ край к этому факту. Иначе наше окно
-            // уезжает по курсору дальше, чем сосед может сжаться → наложение/разрыв (БАГ 2: 3 колонки на мин. ширине).
+            // уезжает по курсору дальше, чем сос��д может сжаться → наложение/разрыв (БАГ 2: 3 колонки на мин. ширине).
             int effDiv = dividerX;
             if (_divDragSide == 2)
             {
@@ -574,15 +580,22 @@ namespace ControlPanel
 
         // ФИКС 1 (T4): минимальный track-size чужого окна через WM_GETMINMAXINFO (с таймаутом,
         // чтобы не зависнуть на подвисшем процессе). При неудаче — консервативный SnapFollowMinDimPx.
+        // Ревизия аудита: результат (включая неудачу — чтобы не долбить hung/busy окно по 50ms на кадр)
+        // кэшируется на время драга в _divMinTrackCache; кэш чистится при захвате грипа.
         private bool TryGetMinTrackSize(IntPtr hwnd, out int minW, out int minH)
         {
+            if (_divMinTrackCache.TryGetValue(hwnd, out var c)) { minW = c.minW; minH = c.minH; return c.ok; }
             minW = SnapFollowMinDimPx; minH = SnapFollowMinDimPx;
             var mmi = new MINMAXINFO();
             IntPtr ok = SendMessageTimeoutW(hwnd, WM_GETMINMAXINFO, IntPtr.Zero, ref mmi, SMTO_ABORTIFHUNG, 50, out _);
-            if (ok == IntPtr.Zero) return false;
-            if (mmi.ptMinTrackSize.X > 0) minW = Math.Max(minW, mmi.ptMinTrackSize.X);
-            if (mmi.ptMinTrackSize.Y > 0) minH = Math.Max(minH, mmi.ptMinTrackSize.Y);
-            return true;
+            bool got = ok != IntPtr.Zero;
+            if (got)
+            {
+                if (mmi.ptMinTrackSize.X > 0) minW = Math.Max(minW, mmi.ptMinTrackSize.X);
+                if (mmi.ptMinTrackSize.Y > 0) minH = Math.Max(minH, mmi.ptMinTrackSize.Y);
+            }
+            _divMinTrackCache[hwnd] = (minW, minH, got);
+            return got;
         }
 
         // ФИКС 1 (T4): Y-зеркало ApplyDividerBatch — мы + соседи + co-tiles одним атомарным
@@ -1122,7 +1135,7 @@ namespace ControlPanel
                     // BUG2: пока НАШЕ окно стоит на месте, RefreshDividerGrips не пересчитывается
                     // (его периодический таймер _edgeWatcher работает только в Maximized). Если сосед
                     // за это время отснапился/уехал, _divNbrsR хранит устаревший хэндл, а грип остаётся
-                    // видимым. Принудительно переоцениваем соседей В МОМЕНТ захвата: исчезнувший сосед
+                    // видимым. Принудительно переоцениваем со��едей В МОМЕНТ захвата: исчезнувший сосед
                     // отсеивается (gap/дальний край/перекрытие), и клик по устаревшему грипу = no-op.
                     RefreshDividerGrips();
                     var nbrs = side == 1 ? _divNbrsL : side == 2 ? _divNbrsR : side == 3 ? _divNbrsT : _divNbrsB;
@@ -1141,6 +1154,8 @@ namespace ControlPanel
                         _divDragging = true;
                         _divDragSide = side;
                         _divDragNbrs = new System.Collections.Generic.List<IntPtr>(nbrs);
+                        _divMinTrackCache.Clear(); // ревизия аудита: свежий MINMAXINFO-кэш на каждый драг
+
                         if (side == 3 || side == 4) FindDividerCoTilesV(side); else FindDividerCoTiles(side); // BUG2: also capture same-column/row co-tiles sharing this divider
                         SetCapture(h);
                     }
@@ -1784,7 +1799,7 @@ namespace ControlPanel
         /// <summary>
         /// БАГ 1: ищет соседнее snapped-окно — партнёра по внутреннему разделителю (для rightEdge — справа,
         /// иначе слева). Партнёр: видимое не-cloaked не-tool окно на том же мониторе, с существенным
-        /// вертикальным перекрытием, по нужную сторону от нас и наиболее примыкающее (минимальный зазор по X
+        /// вертикальным перекрытием, по нужную сторону от нас и наиболее примыкающее (минималь��ый зазор по X
         /// между нашим краем и его краем). Возвращает его ВИДИМЫЕ границы (DWMWA_EXTENDED_FRAME_BOUNDS).
         /// </summary>
         private bool FindSnapNeighbors(IntPtr self, RECT ourVis, bool rightEdge, System.Collections.Generic.List<IntPtr> outHwnds, out int nearEdgeX)
@@ -1830,7 +1845,7 @@ namespace ControlPanel
                 if (gap > SnapNeighborMaxGapPx) return true;                    // слишком далеко — не партнёр по разделителю
                 if (haveWork)
                 {
-                    // партнёр должен ДОСТАВАТЬ до дальней границы рабочей области (последняя плитка колонки).
+                    // партнёр до��жен ДОСТАВАТЬ до дальней границы рабочей области (последняя плитка колонки).
                     // СВЕС за край экрана допустим (OS/наш дрейф мог вытолкнуть дальний край наружу -
                     // мы его потом прибиваем обратно). Отвергаем ТОЛЬКО если дальний край НЕ ДОТЯГИВАЕТ (окно посреди экрана).
                     bool reachesEdge = rightEdge
