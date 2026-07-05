@@ -191,6 +191,20 @@
 
   **Вердикт этапа 1**: список расхождений = ПУСТО. Следующий этап — целостность символов.
 
+- **2026-07-05, T6 (Opus) — Этапы 2/5 (целостность) и 3/5 (баланс) — ПРОЙДЕНЫ**
+
+  **Этап 2, фактические числа**:
+  - Namespace/класс: все 7 файлов — `namespace ControlPanel`, `partial class BorderlessWindow`; базовый `: Window` объявлен ровно в одном (CORE) — каскад-проверка из ревью T5 закрыта.
+  - Объявленные члены: 209 имён методов/типов. Нерезолвящихся вызовов — 0: скан оставил только 8 имён, все — унаследованные члены WPF `Window`/атрибуты (`CaptureMouse`, `ReleaseMouseCapture`, `DragMove`, `InputHitTest`, `PointFromScreen`, `CommandBinding`, `DllImport`, `StructLayout`).
+  - Поля: 13 «подозрительных» `_полей` перепроверены грэпом — все объявлены (полностью квалифицированные `System.Collections.Generic`-дженерики, ложные тревоги сканера): `_divDragCoTiles/_divDragNbrs/_divGripOwners/_divMinTrackCache/_divNbrs[LRTB]/_divReleaseNbrs/_frameNbrs[LR]/_gripOwners/_peakGate`.
+  - Неиспользуемые P/Invoke: **0** (каждый extern имеет ≥1 вызов кроме объявления).
+  - Дубли определений: методов, определённых в >1 файле или дважды — **0**. `DwmGetWindowAttribute` x2 в Interop.cs:263/265 — легальные перегрузки (`out RECT` / `out int`), не CS0111.
+  - Using'и: `System` + `System.Runtime.InteropServices` во всех 7; остальные — по потребности файла (`System.Text.Json`/`IO`/`Collections.Generic` только в Taskbar, `Threading` в Animation, `ComponentModel` в CORE и т.д.) — согласовано, лишних нет.
+
+  **Этап 3, баланс по коду (без комментариев/строк), формат `{ ( [`**: Animation 38/147/0; Chrome 39/227/0; Interop 14/133/69; SnapResize 268/1181/20; Taskbar 62/143/0; Unsnap 46/244/0; CORE 50/198/0 — **все пары сходятся во всех 7 файлах**.
+
+  Следующий этап — 4/5: дополнение IDEAS.md.
+
 ## Чего НЕ делать (уроки прошлых агентов, из handoff'ов)
 
 - Не пытаться закрывать зазор рисованием: fill-окна, оверлеи, маски — доказанный тупик (артефакты/мерцание).
