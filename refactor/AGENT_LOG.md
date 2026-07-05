@@ -129,7 +129,7 @@
 
   **Вердикт T4: ПРИНЯТА С ПРАВКОЙ АУДИТОРА → `DONE`.** Архитектура фикса верная: кламп через `WM_GETMINMAXINFO` — тот же механизм, которым DefWindowProc клампит SetWindowPos соседа, т.е. предсказание совпадает с реальностью; один атомарный DeferWindowPos; grower-first pre-pass с инвариантом «перекрытие, не зазор»; идемпотентный post-pass; гейт в ядре после `MaybeSuppressUnsnapResnapFrame`, WINDOWPOS не модифицируется; рекурсия pre-pass'ов исключена гейтом `_inSizeMove`. НО: `TryGetMinTrackSize` звался синхронно на КАЖДЫЙ mouse-move кадр каждому соседу с таймаутом 50ms — `SMTO_ABORTIFHUNG` спасает от hung, но НЕ от busy-процесса → до 50ms×N на кадр → рывки (симптом, который фикс лечит). **Правка внесена**: `_divMinTrackCache` (Dictionary hwnd→(minW,minH,ok)) — результат (включая неудачу) кэшируется на время драга, кэш чистится при захвате грипа в `DivGripWndProc`/WM_LBUTTONDOWN. Frame-pre-pass `TryGetMinTrackSize` не использует �� кэш нужен только DivGrip-пути.
 
-  **Осознанные компромиссы T4, принятые аудитом (не править)**: (1) новый путь не читает фактический пост-кламповый край соседа (кламп третьей стороной сверх MINMAXINFO) — компенсируется следующим кадром (чтение `hi` по факту) + `ArmDivReleaseRealign`; (2) pre-pass шлёт SetWindowPos соседу и при неизменном крае — round-trip лишний, но геометрически no-op; оптимизация в IDEAS.
+  **Осознанные компромиссы T4, принятые аудитом (не править)**: (1) новый путь не читает фактический пост-кламповый край соседа (кламп третьей стороной сверх MINMAXINFO) — компенсируется следующим кадром (чтение `hi` по факту) + `ArmDivReleaseRealign`; (2) pre-pass шл��т SetWindowPos соседу и при неизменном крае — round-trip лишний, но геометрически no-op; оптимизация в IDEAS.
 
   **Критика самих задач (процессные уроки)**: (а) T3 зафиксировала спорное решение плана как обязательный критерий приёмки — ошибка предпосылки протекла из PLAN в спецификацию; впредь для визуально-непроверяемых решений формулировать «зеркалить доказанный образец, вариант B после визуальной проверки»; (б) T4 не специфицировала, КОГДА запрашивать MINMAXINFO — критерий «clamp обработан ДО коммита» пропустил перф-регрессию; впредь добавлять критерий «никаких синхронных кросс-процессных вызовов на каждом кадре»; (в) критерий «fallback бит-в-бит» непроверяем без артефактов — требовать приложенный diff-выхлоп, не «сверено на словах»; (г) T4 стартовала до формального ревью T3 — порядок T2→T6 строгий, ревью не пропускать.
 
@@ -186,7 +186,7 @@
   **Фактические числа**:
   - KEEP: проверено **302 члена** (258 из основных списков + 44 полей с точными именами из оригинала: `_captionUnsnap*` x8, `_unsnapArm*`/`_unsnapWinEvent*`/`_unsnapHasFloated` x7, `_pf*` x26, `_offscreenPrevValid`, `_snapFollowTimer/Active`, `_lastFloatingRestoreRect`). **Найдены все — расхождений 0.**
   - DELETE: проверен **51 символ** (TsLog/SnapLog/GripLog/LogHit/LogIncoming/LogFirstUpdate/LogPassiveCandidates/LogNearestRejectedNeighbor, EnableTroubleshootLog/EnableSnapDiagLog, ControlzEx/WindowChromeBehavior, DivFs*/_divFs*, DivGuide-цепочка/_divGuide*, TryBuildAlignedValidRects, EnableDivider* x5, watchdog x3, троттлинг-тики x5, GetWndClass, StartMaskCrossfade/MaskFadeLoop/Ease, DisableDwmNcRendering, AttachControlzExChrome, _lastLoggedHit). **Вхождений в коде (без комментариев): 0 — кроме одного санкционированного отклонения** (ниже).
-  - Санкционированное отклонение (правило 1 METHOD_MAP, зафиксировано T2/T3 в коде): `EnableSuppressResizeBitBlt(=false)` + `SuppressResizeBitBlt()` СОХРАНЕНЫ (CORE строки 74–76 явно ссылаются на PLAN Часть 2 «НЕ удалять»; живой вызов в WindowProc-ветке CORE:448, тело CHROME:547). Не расхождение — подтверждаю KEEP.
+  - Санкционированное отклонение (правило 1 METHOD_MAP, зафиксировано T2/T3 в коде): `EnableSuppressResizeBitBlt(=false)` + `SuppressResizeBitBlt()` СОХРАНЕНЫ (CORE ст��оки 74–76 явно ссылаются на PLAN Часть 2 «НЕ удалять»; живой вызов в WindowProc-ветке CORE:448, тело CHROME:547). Не расхождение — подтверждаю KEEP.
   - Грэп-проверки «проверить перед удалением»: `SetWindowThemeAttribute`+`WTA_OPTIONS` — ЖИВОЙ (ветка `IncludeCaptionForSnap` в CHROME:131–133, не мёртвая `DisableDwmNcRendering`) → KEEP корректен; `CreateRectRgn`/`SetWindowRgn` — ЖИВЫЕ (регион маски ANIM:189) → KEEP корректен; `GetWndClass` — 0 вхождений (удалён верно); `StartMaskCrossfade`/`MaskFadeLoop`/`Ease` — 0 вхождений (удалены верно, PLAN п.4).
 
   **Вердикт этапа 1**: список расхождений = ПУСТО. Следующий этап — целостность символов.
@@ -204,6 +204,22 @@
   **Этап 3, баланс по коду (без комментариев/строк), формат `{ ( [`**: Animation 38/147/0; Chrome 39/227/0; Interop 14/133/69; SnapResize 268/1181/20; Taskbar 62/143/0; Unsnap 46/244/0; CORE 50/198/0 — **все пары сходятся во всех 7 файлах**.
 
   Следующий этап — 4/5: дополнение IDEAS.md.
+
+- **2026-07-05, T6 (главный ревьюер) — Этап 5/5 ЗАКРЫТ, T6 → `DONE`. ПРОЕКТ ЗАВЕРШЁН (сборка и ручные тесты — у пользователя)**
+
+  **Роль**: главный ревьюер — не принимать этапы 1–4 на веру, перепроверить независимо, закрыть каскады, дополнить IDEAS, дать финальное резюме.
+
+  **Независимая перепроверка (python-скан с вырезанием строк/комментариев, фактические числа)**:
+  - Баланс `{}`/`()`/`[]` по коду: Animation 38/147/0, Chrome 39/227/0, Interop 14/133/69, SnapResize 268/1181/20, Taskbar 62/143/0, Unsnap 46/244/0, CORE 50/198/0 — совпадает с отчётом этапа 3 один-в-один.
+  - `partial class BorderlessWindow : Window` — ровно в CORE, остальные 6 без базы; `namespace ControlPanel` — 7/7 файлов.
+  - Дубли const/полей между partial'ами — 0 (урок CS0102 из T5 закрыт); запрещённые токены (`TsLog|SnapLog|ControlzEx|WindowChromeBehavior|StartMaskCrossfade|MaskFadeLoop|GetWndClass|_captionUnsnapWatchdog|TryBuildAlignedValidRects`) в коде — 0.
+  - Флаги фиксов: `EnableSeamGapFix=true`, `EnableLeftEdgeGhostGuard=true` — объявлены по одному разу в CORE; использования: SeamGap — SnapResize(4)+CORE-гейт(1), GhostGuard — Chrome(1).
+  - Правки аудиторов на месте: `new Thickness(0, ty` — 0 вхождений (левый бордер = 1, вердикт T3); `_divMinTrackCache.Clear()` при захвате грипа (SnapResize:1157, вердикт T4).
+  - **Каскад «ветки git» (IDEAS §3)**: `audit-fable-agents`, `task-t3`, `task-t4-refactor`, старая v0-ветка — все предки `main` (`git merge-base --is-ancestor` по каждой). Расхождений с main нет. Слитые remote-ветки можно удалить на GitHub (гигиена).
+
+  **Сделано**: IDEAS.md дополнен §7 (итоги финального ревью + приоритизация всех идей); TASKS.md: T6 → `DONE`; финальное резюме (что удалено, как выключить фиксы, 7+1 тест-сценариев, рекомендации) выдано пользователю в чате.
+
+  **Вердикт**: все 6 задач `DONE`. Следующий шаг — за пользователем: `dotnet build` на `net10.0-windows` (не забыть убрать ControlzEx PackageReference из csproj) и ручные тесты. Любые правки по итогам тестов — реактивно, по рецептам из IDEAS.md.
 
 ## Чего НЕ делать (уроки прошлых агентов, из handoff'ов)
 
