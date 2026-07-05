@@ -33,15 +33,12 @@ namespace ControlPanel
 
         private const int GapMaskHeight = 64;
         private const int GapMaskParked = -32000;
-        private const int ABE_BOTTOM = 3;
-        private const int ABM_GETAUTOHIDEBAREX = 0x0000000B;
+        // ABE_BOTTOM / ABM_GETAUTOHIDEBAREX / SW_SHOWNORMAL / SW_SHOWMINIMIZED объявлены в
+        // BorderlessWindow.Interop.cs (T2) — здесь НЕ дублировать (partial-класс, CS0102).
 
         private static readonly string PlacementFilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "ControlPanel", "window-placement.json");
-
-        private const int SW_SHOWNORMAL = 1;
-        private const int SW_SHOWMINIMIZED = 2;
 
         private void UpdateEdgeWatcher()
         {
