@@ -58,7 +58,7 @@
 
 ---
 
-## T4 — SnapResize + фикс зазора (`BorderlessWindow.SnapResize.cs`) — `IN PROGRESS (Fable)`
+## T4 — SnapResize + фикс зазора (`BorderlessWindow.SnapResize.cs`) — `REVIEW`
 
 **Модель**: Fable.
 

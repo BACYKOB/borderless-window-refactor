@@ -46,7 +46,7 @@
 - Верхний ghost-guard: `ThemedFrameInset` применяется в `ThemedFrameNcCalcSize` только к top. Фикс 2 — симметрично к left + `BorderThickness.Left=0` в `ApplyThemedBorderMetrics` (XAML `BorderThickness="1,0,1,1"` — проверить точное значение в `xaml/Controls.xaml.md`; триггер Maximized ставит 0).
 - `ThemeBorderColorRef = 0x00403432` — DWM border color, совпадает с XAML BorderBrush (#323440 в BGR) — визуальная неизменность левого 1px подтверждена сверкой.
 - Unsnap-restore: Variant A/A+/A++ (manual move + WinEvent hook + handoff to shell) — НЕ ТРОГАТЬ логику, только перенос 1:1 и вычистка логов. `CaptionUnsnapRestoreThresholdDip = 20.0` — не менять.
-- Подтверждённые мёртвые ветки перечислены в PLAN.md Часть 2 — но перед удаление�� КАЖДОГО символа перепроверить грэпом по исходнику, что он не вызывается живым кодом (handoff'ы местами устарели).
+- Подтверждённые мёртвые ветки перечислены в PLAN.md Часть 2 — но перед удаление���� КАЖДОГО символа перепроверить грэпом по исходнику, что он не вызывается живым кодом (handoff'ы местами устарели).
 
 ## Следующи�� шаги
 
@@ -102,6 +102,24 @@
   4. Grep-инструмент песочницы не индексирует каталог `refactor/` — все грэп-сверки делал через bash `grep`, работает штатно.
 
   **Каскады**: T4 (SNAP) обязан объявить `TryGetVisibleBounds` (Chrome его вызывает в `TryGetSnapInternalEdges`), `SnapFollowGrabBandPx` (ядро использует в WM_NCHITTEST-ветке). T5 (ANIM) обязан перенести константы `MaskColorRef` (4581) и `ThemeBorderColorRef` (4582) — Chrome ссылается на обе; (TASKBAR) — `IsOnTaskbarMonitor`, `HasBottomAutoHideTaskbar`, `_shrunk` (Chrome вызывает в `AdjustMaximizedBounds`).
+
+- **2026-07-05, агент-исполнитель T4 (Fable) — T4 сдана в `REVIEW`**
+
+  **Задача**: создать `Controls/BorderlessWindow.SnapResize.cs` — перенос snap-методов по METHOD_MAP §4 + внедрение фикса 1 (`EnableSeamGapFix`, PLAN Часть 3).
+
+  **Результат — `Controls/BorderlessWindow.SnapResize.cs`, 2043 строки.** Баланс `{}` 266/266, `()` 1175/1175, 48 методов, 0 битых UTF-8 символов (в перенесённых диапазонах исходника были повреждённые кириллические комментарии — восстановлены по смыслу, ~55 мест). Состав: курсор joint-resize (`TrySetJointResizeCursor`), грип-окна (класс/`EnsureGrip*`/`Hide*`/`Destroy*`/`Refresh*`/`ScheduleEdgeGripRefresh`), divider joint-resize H+V (`UpdateDividerJointResize(V)`, `ApplyDividerBatch(V)`, co-tiles, `DivGripWndProc`, `GripWndProc`), frame-follow (`FollowFrameResizeNeighbors(Pre)`, `MoveNeighborsFlush(V)`, `Arm*ReleaseRealign`), snap-follow таймер (`StartSnapFollow`/`StopSnapFollow`/`SnapFollow_Tick`/`UpdateSnapFollow`, `FindSnapNeighbors(V)`, `TryFindSnapNeighbor(V)`, `TryGetTrackedNeighborEdge(V)`), passive-follow (`ResetPassiveFollow`, `TryFindPassiveNeighborH/V`, `PassiveFollowNeighbors`, `HasFlushTileNeighborH`, `SideTilesCoverBigEdgeH/V`), общие хелперы `TryGetVisibleBounds`/`TryGetMaskRect` (каскад T3 закрыт: оба объявлены, `SnapFollowGrabBandPx` тоже).
+
+  **Удаления при переносе (PLAN Часть 2)**: вся диагностика GripLog/TsLog/SnapLog/PfLog + троттлинг-поля (`_lastDivMoveLogTick`, `_lastNbrDiagTick`, `_lastFrmFollowLogTick`, `_lastPfLogTick`, `_lastPfCandLogTick`, `_lastLoggedHit*`) + диаг-дампы `LogNearestRejectedNeighbor`/`LogPassiveCandidates` (включая diag-переменные в `TryFindSnapNeighbor`, наружу не утекали — проверено); мёртвые эксперименты `EnableDividerDeferredResize`/`EnableDividerFrameSync`/`EnableDividerNoCopyBits` (все false) с полями `_divFsPending*`/`_divFsRenderHooked`/`_divGuideHwnd` и методами `ShowDivGuideAt`/`HideDivGuide`/`DivFsEnsureHook`/`DivFsUnhook` — ветки в `GripWndProc` (WM_MOUSEMOVE/LBUTTONUP/CAPTURECHANGED) свёрнуты до живого пути; `EnableDividerSingleBatch` (probe-флаг) — заменён настоящим фиксом. WM_*/SC_*/IDC_*/SW_*-константы не дублируются (они в Interop, T2); флаги Enable* не переобъявлены (они в ядре, T2).
+
+  **ФИКС 1 внедрён (обе части, за `EnableSeamGapFix` из ядра, fallback бит-в-бит)**:
+  1. **DivGrip-путь** (все 4 стороны: H side 1/2, V side 3/4): вместо двухпроходной схемы (предиктивный сдвиг соседей → чтение фактического края → финальный batch — между проходами кадр с зазором) — кламп `effDiv` по `MINMAXINFO` соседа ЗАРАНЕЕ (новый хелпер `TryGetMinTrackSize`: `SendMessageTimeoutW(WM_GETMINMAXINFO, SMTO_ABORTIFHUNG, 50ms)`, при неудаче консервативный `SnapFollowMinDimPx`; P/Invoke добавлен в Interop.cs) + ровно ОДИН атомарный `BeginDefer/EndDeferWindowPos` за кадр (мы + соседи + co-tiles). Для V-пути написан `ApplyDividerBatchV` (Y-зеркало `ApplyDividerBatch`, в исходнике его не было — V-путь был на последовательных SetWindowPos). `ArmDivReleaseRealign` на отпускании сохранён — докрывает случай, если ОС клампанула сверх MINMAXINFO.
+  2. **Frame-resize путь**: «grower-first» `FollowFrameResizeNeighborsPre(hwnd, lParam)` — вызывается из `WM_WINDOWPOSCHANGING` ядра (гейт `EnableSeamGapFix && _inSizeMove && _userEdgeResize && _frameJointArmed`, вставлен ПОСЛЕ `MaybeSuppressUnsnapResnapFrame`/`_sizeChangedInLoop` — с pending-rect логикой не конфликтует, WINDOWPOS не модифицируется, только читается). Если предложенный видимый край идёт ВНУТРЬ (мы сжимаемся → сосед растёт), сосед коммитится ДО применения нашего кадра; сжатие соседа остаётся в post-pass `FollowFrameResizeNeighbors` (WM_WINDOWPOSCHANGED), который идемпотентен (повторный SetWindowPos в те же координаты — no-op). Инвариант: переходное состояние — всегда перекрытие, никогда зазор.
+
+  **Правки в чужих файлах (минимальные, по необходимости)**: `BorderlessWindow.Interop.cs` — добавлен `SendMessageTimeoutW(ref MINMAXINFO)` + `SMTO_ABORTIFHUNG` (5 строк, для фикса 1); `BorderlessWindow.cs` — вызов `FollowFrameResizeNeighborsPre` в `WM_WINDOWPOSCHANGING` (6 строк с комментарием; сам гейт-вызов был предусмотрен планом).
+
+  **Самопроверка по приёмке T4**: fallback-ветки — перенос двухпроходной схемы 1:1 (сверено с original 1434–1560, 1799–1900); в новом пути наше окно двигается ровно один раз за кадр (один EndDeferWindowPos, ghost-trail регрессии нет); min-size clamp обработан ДО коммита (`TryGetMinTrackSize` до `ApplyDividerBatch*`); pre-pass не трогает pending-rect ядра. Кросс-файловая сверка: 0 необъявленных полей/методов/констант (скрипт-грэп по всем 4 файлам), 0 дублей объявлений между partial'ами, запрещённые токены в коде — 0 (одно упоминание в шапке-комментарии — перечень удалённого).
+
+  **Каскады для T5/T6**: SnapResize ссылается на `_snapped`/`_snapRect` (Unsnap, T5) и `Rect`→`RECT` хелперы ядра — при T6-сверке проверить. `DeferJointResizeToShell=true` означает: `DivGripWndProc` отдаёт драг shell'у (`WM_NCLBUTTONDOWN HTLEFT/HTRIGHT`), кастомный `GripWndProc`-драг — fallback-путь.
 
 ## Чего НЕ делать (уроки прошлых агентов, из handoff'ов)
 
